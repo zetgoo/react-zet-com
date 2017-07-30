@@ -1,0 +1,51 @@
+/* Only for demo, not include in framework
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+html
+  box-sizing: border-box
+  font-size: 62.5%
+  
+a
+  @apply --cl-teal
+  text-decoration: none
+
+.wrapper
+  display: block
+  overflow: hidden
+  position: relative
+  width: 100%
+  font-size: 14px
+  & > .container
+    padding-bottom: 3.5rem
+    padding-top: 3.5rem
+  & .container
+    max-width: 130rem
+  & .content
+    width: 100rem
+
+.column-demo
+  background: var(--color-primary)
+  border-radius: .4rem
+  display: block
+  font-size: 1rem
+  font-weight: 600
+  height: 3rem
+  letter-spacing: .1rem
+  line-height: 3rem
+  margin-bottom: 2.5rem
+  text-align: center
+  text-transform: uppercase
+
+.logo
+  display: inline-block
+
+.logo-img
+  width: 60px
+  height: 60px
+
+.sideBar
+  width: 20rem
+
+.color
+  width: 6rem
+  height: 2rem
