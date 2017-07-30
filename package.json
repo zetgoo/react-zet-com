@@ -1,6 +1,6 @@
 {
   "name": "react-zet-com",
-  "version": "1.0.22",
+  "version": "1.0.24",
   "description": "Build react component to save time develop a project",
   "main": "dist/index.js",
   "scripts": {
