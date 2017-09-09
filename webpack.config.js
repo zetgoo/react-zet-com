@@ -1,4 +1,5 @@
 const  HtmlWebpackPlugin = require ('html-webpack-plugin')
+// const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -32,6 +33,7 @@ module.exports = {
     ]
   },
   plugins: [
+    // new CleanWebpackPlugin(['dist']),
     HtmlWebpackPluginConfig,
     new ExtractTextPlugin('[name].css')],
   devtool: 'cheap-module-inline-source-map'

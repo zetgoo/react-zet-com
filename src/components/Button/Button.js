@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Radium from 'radium'
 import PropTypes from 'prop-types'
-
+import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
@@ -22,7 +22,7 @@ const styles = {
     userSelect: 'none',
     backgroundColor: 'white',
     borderColor: '#dbdbdb',
-    color: '#363636',
+    color: colors.no,
     cursor: 'pointer',
     justifyContent: 'center',
     paddingLeft: '0.75em',
@@ -31,7 +31,7 @@ const styles = {
     whiteSpace: 'nowrap',
   },
   primary: {
-    backgroundColor: '#6bb551',
+    backgroundColor: colors.primary,
     borderColor: 'transparent',
     color: '#fff',
     ':hover':{
@@ -46,31 +46,63 @@ const styles = {
       color: '#fff'
     }
   },
-  warning: {
-    background: '#FF4136'
+  success: {
+    backgroundColor: colors.success
   },
-  pad20: {
-    padding: 20
+  disable: {
+    backgroundColor: colors.disable
+  },
+  info: {
+    backgroundColor: colors.info
+  },
+  warning: {
+    backgroundColor: colors.warning
+  },
+  danger: {
+    background: colors.danger
+  },
+  cancel: {
+    background: colors.cancel
+  },
+  isLoading: {
+    color: 'transparent',
+    pointerEvents: 'none',
+    ':after': {
+      animation: 'spinAround 500ms infinite linear',
+      border: '2px solid #dbdbdb',
+      borderRadius: '290486px',
+      borderRightColor: 'transparent',
+      borderTopColor: 'transparent',
+      content: 'hjghjg',
+      display: 'block',
+      height: '1em',
+      width: '1em',
+      left: 2,
+      top: 2,
+      position: 'absolute'
+    }
   }
 }
 
 const Button = (props)=> {
   let zcss = []
   if (props.zcss && Array.isArray(props.zcss)){
-    props.zcss.map((item, index) => zcss.push(styles[item]))
+    props.zcss.map((item, index) => {
+      zcss.push(styles[item])
+      zcss.push(atomic[item])
+    })
   }
 
   return (
-    <button onClick = {props.onClick} style={[
+    <button {...props} style={[
         styles.base,
         ...zcss
       ]}
-      >{props.ztext}</button>
+      >{props.children}</button>
   )
 }
 
 Button.propTypes = {
-  ztext: PropTypes.string.isRequired,
   zcss: PropTypes.array
 }
 
