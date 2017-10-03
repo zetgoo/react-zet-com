@@ -4,6 +4,7 @@ import ToggleLib from 'react-toggle'
 import PropTypes from 'prop-types'
 import {colors, atomic} from '../constant'
 import Icon from '../Icon/Icon'
+import Link from '../Link/Link'
 
 const styles = {
   base: {
@@ -19,6 +20,7 @@ const styles = {
     '@media (max-width: 575px)':{
       display:'flex',
       flex: 1,
+      padding: '0 5px'
     }
   }
 }
@@ -34,8 +36,8 @@ const NavToggle = (props)=> {
 
   return (
     <button style = {[styles.base]} onClick = {props.toggle}>
-      {!props.isActive && <Icon zcss = {['cl_success']} icon = 'fa fa-bars'/>}
-      {props.isActive && <Icon zcss = {['cl_disable']} icon = 'fa fa-times'/>}
+      {!props.isActive && <Icon zcss = {['cl_success', 'f1r']} icon = 'fa fa-bars' text = 'ZetGoo'/>}
+      {props.isActive && <Icon zcss = {['cl_disable', 'f1r']} icon = 'fa fa-times'text = 'ZetGoo'/>}
     </button>
   )
 }

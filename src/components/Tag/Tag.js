@@ -16,39 +16,49 @@ const styles = {
     lineHeight: 1.5,
     paddingLeft: '0.75em',
     paddingRight: '0.75em',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    verticalAlign: 'top'
   },
   button: {
-    height: 16,
-    maxHeight: 16,
-    maxWidth: 16,
-    minHeight: 16,
-    minWidth: 16,
-    width: 16,
-    marginLeft: '0.25em',
-    marginLight: '-0.375em'
+    padding: '0.25em',
+    marginLeft: '0.5em',
+    justifyContent: 'center',
+    display: 'inline-flex',
+    backgroundColor: 'rgba(17, 17, 17, 0.2)',
+    border: 0,
+    borderRadius: '30%'
   },
+  isSmall: {
+    fontSize: 11,
+    height: 20,
+    paddingLeft: 8,
+    paddingRight: 8
+  },
+  isMedium: {
+    fontSize: 14,
+    height: 32,
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  isLarge:{
+    fontSize: 18,
+    height: 40,
+    lineHeight: 24,
+    paddingLeft: 18,
+    paddingRight: 18
+  },
+
   primary: {
     backgroundColor: colors.primary,
-    borderColor: 'transparent',
-    color: '#fff',
-    ':hover':{
-      backgroundColor: '#00c4a7',
-      borderColor: 'transparent',
-      color: '#fff'
-    },
-    ':active': {
-      backgroundColor: '#00b89c',
-      borderColor: 'transparent',
-      boxShadow: 'inset 0 1px 2px rgba(10, 10, 10, 0.2)',
-      color: '#fff'
-    }
   },
+
   success: {
     backgroundColor: colors.success
   },
   disable: {
-    backgroundColor: colors.disable
+    backgroundColor: colors.disable,
+    pointerEvents: 'none',
+    cursor: 'default'
   },
   info: {
     backgroundColor: colors.info
@@ -58,7 +68,25 @@ const styles = {
   },
   danger: {
     background: colors.danger
-  }
+  },
+  cancel: {
+    background: colors.cancel
+  },
+  white: {
+    backgroundColor: colors.no,
+    borderColor: 'transparent',
+    color: '#111'
+  },
+  light:{
+    backgroundColor: '#f5f7fa',
+    borderColor: 'transparent',
+    color: '#69707a'
+  },
+  black:{
+    backgroundColor: '#111',
+    borderColor: 'transparent',
+    color: '#fff'
+  },
 }
 
 const Tag = (props)=> {
@@ -73,7 +101,7 @@ const Tag = (props)=> {
   return (
     <span style = {[styles.base, ...zcss]}>
       {props.text}
-      <button className = 'fa fa-remove' style = {[styles.button]} onClick = {props.onClick}/>
+      <button className = {props.icon} style = {[styles.button]} onClick = {props.onClick}/>
     </span>
   )
 }

@@ -13,9 +13,26 @@ const styles = {
     border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
-    verticalAlign: 'baseline',
-    display: 'block',
+    verticalAlign: 'top',
+    display: 'inline-block',
     position: 'relative'
+  },
+
+  image: {
+    display: 'block',
+    height: '100%',
+    width: '100%'
+  },
+
+  isCircle: {
+    borderRadius: '50%'
+  },
+
+  isAvatar: {
+    '@media (max-width: 575px)':{
+      height: 32,
+      width: 32
+    }
   }
 }
 
@@ -31,10 +48,10 @@ const Image = (props)=> {
   return (
     <figure {...props} style={[
         styles.base,
-        ...zcss
+        {width: props.width, height: (props.width / props.ratio)}
       ]}
       >
-      <img src={this.props.src} alt={this.props.alt} />
+      <img style = {[styles.image, ...zcss]} src={props.src} alt={props.alt} />
     </figure>
   )
 }

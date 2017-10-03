@@ -50,12 +50,26 @@ var _Link = require('../../components/Link/Link');
 
 var _Link2 = _interopRequireDefault(_Link);
 
+var _Avatar = require('../../components/Avatar/Avatar');
+
+var _Avatar2 = _interopRequireDefault(_Avatar);
+
+var _SearchInput = require('../../components/SearchInput/SearchInput');
+
+var _SearchInput2 = _interopRequireDefault(_SearchInput);
+
+var _Container = require('../../components/Container/Container');
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import {Nav, NavItem, NavGroup,Button, Icon} from 're-bulma'
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var styles = {
-  base: {}
+  base: {
+    backgroundColor: '#fff'
+  }
 };
 
 var Header = function Header(props) {
@@ -68,43 +82,73 @@ var Header = function Header(props) {
   }
 
   return _react2.default.createElement(
-    _Nav2.default,
-    null,
-    _react2.default.createElement(_NavToggle2.default, { isActive: props.isActive, toggle: props.toogleClick }),
+    'header',
+    { style: styles.base },
     _react2.default.createElement(
-      _NavGroup2.default,
-      { zcss: [] },
+      _Container2.default,
+      null,
       _react2.default.createElement(
-        _NavItem2.default,
-        { zcss: ['logo'] },
-        _react2.default.createElement(_Logo2.default, null)
-      )
-    ),
-    _react2.default.createElement(
-      _NavGroup2.default,
-      { zcss: ['menu', !props.isActive ? 'menuHide' : ''] },
-      props.menu && props.menu.map(function (item, index) {
-        return _react2.default.createElement(
-          _NavItem2.default,
-          null,
+        _Nav2.default,
+        null,
+        _react2.default.createElement(_NavToggle2.default, { isActive: props.isActive, toggle: props.toogleClick }),
+        _react2.default.createElement(
+          _NavGroup2.default,
+          { zcss: [] },
           _react2.default.createElement(
-            _Link2.default,
-            { to: item.to },
-            _react2.default.createElement(_Icon2.default, item)
+            _NavItem2.default,
+            { zcss: ['logo'] },
+            _react2.default.createElement(_Logo2.default, null),
+            _react2.default.createElement(_SearchInput2.default, { isSearching: props.isSearching, search: props.search })
           )
-        );
-      })
-    ),
-    _react2.default.createElement(
-      _NavGroup2.default,
-      { zcss: ['icon'] },
-      props.iconMenu && props.iconMenu.map(function (item, index) {
-        return _react2.default.createElement(
-          _NavItem2.default,
-          { zcss: ['icon'], action: item.action },
-          _react2.default.createElement(_Icon2.default, { zcss: item.zcss, icon: item.icon, text: item.text })
-        );
-      })
+        ),
+        _react2.default.createElement(
+          _NavGroup2.default,
+          { zcss: ['menu', !props.isActive ? 'menuHide' : ''] },
+          props.menu && props.menu.map(function (item, index) {
+            return _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
+              _react2.default.createElement(
+                _Link2.default,
+                { to: item.to },
+                item.text
+              )
+            );
+          })
+        ),
+        !props.userLogined && _react2.default.createElement(
+          _NavGroup2.default,
+          { zcss: ['menu', !props.isActive ? 'menuHide' : ''] },
+          props.menu && props.menu.map(function (item, index) {
+            return _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
+              _react2.default.createElement(
+                _Link2.default,
+                { to: item.to },
+                item.text
+              )
+            );
+          })
+        ),
+        props.userLogined && _react2.default.createElement(
+          _NavGroup2.default,
+          { zcss: ['icon'] },
+          _react2.default.createElement(
+            _NavItem2.default,
+            { zcss: ['icon'] },
+            props.iconMenuUser && props.iconMenuUser.map(function (item, index) {
+              return _react2.default.createElement(_Icon2.default, { zcss: [].concat(_toConsumableArray(item.zcss), ['mgL1e']), icon: item.icon,
+                onClick: item.action });
+            })
+          ),
+          _react2.default.createElement(
+            _NavItem2.default,
+            { zcss: ['avatar'] },
+            _react2.default.createElement(_Avatar2.default, { zcss: ['isCircle'], image: props.userLogined.avatar })
+          )
+        )
+      )
     )
   );
 };

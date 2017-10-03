@@ -23,10 +23,28 @@ var _constant = require('../constant');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  base: {}
+  base: {
+    color: '#69707a',
+    fontSize: '.875em',
+    cursor: 'pointer',
+    display: 'inline-block',
+    lineHeight: '1em',
+    position: 'relative',
+    verticalAlign: 'top',
+    margin: 0,
+    padding: 0
+  },
+  control: {
+    verticalAlign: 'middle',
+    margin: 0
+  },
+  label: {
+    margin: '0 .5em'
+  }
+
 };
 
-var Checkbox = function Checkbox(props) {
+var Radio = function Radio(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map(function (item, index) {
@@ -35,12 +53,20 @@ var Checkbox = function Checkbox(props) {
     });
   }
 
-  return _react2.default.createElement('input', _extends({ type: 'radio' }, props, { style: [styles.base].concat(zcss)
-  }));
+  return _react2.default.createElement(
+    'label',
+    { style: styles.base },
+    _react2.default.createElement('input', _extends({ type: 'radio' }, props, { style: [styles.control].concat(zcss) })),
+    _react2.default.createElement(
+      'span',
+      { style: styles.label },
+      props.label
+    )
+  );
 };
 
-Checkbox.propTypes = {
+Radio.propTypes = {
   zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(Checkbox);
+exports.default = (0, _radium2.default)(Radio);

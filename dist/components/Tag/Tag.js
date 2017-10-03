@@ -33,39 +33,49 @@ var styles = {
     lineHeight: 1.5,
     paddingLeft: '0.75em',
     paddingRight: '0.75em',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    verticalAlign: 'top'
   },
   button: {
-    height: 16,
-    maxHeight: 16,
-    maxWidth: 16,
-    minHeight: 16,
-    minWidth: 16,
-    width: 16,
-    marginLeft: '0.25em',
-    marginLight: '-0.375em'
+    padding: '0.25em',
+    marginLeft: '0.5em',
+    justifyContent: 'center',
+    display: 'inline-flex',
+    backgroundColor: 'rgba(17, 17, 17, 0.2)',
+    border: 0,
+    borderRadius: '30%'
   },
+  isSmall: {
+    fontSize: 11,
+    height: 20,
+    paddingLeft: 8,
+    paddingRight: 8
+  },
+  isMedium: {
+    fontSize: 14,
+    height: 32,
+    paddingLeft: 14,
+    paddingRight: 14
+  },
+  isLarge: {
+    fontSize: 18,
+    height: 40,
+    lineHeight: 24,
+    paddingLeft: 18,
+    paddingRight: 18
+  },
+
   primary: {
-    backgroundColor: _constant.colors.primary,
-    borderColor: 'transparent',
-    color: '#fff',
-    ':hover': {
-      backgroundColor: '#00c4a7',
-      borderColor: 'transparent',
-      color: '#fff'
-    },
-    ':active': {
-      backgroundColor: '#00b89c',
-      borderColor: 'transparent',
-      boxShadow: 'inset 0 1px 2px rgba(10, 10, 10, 0.2)',
-      color: '#fff'
-    }
+    backgroundColor: _constant.colors.primary
   },
+
   success: {
     backgroundColor: _constant.colors.success
   },
   disable: {
-    backgroundColor: _constant.colors.disable
+    backgroundColor: _constant.colors.disable,
+    pointerEvents: 'none',
+    cursor: 'default'
   },
   info: {
     backgroundColor: _constant.colors.info
@@ -75,6 +85,24 @@ var styles = {
   },
   danger: {
     background: _constant.colors.danger
+  },
+  cancel: {
+    background: _constant.colors.cancel
+  },
+  white: {
+    backgroundColor: _constant.colors.no,
+    borderColor: 'transparent',
+    color: '#111'
+  },
+  light: {
+    backgroundColor: '#f5f7fa',
+    borderColor: 'transparent',
+    color: '#69707a'
+  },
+  black: {
+    backgroundColor: '#111',
+    borderColor: 'transparent',
+    color: '#fff'
   }
 };
 
@@ -91,7 +119,7 @@ var Tag = function Tag(props) {
     'span',
     { style: [styles.base].concat(zcss) },
     props.text,
-    _react2.default.createElement('button', { className: 'fa fa-remove', style: [styles.button], onClick: props.onClick })
+    _react2.default.createElement('button', { className: props.icon, style: [styles.button], onClick: props.onClick })
   );
 };
 

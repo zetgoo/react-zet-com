@@ -30,8 +30,6 @@ var styles = {
 };
 
 var custom = function custom(props) {
-  var _screen = screen,
-      width = _screen.width;
   var col = props.col,
       smallCol = props.smallCol,
       mediumCol = props.mediumCol,

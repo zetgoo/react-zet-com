@@ -28,7 +28,7 @@ var styles = {
   base: {
     textRendering: 'optimizeLegibility',
     color: '#69707a',
-    padding: 5,
+    padding: '.75em',
     border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
@@ -36,18 +36,28 @@ var styles = {
     display: 'flex',
     alignItems: 'center',
     '@media (max-width: 575px)': {
-      width: '100%'
+      width: '100%',
+      padding: '0px 5px'
     }
   },
   logo: {
+    width: '100%',
     '@media (max-width: 575px)': {
-      justifyContent: 'center'
+      display: 'none'
+      // justifyContent: 'center',
+      // padding: '0 5px'
     }
   },
   icon: {
     '@media (max-width: 575px)': {
       display: 'flex',
       justifyContent: 'flex-end'
+    }
+  },
+  menu: {
+    '@media (max-width: 575px)': {
+      padding: 10,
+      borderBottom: 'solid 1px #dbdbdb'
     }
   }
 };

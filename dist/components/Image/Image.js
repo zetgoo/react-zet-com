@@ -32,9 +32,26 @@ var styles = {
     border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
-    verticalAlign: 'baseline',
-    display: 'block',
+    verticalAlign: 'top',
+    display: 'inline-block',
     position: 'relative'
+  },
+
+  image: {
+    display: 'block',
+    height: '100%',
+    width: '100%'
+  },
+
+  isCircle: {
+    borderRadius: '50%'
+  },
+
+  isAvatar: {
+    '@media (max-width: 575px)': {
+      height: 32,
+      width: 32
+    }
   }
 };
 
@@ -49,9 +66,9 @@ var Image = function Image(props) {
 
   return _react2.default.createElement(
     'figure',
-    _extends({}, props, { style: [styles.base].concat(zcss)
+    _extends({}, props, { style: [styles.base, { width: props.width, height: props.width / props.ratio }]
     }),
-    _react2.default.createElement('img', { src: undefined.props.src, alt: undefined.props.alt })
+    _react2.default.createElement('img', { style: [styles.image].concat(zcss), src: props.src, alt: props.alt })
   );
 };
 

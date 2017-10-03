@@ -26,6 +26,10 @@ var _Icon = require('../Icon/Icon');
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
+var _Link = require('../Link/Link');
+
+var _Link2 = _interopRequireDefault(_Link);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
@@ -41,7 +45,8 @@ var styles = {
     display: 'none',
     '@media (max-width: 575px)': {
       display: 'flex',
-      flex: 1
+      flex: 1,
+      padding: '0 5px'
     }
   }
 };
@@ -58,8 +63,8 @@ var NavToggle = function NavToggle(props) {
   return _react2.default.createElement(
     'button',
     { style: [styles.base], onClick: props.toggle },
-    !props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success'], icon: 'fa fa-bars' }),
-    props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_disable'], icon: 'fa fa-times' })
+    !props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'f1r'], icon: 'fa fa-bars', text: 'ZetGoo' }),
+    props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_disable', 'f1r'], icon: 'fa fa-times', text: 'ZetGoo' })
   );
 };
 

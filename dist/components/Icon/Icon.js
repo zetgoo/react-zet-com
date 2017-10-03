@@ -21,7 +21,13 @@ var _constant = require('../constant');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  base: {}
+  base: {
+    fontSize: '0.875em'
+  },
+  icon: {},
+  text: {
+    marginLeft: 5
+  }
 };
 
 var Icon = function Icon(props) {
@@ -35,10 +41,11 @@ var Icon = function Icon(props) {
 
   return _react2.default.createElement(
     'span',
-    null,
-    _react2.default.createElement(
-      'i',
-      { className: props.icon, style: [styles.base].concat(zcss) },
+    { style: [styles.base].concat(zcss) },
+    _react2.default.createElement('i', { className: props.icon, style: [styles.icon].concat(zcss) }),
+    props.text && props.text.length !== 0 && _react2.default.createElement(
+      'span',
+      { style: styles.text },
       props.text
     )
   );

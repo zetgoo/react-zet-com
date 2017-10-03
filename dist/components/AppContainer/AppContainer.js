@@ -10,11 +10,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _radium = require('radium');
 
-var _radiumNormalize = require('radium-normalize');
-
-var _radiumNormalize2 = _interopRequireDefault(_radiumNormalize);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import normalize from 'radium-normalize';
 
 var AppContainer = function AppContainer(props) {
   return _react2.default.createElement(
@@ -23,7 +21,7 @@ var AppContainer = function AppContainer(props) {
     _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(_radium.Style, { rules: _radiumNormalize2.default }),
+      _react2.default.createElement(_radium.Style, { rules: props.style }),
       props.children
     )
   );

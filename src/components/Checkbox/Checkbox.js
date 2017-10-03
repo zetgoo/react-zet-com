@@ -5,6 +5,22 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
+    color: '#69707a',
+    fontSize: '.875em',
+    cursor: 'pointer',
+    display: 'inline-block',
+    lineHeight: '1em',
+    position: 'relative',
+    verticalAlign: 'top',
+    margin: 0,
+    padding: 0
+  },
+  control:{
+    verticalAlign: 'middle',
+    margin: 0
+  },
+  label:{
+    margin: '0 .5em'
   }
 }
 
@@ -18,11 +34,15 @@ const Checkbox = (props)=> {
   }
 
   return (
-    <input type='checkbox' {...props} style={[
-      styles.base,
-      ...zcss
-    ]}
-    />
+    <label style = {styles.base}>
+      <input type='checkbox' {...props} style={[
+          styles.control,
+          ...zcss
+        ]}
+        />
+      <span style = {styles.label}>{props.label}</span>
+    </label>
+
   )
 }
 

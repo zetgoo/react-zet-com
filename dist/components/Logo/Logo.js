@@ -20,6 +20,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _constant = require('../constant');
 
+var _Link = require('../Link/Link');
+
+var _Link2 = _interopRequireDefault(_Link);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
@@ -35,22 +39,22 @@ var styles = {
     verticalAlign: 'baseline',
     display: 'block',
     position: 'relative',
-    height: 60,
-    width: 60,
+    height: 36,
+    width: 36,
     '@media (max-width: 575px)': {
-      height: 45,
-      width: 45
+      height: 32,
+      width: 32
     }
   },
   logo: {
     display: 'block',
-    backgroundSize: '60px 60px',
+    backgroundSize: '48px 48px',
     height: '100%',
     width: '100%',
     boxShadow: 'none',
     backgroundRepeat: 'no-repeat',
     '@media (max-width: 575px)': {
-      backgroundSize: '45px 45px'
+      backgroundSize: '48px 48px'
     }
   }
 };
@@ -65,10 +69,14 @@ var Logo = function Logo(props) {
   }
 
   return _react2.default.createElement(
-    'figure',
-    _extends({}, props, { style: [styles.base].concat(zcss)
-    }),
-    _react2.default.createElement('img', { src: 'http://zetgoo.com/images/glogo.png', style: [styles.logo] })
+    _Link2.default,
+    { to: '/' },
+    _react2.default.createElement(
+      'figure',
+      _extends({}, props, { style: [styles.base].concat(zcss)
+      }),
+      _react2.default.createElement('img', { src: 'http://zetgoo.com/images/glogo.png', style: [styles.logo] })
+    )
   );
 };
 

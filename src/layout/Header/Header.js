@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import PropTypes from 'prop-types'
 import {colors, atomic} from '../../components/constant'
-// import {Nav, NavItem, NavGroup,Button, Icon} from 're-bulma'
 
 import Nav from '../../components/Nav/Nav'
 import NavToggle from '../../components/NavToggle/NavToggle'
@@ -12,12 +11,13 @@ import Button from '../../components/Button/Button'
 import Icon from '../../components/Icon/Icon'
 import Logo from '../../components/Logo/Logo'
 import Link from '../../components/Link/Link'
-
-
+import Avatar from '../../components/Avatar/Avatar'
+import SearchInput from '../../components/SearchInput/SearchInput'
+import Container from '../../components/Container/Container'
 
 const styles = {
   base: {
-
+    backgroundColor: '#fff'
   }
 }
 
@@ -31,31 +31,50 @@ const Header = (props)=> {
   }
 
   return (
-    <Nav>
-      <NavToggle isActive = {props.isActive} toggle = {props.toogleClick}/>
-      <NavGroup zcss={[]}>
-        <NavItem  zcss = {['logo']}>
-          <Logo/>
+    <header style = {styles.base}>
+      <Container>
+        <Nav>
+          <NavToggle isActive = {props.isActive} toggle = {props.toogleClick}/>
+          <NavGroup zcss={[]}>
+            <NavItem  zcss = {['logo']}>
+              <Logo/>
+              <SearchInput isSearching = {props.isSearching} search = {props.search}/>
+            </NavItem>
+          </NavGroup>
+          <NavGroup zcss = {['menu', !props.isActive ? 'menuHide' : '']}>
+            {props.menu && props.menu.map((item, index)=>(
+              <NavItem zcss = {[...item.zcss, 'menu']}>
+                <Link to={item.to}>
+                  {item.text}
+                </Link>
+              </NavItem>
+            ))}
+          </NavGroup>
+          {!props.userLogined && <NavGroup zcss = {['menu', !props.isActive ? 'menuHide' : '']}>
+          {props.menu && props.menu.map((item, index)=>(
+            <NavItem zcss = {[...item.zcss, 'menu']}>
+              <Link to={item.to}>
+                {item.text}
+              </Link>
+            </NavItem>
+          ))}
+        </NavGroup>}
+        {props.userLogined && <NavGroup zcss = {['icon']}>
+        <NavItem zcss = {['icon']}>
+          {props.iconMenuUser && props.iconMenuUser.map((item, index)=>(
+            <Icon zcss = {[...item.zcss, 'mgL1e']} icon = {item.icon}
+              onClick = {item.action}>
+            </Icon>
+          ))}
         </NavItem>
-      </NavGroup>
-      <NavGroup zcss = {['menu', !props.isActive ? 'menuHide' : '']}>
-        {props.menu && props.menu.map((item, index)=>(
-          <NavItem>
-            <Link to={item.to}>
-              <Icon {...item} ></Icon>
-            </Link>
-          </NavItem>
-        ))}
-      </NavGroup>
-      <NavGroup zcss = {['icon']}>
-        {props.iconMenu && props.iconMenu.map((item, index)=>(
-          <NavItem zcss = {['icon']} action = {item.action}>
-            <Icon zcss = {item.zcss} icon = {item.icon} text = {item.text}></Icon>
-          </NavItem>
-        ))}
-      </NavGroup>
+        <NavItem zcss = {['avatar']}>
+          <Avatar zcss = {['isCircle']} image = {props.userLogined.avatar}/>
+        </NavItem>
+      </NavGroup>}
     </Nav>
-  )
+  </Container>
+</header>
+)
 }
 
 Header.propTypes = {

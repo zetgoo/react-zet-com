@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _base;
+var _drawer;
 
 var _react = require('react');
 
@@ -25,75 +25,48 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var styles = {
-  base: (_base = {
-    appearance: 'none',
+  base: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 300,
+    display: 'flex',
+    width: '100vw',
+    height: '100vh',
+    flexDirection: 'column',
+    alignContent: 'center',
     alignItems: 'center',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 3,
-    boxShadow: 'none',
-    display: 'inline-flex',
-    fontSize: '1rem',
-    height: '2.25em',
-    justifyContent: 'flex-start',
-    lineHeight: 1.5,
-    position: 'relative',
-    verticalAlign: 'top',
-    touchCallout: 'none',
-    userSelect: 'none',
-    backgroundColor: 'white',
-    borderColor: '#dbdbdb',
-    color: _constant.colors.no,
-    cursor: 'pointer'
-  }, _defineProperty(_base, 'justifyContent', 'center'), _defineProperty(_base, 'paddingLeft', '0.75em'), _defineProperty(_base, 'paddingRight', '0.75em'), _defineProperty(_base, 'textAlign', 'center'), _defineProperty(_base, 'whiteSpace', 'nowrap'), _base),
-  primary: {
-    backgroundColor: _constant.colors.primary,
-    borderColor: 'transparent',
-    color: '#fff',
-    ':hover': {
-      backgroundColor: '#00c4a7',
-      borderColor: 'transparent',
-      color: '#fff'
-    },
-    ':active': {
-      backgroundColor: '#00b89c',
-      borderColor: 'transparent',
-      boxShadow: 'inset 0 1px 2px rgba(10, 10, 10, 0.2)',
-      color: '#fff'
-    }
+    justifyContent: 'center',
+    pointerEvents: 'all'
   },
-  success: {
-    backgroundColor: _constant.colors.success
-  },
-  disable: {
-    backgroundColor: _constant.colors.disable
-  },
-  info: {
-    backgroundColor: _constant.colors.info
-  },
-  warning: {
-    backgroundColor: _constant.colors.warning
-  },
-  danger: {
-    background: _constant.colors.danger
-  },
-  isLoading: {
-    color: 'transparent',
+  drawer: (_drawer = {
+    boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
+    position: 'absolute',
+    top: 0,
+    display: 'block',
+    width: '24rem',
+    height: '100%',
+    overflowX: 'hidden',
+    overflowY: 'auto',
+    color: '#424242',
     pointerEvents: 'none',
-    ':after': {
-      animation: 'spinAround 500ms infinite linear',
-      border: '2px solid #dbdbdb',
-      borderRadius: '290486px',
-      borderRightColor: 'transparent',
-      borderTopColor: 'transparent',
-      content: 'hjghjg',
-      display: 'block',
-      height: '1em',
-      width: '1em',
-      left: 2,
-      top: 2,
-      position: 'absolute'
-    }
+    backgroundColor: '#000',
+    transitionDelay: '0s',
+    transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+    transitionDuration: '.35s',
+    transitionProperty: '-webkit-transform'
+  }, _defineProperty(_drawer, 'transitionProperty', 'transform'), _defineProperty(_drawer, 'transitionProperty', 'transform,-webkit-transform'), _defineProperty(_drawer, 'transformStyle', 'preserve-3d'), _defineProperty(_drawer, 'willChange', 'transform'), _defineProperty(_drawer, 'left', 0), _defineProperty(_drawer, 'borderRight', '1px solid #e0e0e0'), _defineProperty(_drawer, 'pointerEvents', 'all'), _defineProperty(_drawer, 'transform', 'translateX(0)'), _defineProperty(_drawer, 'zIndex', 2), _drawer),
+  cover: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#000',
+    opacity: '.6',
+    transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+    transitionDuration: '.35s',
+    transitionProperty: 'opacity'
   }
 };
 
@@ -106,14 +79,16 @@ var Drawer = function Drawer(props) {
     });
   }
 
+  if (!props.isShow) return null;
+
   return _react2.default.createElement(
-    'span',
-    null,
+    'div',
+    { style: [styles.base].concat(zcss) },
+    _react2.default.createElement('div', { style: [styles.cover].concat(zcss) }),
     _react2.default.createElement(
-      'p',
-      {
-        style: [] },
-      undefined.props.children
+      'div',
+      { style: [styles.drawer].concat(zcss) },
+      props.children
     )
   );
 };

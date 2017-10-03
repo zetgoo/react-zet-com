@@ -21,9 +21,14 @@ import NavToggle from './components/NavToggle/NavToggle'
 import TextField from './components/TextField/TextField'
 import Link from './components/Link/Link'
 import Notification from './components/Notification/Notification'
+import Form from './components/Form/Form'
+import FormGroup from './components/FormGroup/FormGroup'
+import Box from './components/Box/Box'
+import Container from './components/Container/Container'
 
 import Header from './layout/Header/Header'
 
 export {AppContainer, Button, Input, Checkbox, Radio, Select, Tag, Switch,
 Columns, Column, Icon, Title,SubTitle, Tabs, TabGroup, Tab, Nav, NavGroup,
-NavItem, NavToggle, TextField, Link, Header, Label, Notification}
+NavItem, NavToggle, TextField, Link, Header, Label, Notification, Form,
+FormGroup, Box, Container}

@@ -38,7 +38,6 @@ var styles = {
     justifyContent: 'flex-start'
   },
   menu: {
-    justifyContent: 'flex-end',
     '@media (max-width: 575px)': {
       display: 'block',
       position: 'absolute',
@@ -59,11 +58,8 @@ var styles = {
     }
   },
   icon: {
-    display: 'none',
-    '@media (max-width: 575px)': {
-      display: 'flex',
-      justifyContent: 'flex-end'
-    }
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 };
 

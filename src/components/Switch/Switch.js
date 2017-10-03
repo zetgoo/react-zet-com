@@ -13,7 +13,7 @@ const styles = {
     borderRadius: 3,
     boxShadow: 'none',
     display: 'inline-flex',
-    fontSize: '1rem',
+    fontSize: '0.875em',
     height: '2.25em',
     justifyContent: 'flex-start',
     lineHeight: 1.5,

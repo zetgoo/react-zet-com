@@ -18,7 +18,6 @@ const styles = {
 }
 
 const custom = (props) =>{
-  const {width} = screen
   const {
     col,
     smallCol,

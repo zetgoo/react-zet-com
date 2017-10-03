@@ -4,7 +4,7 @@ export const colors = {
 
   initBorder: '#dbdbdb',
   init: '',
-  defaultBorder: '',
+  defaultBorder: '#dbdbdb',
   default: '#363636',
 
   primary: '#0275d8',
@@ -122,6 +122,28 @@ export const atomic = {
   cl_warning: {color: colors.warning},
   cl_cancel: {color: colors.cancel},
 
+  //border style
+  bd_s_solid: {borderStyle: 'solid'},
+  bd_s_none: {borderStyle: 'none'},
+
+  //border size
+  bd_w_1: {borderWidth: 1},
+  bd_w_2: {borderWidth: 2},
+
+  //border size
+  bd_c_default: {borderColor: colors.defaultBorder},
+  // bd_w_2: {borderWidth: 2},
+
+  // border radius
+  bd_r_0:{borderRadius: 0},
+  bd_rTL_0:{borderTopLeftRadius: 0},
+  bd_rBL_0:{borderBottomLeftRadius: 0},
+  bd_rTR_0:{borderTopRightRadius: 0},
+  bd_rBR_0:{borderBottomRightRadius: 0},
+  bd_r_0:{borderRadius: 0},
+  bd_r_5: {borderRadius: 5},
+  bd_r_10: {borderRadius: 10},
+
   //font size
   f1r: {fontSize: '1rem'},
   f2r: {fontSize: '2rem'},
@@ -129,6 +151,11 @@ export const atomic = {
   f1e: {fontSize: '1em'},
   f2e: {fontSize: '2em'},
   f3e: {fontSize: '3em'},
+  //font weight
+  fw300: {fontWeight: 300},
+  fw400: {fontWeight: 400},
+  fw500: {fontWeight: 500},
+  fw600: {fontWeight: 600},
 
   // float
   fl: {float: 'left'},

@@ -35,7 +35,7 @@ var styles = {
     borderRadius: 3,
     boxShadow: 'none',
     display: 'inline-flex',
-    fontSize: '1rem',
+    fontSize: '0.875em',
     height: '2.25em',
     justifyContent: 'flex-start',
     lineHeight: 1.5,
@@ -45,7 +45,7 @@ var styles = {
     userSelect: 'none',
     backgroundColor: 'white',
     borderColor: '#dbdbdb',
-    color: _constant.colors.no,
+    color: '#222324',
     cursor: 'pointer'
   }, _defineProperty(_base, 'justifyContent', 'center'), _defineProperty(_base, 'paddingLeft', '0.75em'), _defineProperty(_base, 'paddingRight', '0.75em'), _defineProperty(_base, 'textAlign', 'center'), _defineProperty(_base, 'whiteSpace', 'nowrap'), _base),
   primary: {
@@ -68,7 +68,9 @@ var styles = {
     backgroundColor: _constant.colors.success
   },
   disable: {
-    backgroundColor: _constant.colors.disable
+    backgroundColor: _constant.colors.disable,
+    pointerEvents: 'none',
+    cursor: 'default'
   },
   info: {
     backgroundColor: _constant.colors.info
@@ -81,6 +83,66 @@ var styles = {
   },
   cancel: {
     background: _constant.colors.cancel
+  },
+  white: {
+    backgroundColor: _constant.colors.no,
+    borderColor: 'transparent',
+    color: '#111',
+    ':hover': {
+      backgroundColor: '#e6e6e6',
+      borderColor: 'transparent',
+      color: '#111'
+    },
+    ':focus': {
+      backgroundColor: '#e6e6e6',
+      borderColor: 'transparent',
+      color: '#111'
+    }
+  },
+  light: {
+    backgroundColor: '#f5f7fa',
+    borderColor: 'transparent',
+    color: '#69707a',
+    ':hover': {
+      backgroundColor: '#d3dce9',
+      borderColor: 'transparent',
+      color: '#69707a'
+    },
+    ':focus': {
+      backgroundColor: '#d3dce9',
+      borderColor: 'transparent',
+      color: '#69707a'
+    }
+  },
+  black: {
+    backgroundColor: '#111',
+    borderColor: 'transparent',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#000',
+      borderColor: 'transparent',
+      color: '#fff'
+    },
+    ':focus': {
+      backgroundColor: '#000',
+      borderColor: 'transparent',
+      color: '#fff'
+    }
+  },
+
+  isLink: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    color: '#69707a',
+    textDecoration: 'underline',
+    ':hover': {
+      backgroundColor: '#d3d6db',
+      color: '#222324'
+    },
+    ':focus': {
+      backgroundColor: '#d3d6db',
+      color: '#222324'
+    }
   },
   isLoading: {
     color: 'transparent',

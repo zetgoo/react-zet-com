@@ -1,6 +1,6 @@
 {
-  "name": "Chip",
+  "name": "Sack",
   "version": "0.0.0",
   "private": true,
-  "main": "./Chip.js"
+  "main": "./Sack.js"
 }

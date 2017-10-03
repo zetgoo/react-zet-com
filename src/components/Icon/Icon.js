@@ -5,7 +5,12 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-
+    fontSize: '0.875em'
+  },
+  icon: {
+  },
+  text: {
+    marginLeft: 5,
   }
 }
 
@@ -19,8 +24,9 @@ const Icon = (props)=> {
   }
 
   return (
-    <span>
-      <i className={props.icon} style = {[styles.base, ...zcss]}>{props.text}</i>
+    <span style = {[styles.base, ...zcss]}>
+      <i className={props.icon} style = {[styles.icon, ...zcss]}></i>
+      {props.text && props.text.length !== 0 && <span style = {styles.text}>{props.text}</span>}
     </span>
   )
 }

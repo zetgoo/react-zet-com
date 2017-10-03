@@ -7,14 +7,14 @@ import {colors,atomic} from '../constant'
 const styles = {
   base: {
     appearance: 'none',
-    fontFamily: '"Raleway", sans-serif',
     alignItems: 'center',
+    padding: '0 .5em',
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 3,
     boxShadow: 'none',
     display: 'inline-flex',
-    fontSize: '1rem',
+    fontSize: '0.875em',
     height: '2.25em',
     justifyContent: 'flex-start',
     lineHeight: 1.5,

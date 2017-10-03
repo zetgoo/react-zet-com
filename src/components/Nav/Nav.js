@@ -6,19 +6,20 @@ import {colors, atomic} from '../constant'
 const styles = {
   base: {
     textRendering: 'optimizeLegibility',
-    color: '#69707a',
-    border: '1px solid #ddd',
+    color: '#66757f',
+    padding: 0,
+    border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
     verticalAlign: 'baseline',
     display: 'flex',
     alignItems: 'stretch',
     backgroundColor: '#fff',
-    display: 'flex',
     minHeight: 50,
     position: 'relative',
     textAlign: 'center',
     zIndex: 2,
+
     '@media (max-width: 575px)':{
     }
   }

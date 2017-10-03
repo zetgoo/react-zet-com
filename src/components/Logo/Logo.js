@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Radium from 'radium'
 import PropTypes from 'prop-types'
 import {colors, atomic} from '../constant'
+import Link from '../Link/Link'
 
 const styles = {
   base: {
@@ -16,22 +17,22 @@ const styles = {
     verticalAlign: 'baseline',
     display: 'block',
     position: 'relative',
-    height: 60,
-    width: 60,
+    height: 36,
+    width: 36,
     '@media (max-width: 575px)':{
-      height: 45,
-      width: 45
+      height: 32,
+      width: 32
     }
   },
   logo: {
     display: 'block',
-    backgroundSize: '60px 60px',
+    backgroundSize: '48px 48px',
     height: '100%',
     width: '100%',
     boxShadow:'none',
     backgroundRepeat: 'no-repeat',
     '@media (max-width: 575px)':{
-      backgroundSize: '45px 45px',
+      backgroundSize: '48px 48px',
     }
   }
 }
@@ -46,13 +47,15 @@ const Logo = (props)=> {
   }
 
   return (
-    <figure {...props} style={[
-        styles.base,
-        ...zcss
-      ]}
-      >
-      <img  src = 'http://zetgoo.com/images/glogo.png' style={[styles.logo]}/>
-    </figure>
+    <Link to = '/'>
+      <figure {...props} style={[
+          styles.base,
+          ...zcss
+        ]}
+        >
+        <img  src = 'http://zetgoo.com/images/glogo.png' style={[styles.logo]}/>
+      </figure>
+    </Link>
   )
 }
 

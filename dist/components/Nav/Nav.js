@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _base;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -22,20 +20,25 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var styles = {
-  base: (_base = {
+  base: {
     textRendering: 'optimizeLegibility',
-    color: '#69707a',
-    border: '1px solid #ddd',
+    color: '#66757f',
+    padding: 0,
+    border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
     verticalAlign: 'baseline',
     display: 'flex',
     alignItems: 'stretch',
-    backgroundColor: '#fff'
-  }, _defineProperty(_base, 'display', 'flex'), _defineProperty(_base, 'minHeight', 50), _defineProperty(_base, 'position', 'relative'), _defineProperty(_base, 'textAlign', 'center'), _defineProperty(_base, 'zIndex', 2), _defineProperty(_base, '@media (max-width: 575px)', {}), _base)
+    backgroundColor: '#fff',
+    minHeight: 50,
+    position: 'relative',
+    textAlign: 'center',
+    zIndex: 2,
+
+    '@media (max-width: 575px)': {}
+  }
 };
 
 var Nav = function Nav(props) {

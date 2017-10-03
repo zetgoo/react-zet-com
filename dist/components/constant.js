@@ -3,13 +3,18 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _atomic;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var colors = exports.colors = {
   no: '#fff',
   dark: '#000',
 
   initBorder: '#dbdbdb',
   init: '',
-  defaultBorder: '',
+  defaultBorder: '#dbdbdb',
   default: '#363636',
 
   primary: '#0275d8',
@@ -21,7 +26,7 @@ var colors = exports.colors = {
   cancel: '#B0B0B0'
 };
 
-var atomic = exports.atomic = {
+var atomic = exports.atomic = (_atomic = {
   //layout grid: padding
   'pd1/2r': { padding: '0.5rem' },
   pd1r: { padding: '1rem' },
@@ -126,33 +131,28 @@ var atomic = exports.atomic = {
   cl_warning: { color: colors.warning },
   cl_cancel: { color: colors.cancel },
 
-  //font size
-  f1r: { fontSize: '1rem' },
-  f2r: { fontSize: '2rem' },
-  f3r: { fontSize: '3rem' },
-  f1e: { fontSize: '1em' },
-  f2e: { fontSize: '2em' },
-  f3e: { fontSize: '3em' },
+  //border style
+  bd_s_solid: { borderStyle: 'solid' },
+  bd_s_none: { borderStyle: 'none' },
 
-  // float
-  fl: { float: 'left' },
-  fr: { float: 'right' },
-  fc: { float: 'center' },
+  //border size
+  bd_w_1: { borderWidth: 1 },
+  bd_w_2: { borderWidth: 2 },
 
-  // display
-  dp_i: { display: 'inline' },
-  dp_ib: { display: 'inline-block' },
-  dp_b: { display: 'block' },
-  dp_f: { display: 'flex' },
-  dp_if: { display: 'inline-flex' },
-  dp_n: { display: 'none' },
+  //border size
+  bd_c_default: { borderColor: colors.defaultBorder },
+  // bd_w_2: {borderWidth: 2},
 
-  jc_st: { justifyContent: 'flex-start' },
-  jc_ed: { justifyContent: 'flex-end' },
-  jc_ct: { justifyContent: 'center' }
+  // border radius
+  bd_r_0: { borderRadius: 0 },
+  bd_rTL_0: { borderTopLeftRadius: 0 },
+  bd_rBL_0: { borderBottomLeftRadius: 0 },
+  bd_rTR_0: { borderTopRightRadius: 0 },
+  bd_rBR_0: { borderBottomRightRadius: 0 }
+}, _defineProperty(_atomic, 'bd_r_0', { borderRadius: 0 }), _defineProperty(_atomic, 'bd_r_5', { borderRadius: 5 }), _defineProperty(_atomic, 'bd_r_10', { borderRadius: 10 }), _defineProperty(_atomic, 'f1r', { fontSize: '1rem' }), _defineProperty(_atomic, 'f2r', { fontSize: '2rem' }), _defineProperty(_atomic, 'f3r', { fontSize: '3rem' }), _defineProperty(_atomic, 'f1e', { fontSize: '1em' }), _defineProperty(_atomic, 'f2e', { fontSize: '2em' }), _defineProperty(_atomic, 'f3e', { fontSize: '3em' }), _defineProperty(_atomic, 'fw300', { fontWeight: 300 }), _defineProperty(_atomic, 'fw400', { fontWeight: 400 }), _defineProperty(_atomic, 'fw500', { fontWeight: 500 }), _defineProperty(_atomic, 'fw600', { fontWeight: 600 }), _defineProperty(_atomic, 'fl', { float: 'left' }), _defineProperty(_atomic, 'fr', { float: 'right' }), _defineProperty(_atomic, 'fc', { float: 'center' }), _defineProperty(_atomic, 'dp_i', { display: 'inline' }), _defineProperty(_atomic, 'dp_ib', { display: 'inline-block' }), _defineProperty(_atomic, 'dp_b', { display: 'block' }), _defineProperty(_atomic, 'dp_f', { display: 'flex' }), _defineProperty(_atomic, 'dp_if', { display: 'inline-flex' }), _defineProperty(_atomic, 'dp_n', { display: 'none' }), _defineProperty(_atomic, 'jc_st', { justifyContent: 'flex-start' }), _defineProperty(_atomic, 'jc_ed', { justifyContent: 'flex-end' }), _defineProperty(_atomic, 'jc_ct', { justifyContent: 'center' }), _atomic);
 
-  // break pointer for responsive
-};var smallBreakpoint = exports.smallBreakpoint = 576;
+// break pointer for responsive
+var smallBreakpoint = exports.smallBreakpoint = 576;
 var mediumBreakpoint = exports.mediumBreakpoint = 768;
 var largeBreakpoint = exports.largeBreakpoint = 992;
 var xLargeBreakpoint = exports.xLargeBreakpoint = 1200;

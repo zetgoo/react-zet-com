@@ -1,4 +1,4 @@
-  import React, {Component} from 'react'
+import React, {Component} from 'react'
 import Radium from 'radium'
 import PropTypes from 'prop-types'
 import {colors, atomic} from '../constant'
@@ -7,7 +7,7 @@ const styles = {
   base: {
     margin: 0,
     padding: 0,
-    fontweight: 300,
+    fontWeight: 300,
     wordBreak: 'break-word',
     textRendering: 'optimizeLegibility',
     color: '#222324',
@@ -15,10 +15,22 @@ const styles = {
     lineHeight: 1
   },
   is1: {
-    fontSize: 18
+    fontSize: '3em'
   },
   is2: {
-    fontSize: 20
+    fontSize: '2.5em'
+  },
+  is3: {
+    fontSize: '1.75em'
+  },
+  is4: {
+    fontSize: '1.5em'
+  },
+  is5: {
+    fontSize: '1.125em'
+  },
+  is6: {
+    fontSize: '0.875em'
   }
 }
 

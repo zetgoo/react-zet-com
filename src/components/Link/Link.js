@@ -5,10 +5,17 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    color: '#00d1b2',
+    color: 'inherit',
     cursor: 'pointer',
     textDecoration: 'none',
-    transition: 'none 86ms ease-out'
+    transition: 'none 86ms ease-out',
+    ':hover': {
+      color: '#6bb551'
+    },
+    ':active': {
+      color: '#6bb551'
+    }
+
   }
 }
 
