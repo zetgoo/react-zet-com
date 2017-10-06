@@ -6,7 +6,7 @@ const Footer = ()=> {
       backgroundColor: '#fff'
     }
   }
-  
+
   return (
     <footer>
       <h1>welcome to zetgo</h1>
@@ -14,4 +14,8 @@ const Footer = ()=> {
   )
 }
 
-export default Footer
+Footer.propTypes = {
+  zcss: PropTypes.array
+}
+
+export default Radium(Footer)
