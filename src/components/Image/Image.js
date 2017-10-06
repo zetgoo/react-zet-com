@@ -48,7 +48,7 @@ const Image = (props)=> {
   return (
     <figure {...props} style={[
         styles.base,
-        {width: props.width, height: (props.width / props.ratio)}
+        {maxWidth: props.width, height: (props.width / props.ratio)}
       ]}
       >
       <img style = {[styles.image, ...zcss]} src={props.src} alt={props.alt} />

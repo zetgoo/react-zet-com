@@ -35,6 +35,7 @@ module.exports = {
   plugins: [
     // new CleanWebpackPlugin(['dist']),
     HtmlWebpackPluginConfig,
-    new ExtractTextPlugin('[name].css')],
+    new ExtractTextPlugin('[name].css')
+  ],
   devtool: 'cheap-module-inline-source-map'
 }

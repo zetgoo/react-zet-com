@@ -5,10 +5,22 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
+    listStyle: 'none',
+    textRendering: 'optimizeLegibility',
+    color: '#69707a',
+    lineHeight: 1.428571428571429,
+    fontSize: 14,
+    margin: 0,
+    padding: 0,
+    border: 0,
+    boxSizing: 'border-box',
+    fontSize: 14,
+    fontWeight: 'normal',
+    verticalAlign: 'baseline'
   }
 }
 
-const Menu = (props)=> {
+const MenuItem = (props)=> {
   let zcss = []
   if (props.zcss && Array.isArray(props.zcss)){
     props.zcss.map((item, index) => {
@@ -18,17 +30,17 @@ const Menu = (props)=> {
   }
 
   return (
-    <aside style={[
+    <ul style={[
         styles.base,
         ...zcss
       ]}>
       {props.children}
-    </aside>
+    </ul>
   )
 }
 
-Menu.propTypes = {
+MenuItem.propTypes = {
   zcss: PropTypes.array
 }
 
-export default Radium(Menu)
+export default Radium(MenuItem)
