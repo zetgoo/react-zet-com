@@ -5,19 +5,17 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    color: '#aeb1b5',
-    fontSize: 11,
-    letterSpacing: 1,
-    marginBottom: 5,
-    textTransform: 'uppercase',
-    textRendering: 'optimizeLegibility',
-    lineHeight: 1.428571428571429,
+    whiteSpace: 'nowrap',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft:10,
+    position: 'relative',
     margin: 0,
-    padding: 0,
-    border: 0,
-    boxSizing: 'border-box',
-    fontWeight: 'normal',
-    verticalAlign: 'baseline',
+    marginBottom: 5,
+    color: '#4b646f',
+    background: '#1a2226',
+    overflow: 'hidden',
+    textOverflow: 'clip',
   }
 }
 
