@@ -37,6 +37,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
   import Header from './layout/Header'
   import Footer from './layout/Footer'
   import LeftMenu from './layout/LeftMenu'
+  import MagicEye from './layout/MagicEye'
 
   import './style.css'
   import avtDemo from './'
@@ -58,6 +59,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
         formForceChecked: false,
         formForceChecked1: false,
         isSearching: false,
+        url: 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA=='
       }
     }
 
@@ -70,6 +72,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
       //     percent, data: this.getData(percent)
       //   });
       // }, 2000);
+      setTimeout(()=>this.setState({url: 'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg'}), 2000)
     }
 
     componentWillUnmount() {
@@ -108,72 +111,54 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     groupLabel: 'Main',
                     childMenu: [{
                         icon: 'aws.fa-user-circle-o',
-                        label: 'Dashboard',
+                        label: '1',
                         rightActived: 'aws.fa-user-circle-o',
                         rightNoAcitved: 'aws.fa-user-circle-o',
                         isActived: true,
                         childMenu:[{
                             icon: 'aws.fa-user-circle-o',
-                            label: 'Visit',
+                            label: '1.1',
                             rightActived: 'aws.fa-user-circle-o',
                             rightNoAcitved: 'aws.fa-user-circle-o',
                             isActived: true,
                             childMenu:[{
                                 icon: 'aws.fa-user-circle-o',
-                                label: 'Week',
+                                label: '1.1.1',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
                             },{
                                 icon: 'aws.fa-user-circle-o',
-                                label: 'year',
+                                label: '1.1.2',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
                             }]
                         },{
                             icon: 'aws.fa-user-circle-o',
-                            label: 'Login',
+                            label: '1.2',
                             rightActived: 'aws.fa-user-circle-o',
                             rightNoAcitved: 'aws.fa-user-circle-o',
                             isActived: true,
                             childMenu:[{
                                 icon: 'aws.fa-user-circle-o',
-                                label: 'Month',
+                                label: '1.2.1',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
                             }]
                         }]
                     }],
-                  },{
-                    groupLabel: 'User',
-                    childMenu: [{
-                        icon: 'aws.fa-user-circle-o',
-                        label: 'Setting',
-                        rightActived: 'aws.fa-user-circle-o',
-                        rightNoAcitved: 'aws.fa-user-circle-o',
-                        isActived: false,
-                        childMenu:[{
-                            icon: 'aws.fa-user-circle-o',
-                            label: 'Change Password',
-                            rightActived: 'aws.fa-user-circle-o',
-                            rightNoAcitved: 'aws.fa-user-circle-o',
-                            isActived: false,
-                            childMenu:[{
-                                icon: 'aws.fa-user-circle-o',
-                                label: 'SMS',
-                                rightActived: 'aws.fa-user-circle-o',
-                                rightNoAcitved: 'aws.fa-user-circle-o',
-                                isActived: false,
-                            }]
-                        }]
-                    }],
-                  }
-                ]}
+                  },
+
+                ]
+                }
                   ></LeftMenu>
               </Column>
               <Column zcss = {['']} xLargeCell = {4} smallCell = {1}>
+                {/*<div className="row" style = {{height: 400, width: '100%'}}>
+                  <MagicEye url = {this.state.url} />
+                </div>*/}
                 <div className="row">
                   <Drawer isShow = {this.state.drawerIsShow}>
                     <LeftMenu/>
@@ -333,6 +318,8 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                   <Image zcss = {[]}  src = 'http://placehold.it/480x480'
                     alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={2}/>
                 </div>
+
+
                 {/*<div className="row">
                   <Infinite/>
                   </div>*/}

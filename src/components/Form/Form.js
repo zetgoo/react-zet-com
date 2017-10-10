@@ -73,8 +73,8 @@ const Form = (props)=> {
           // childProps = {...someNew: "propToAdd"};
       }
       if(child.props){
-        childProps.children = validate(child.props.children);
-        return React.cloneElement(child, childProps);
+        childProps.children = validate(child.props.children)
+        return React.cloneElement(child, childProps)
       }
       return child
     })
