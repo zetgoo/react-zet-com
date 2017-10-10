@@ -160,28 +160,56 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                   <MagicEye url = {this.state.url} />
                 </div>*/}
                 <div className="row">
-                  <Drawer isShow = {this.state.drawerIsShow}>
-                    <LeftMenu/>
-                  </Drawer>
-                  <Button zcss = {['primary','fr']} onClick = {()=>this.setState({drawerIsShow: !this.state.drawerIsShow})}>Drawer</Button>
-                </div>
-                <div className="row">
-                  <SnackBar isShow = {this.state.snackBarIsShow} timeout = {5000}/>
-                  <Button zcss = {['primary','fr']} onClick = {()=>this.setState({snackBarIsShow: !this.state.snackBarIsShow})}>SnackBar</Button>
+                  <div className="box">
+                    <Button zcss = {['']}>Nomal</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['white']}>white</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['light']}>light</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['black']}>black</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['isLink']}>Link</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['primary']}>primary</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['info']}>info</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['success']}>success</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['warning']}>warning</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['danger']}>danger</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['disable']}>disable</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['cancel']}>cancel</Button>
+                  </div>
+                  <div className="box">
+                    <Button zcss = {['isLoading']}>loading</Button>
+                  </div>
                 </div>
 
                 <div className="row">
-                  <Button zcss = {['']}>Nomal</Button>
-                  <Button zcss = {['white']}>white</Button>
-                  <Button zcss = {['light']}>light</Button>
-                  <Button zcss = {['black']}>black</Button>
-                  <Button zcss = {['info']}>info</Button>
-                  <Button zcss = {['success']}>success</Button>
-                  <Button zcss = {['primary']}>primary</Button>
-                  <Button zcss = {['warning']}>warning</Button>
-                  <Button zcss = {['disable']}>disable</Button>
-                  <Button zcss = {['cancel']}>cancel</Button>
-                  <Button zcss = {['isLink']}>Link</Button>
+                  <Drawer isShow = {this.state.drawerIsShow}>
+                    <LeftMenu/>
+                  </Drawer>
+                  <Button zcss = {['primary']} onClick = {()=>this.setState({drawerIsShow: !this.state.drawerIsShow})}>Drawer Click!</Button>
+                </div>
+                <div className="row">
+                  <SnackBar isShow = {this.state.snackBarIsShow} timeout = {5000}/>
+                  <Button zcss = {['primary']} onClick = {()=>this.setState({snackBarIsShow: !this.state.snackBarIsShow})}>SnackBar Click!</Button>
                 </div>
 
                 <div className="row">
