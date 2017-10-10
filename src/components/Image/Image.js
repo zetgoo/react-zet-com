@@ -33,6 +33,9 @@ const styles = {
       height: 32,
       width: 32
     }
+  },
+  isBlur: {
+    transition: 'opacity 2s linear',
   }
 }
 

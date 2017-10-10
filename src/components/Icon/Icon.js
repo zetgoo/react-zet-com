@@ -5,7 +5,7 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    fontSize: '0.875em'
+    // fontSize: '0.875em'
   },
   icon: {
   },

@@ -5,19 +5,12 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    color: '#aeb1b5',
-    fontSize: 11,
-    letterSpacing: 1,
-    marginBottom: 5,
-    textTransform: 'uppercase',
-    textRendering: 'optimizeLegibility',
-    lineHeight: 1.428571428571429,
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    listStyle: 'none',
     margin: 0,
     padding: 0,
-    border: 0,
-    boxSizing: 'border-box',
-    fontWeight: 'normal',
-    verticalAlign: 'baseline',
+    paddingBottom: 10,
   }
 }
 
@@ -31,7 +24,10 @@ const MenuGroup = (props)=> {
   }
 
   return (
-    <div>
+    <div style={[
+        styles.base,
+        ...zcss
+      ]}>
       {props.children}
     </div>
   )
