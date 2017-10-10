@@ -8,8 +8,6 @@ import MenuLabel from '../../components/MenuLabel/MenuLabel'
 import MenuItem from '../../components/MenuItem/MenuItem'
 import MenuGroup from '../../components/MenuGroup/MenuGroup'
 
-
-
 const styles = {
   base: {
 
