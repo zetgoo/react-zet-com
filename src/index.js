@@ -29,6 +29,7 @@ import SnackBar from './components/SnackBar'
 import Addons from './components/Addons'
 import Image from './components/Image'
 import Avatar from './components/Avatar'
+import Modal from './components/Modal'
 
 import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
   VictoryAnimation, VictoryLabel, VictoryTheme,VictoryStack,
@@ -59,7 +60,9 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
         formForceChecked: false,
         formForceChecked1: false,
         isSearching: false,
-        url: 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA=='
+        url: 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==',
+        tabIndex: 2,
+        openModal: false
       }
     }
 
@@ -115,24 +118,32 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                         rightActived: 'aws.fa-user-circle-o',
                         rightNoAcitved: 'aws.fa-user-circle-o',
                         isActived: true,
+                        type: 'link',
+                        uri: 'http://vision.zetgoo.com/face/detect/2017',
                         childMenu:[{
                             icon: 'aws.fa-user-circle-o',
                             label: '1.1',
                             rightActived: 'aws.fa-user-circle-o',
                             rightNoAcitved: 'aws.fa-user-circle-o',
                             isActived: true,
+                            type: 'link',
+                            uri: 'http://vision.zetgoo.com/face/detect/2017',
                             childMenu:[{
                                 icon: 'aws.fa-user-circle-o',
                                 label: '1.1.1',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
+                                type: 'link',
+                                uri: 'http://vision.zetgoo.com/face/detect/2017',
                             },{
                                 icon: 'aws.fa-user-circle-o',
                                 label: '1.1.2',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
+                                type: 'link',
+                                uri: 'http://vision.zetgoo.com/face/detect/2017',
                             }]
                         },{
                             icon: 'aws.fa-user-circle-o',
@@ -140,12 +151,16 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                             rightActived: 'aws.fa-user-circle-o',
                             rightNoAcitved: 'aws.fa-user-circle-o',
                             isActived: true,
+                            type: 'link',
+                            uri: 'http://vision.zetgoo.com/face/detect/2017',
                             childMenu:[{
                                 icon: 'aws.fa-user-circle-o',
                                 label: '1.2.1',
                                 rightActived: 'aws.fa-user-circle-o',
                                 rightNoAcitved: 'aws.fa-user-circle-o',
                                 isActived: true,
+                                type: 'link',
+                                uri: 'http://vision.zetgoo.com/face/detect/2017',
                             }]
                         }]
                     }],
@@ -207,18 +222,44 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                   </Drawer>
                   <Button zcss = {['primary']} onClick = {()=>this.setState({drawerIsShow: !this.state.drawerIsShow})}>Drawer Click!</Button>
                 </div>
+
                 <div className="row">
                   <SnackBar isShow = {this.state.snackBarIsShow} timeout = {5000}/>
                   <Button zcss = {['primary']} onClick = {()=>this.setState({snackBarIsShow: !this.state.snackBarIsShow})}>SnackBar Click!</Button>
                 </div>
 
                 <div className="row">
+                  <Modal
+                    isOpen = {this.state.openModal}
+                    handleClose = {()=>this.setState(openModal: false)}
+                    action ={[{ label: "Cancel", zcss: ['success'] ,onClick: ()=>this.setState({openModal: false}) },
+                        { label: "Save", zcss: ['success'], onClick: () => this.console('zetgoo') }]}
+                    title = "Welcome to zetgoo"
+                  >
+                    <h2>Welcome to zetgoo</h2>
+                  </Modal>
+                  <Button zcss = {['success']} onClick = {()=>this.setState({openModal: !this.state.openModal})}>Modal Click!</Button>
+                </div>
+
+                <div className="row">
                   <Input zcss = {[]} placeholder = 'zetgoo' value = {this.state.inputText}
                     onChange = {(event,text)=>this.setState({inputText: text})}/>
+                </div>
+
+                <div className="row">
+                  <Input zcss = {['readonly']} placeholder = 'read only' readOnly value = {this.state.inputText}
+                    onChange = {(event,text)=>this.setState({inputText: text})}/>
+                </div>
+
+                <div className="row">
                   <Input zcss = {['disabled']} placeholder = 'disable' value = {this.state.inputText}
                     onChange = {(event,text)=>this.setState({inputText: text})} disabled/>
+                </div>
+                <div className="row">
                   <Input zcss = {['error']} placeholder = 'input error' value = {this.state.inputText}
                     onChange = {(event,text)=>this.setState({inputText: text})}/>
+                </div>
+                <div className="row">
                   <TextField
                     label="Username"
                     errors={[
@@ -230,6 +271,8 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     placeholder="textfield error"
                     type="text"
                     />
+                </div>
+                <div className="row">
                   <TextField
                     label="Password"
                     placeholder="password"
@@ -240,10 +283,27 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     />
                 </div>
                 <div className="row">
-                  <Checkbox zcss = {['']} label = 'zetgoo'/>
+                  <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
+                  <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
+                  <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
+                  <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
+                  <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
                 </div>
                 <div className="row">
-                  <Radio zcss = {['']} label = 'zetgoo'/>
+                  <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                  <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                  <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                  <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                  <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                </div>
+                <div className="row">
+                  <Tabs index={this.state.tabIndex} onChange={ index => this.setState({tabIndex: index})}>
+                    <Tab label='Primary'><h2>Primary content</h2></Tab>
+                    <Tab label='Secondary' onActive={this.handleActive}><h2>Secondary content</h2></Tab>
+                    <Tab label='Third' disabled><h2>Disabled content</h2></Tab>
+                    <Tab label='Fourth' hidden><h2>Fourth content hidden</h2></Tab>
+                    <Tab label='Fifth'><h2>Fifth content</h2></Tab>
+                  </Tabs>
                 </div>
                 <div className="row">
                   <Select options = {[{label: 'bl', value: 1}, {label: 'yl', value: 2}]} zcss = {['']}
@@ -251,9 +311,15 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     onChange = {(value)=>this.setState({selectedValue: value})}/>
                 </div>
                 <div className="row">
-                  <Tag zcss = {['isSmall', 'success']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
-                  <Tag zcss = {['isMedium', 'primary']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
-                  <Tag zcss = {['isLarge', 'cancel']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
+                  <div className="box">
+                    <Tag zcss = {['isSmall', 'success']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
+                  </div>
+                  <div className="box">
+                    <Tag zcss = {['isMedium', 'primary']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
+                  </div>
+                  <div className="box">
+                    <Tag zcss = {['isLarge', 'cancel']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {()=>console.log('trainee')}/>
+                  </div>
                 </div>
                 <div className="row">
                   <Switch/>
@@ -285,67 +351,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                   <Avatar icon = 'fa fa-play-circle-o' zcss = {[]}/>
                   <Avatar text = 'BL' zcss = {[]}/>
                 </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {16} ratio={1}/>
 
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {24} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {32} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {48} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {64} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {96} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {128} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {256} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {320} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {['isCircle']}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={4/3}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={3/2}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={16/9}/>
-                </div>
-                <div className="row">
-                  <Image zcss = {[]}  src = 'http://placehold.it/480x480'
-                    alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={2}/>
-                </div>
 
 
                 {/*<div className="row">
@@ -388,9 +394,6 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     <ControlLabel zcss = {['f3e']}>ControlLabel</ControlLabel>
                   </div>
 
-                  <div className="row">
-                    <Tabs indexActice = {1} tabs = {[{icon: 'fa fa-home', text: 'Home'}, {icon: 'fa fa-code', text: 'Code'}]}/>
-                  </div>
                   <div className="row">
                     <Notification zcss = {['bg_danger']} enableCloseButton
                       closeButtonProps={{ onClick: () => console.log('clicked') }}
@@ -509,6 +512,67 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                     <Box zcss={['bg_primary']}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
                     </Box>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {16} ratio={1}/>
+
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {24} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {32} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {48} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {64} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {96} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {128} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {256} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {320} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {['isCircle']}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={4/3}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={3/2}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={16/9}/>
+                  </div>
+                  <div className="row">
+                    <Image zcss = {[]}  src = 'http://placehold.it/480x480'
+                      alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={2}/>
                   </div>
                   {/*<div className="row">
                     <NavToggle/>

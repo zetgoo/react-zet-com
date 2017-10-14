@@ -180,8 +180,7 @@ const styles = {
     backgroundColor: colors.disable,
     borderColor: 'transparent',
     color: 'rgba(17, 17, 17, 0.5)',
-    pointerEvents: 'none',
-    cursor: 'default'
+    cursor: 'not-allowed'
   },
 
   warning: {

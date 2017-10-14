@@ -7,33 +7,15 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    alignItems: 'stretch',
-    display: 'flex',
-    justifyContent: 'space-between',
-    lineHeight: 24,
-    overflow: 'hidden',
-    overflowX: 'auto',
-    whiteSpace: 'nowrap'
+
   },
   isBox: {
-    borderSize: 1,
-    borderColor: colors.success,
-    borderStyle: 'solid'
   },
   list: {
-    alignItems: 'center',
-    borderBottom: '1px solid #d3d6db',
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-start',
-    margin: 0,
-    padding: 0,
-    border: 0,
-    fontSize: '100%',
-    fontWeight: 'normal',
-    verticalAlign: 'baseline',
-    backgroundColor: 'transparent',
-    userSelect: 'none',
+  },
+  slider:{
+    position: 'absolute',
+    bottom: 0,
   }
 }
 
@@ -45,20 +27,53 @@ const Tabs = (props)=> {
       zcss.push(atomic[item])
     })
   }
+  let content = null
+  const buildHtml = () =>{
+    return React.Children.map(props.children, (child, index) => {
+      if(child.type.displayName ==='Tab'){
+        if(props.index === index){
+          content = React.cloneElement(<section/>, {children:child.props.children})
+          return React.cloneElement(child,
+            {...child.props,
+              isActive: true,
+              onClick: () => props.onChange(index)
+            })
+          }
+        }
+        return React.cloneElement(child,
+          {
+            ...child.props,
+            onClick: () => props.onChange(index)
+          })
+        })
+      }
 
-  return (
-    <div style = {[styles.base, ...zcss]}>
-      <TabGroup>
-        {props.tabs && props.tabs.map((item, index) =>(
-          <Tab zcss = {[index === props.indexActice ? 'isActived' : '']} icon = {item.icon} key = {index}>{item.text}</Tab>
-        ))}
-      </TabGroup>
-    </div>
-  )
-}
+      const htmlElement = buildHtml()
 
-Tabs.propTypes = {
-  zcss: PropTypes.array
-}
+      return (
+        <div style = {[styles.base, ...zcss]}>
+          <div style = {{position: 'relative',
+                      display: 'inline-flex',
+                      width: '100%'}}>
+            {htmlElement}
+            <div style = {{position: 'absolute',
+              bottom: 0,
+              height:2,
+              backgroundColor: '#6bb551',
+              left: `${100/props.children.length * props.index}%`,
+              transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+              transitionDuration: '.35s',
+              transitionProperty: 'left,width',
+              width: '20%'
+            }}></div>
+        </div>
+        {content}
+        </div>
+      )
+    }
 
-export default Radium(Tabs)
+    Tabs.propTypes = {
+      zcss: PropTypes.array
+    }
+
+    export default Radium(Tabs)
