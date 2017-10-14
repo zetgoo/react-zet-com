@@ -17,6 +17,9 @@ const styles = {
   isActived: {
     color: colors.success,
     borderColor: colors.success
+  },
+  disabled: {
+    opacity: .2
   }
 }
 
@@ -29,12 +32,12 @@ const Tab = (props)=> {
     })
   }
 
+  const onActive = (e) =>{
+    props.onActive()
+  }
+
   return (
-    <li style = {{display: 'block'}}>
-      <span className = {props.icon} style = {[styles.base, ...zcss]}>
-        {props.children}
-      </span>
-    </li>
+    <label {...props} style = {{display: 'flex', width: '20%'}}>{props.label}</label>
   )
 }
 

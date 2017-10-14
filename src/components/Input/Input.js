@@ -36,15 +36,14 @@ const styles = {
     }
   },
   disabled:{
-    backgroundColor: '#eee',
-    borderColor: colors.no,
-    ':hover':{
-      borderColor: colors.no
-    },
-    ':focus':{
-      borderColor: colors.no,
-      outline: 0,
-    }
+    backgroundColor: 'whitesmoke',
+    borderColor: 'whitesmoke',
+    boxShadow: 'none',
+    color: '#7a7a7a',
+    cursor: 'not-allowed',
+  },
+  readonly: {
+    boxShadow: 'none'
   },
   error: {
     borderColor: colors.danger,
