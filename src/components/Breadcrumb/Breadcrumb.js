@@ -5,16 +5,10 @@ import {colors, atomic} from '../constant'
 
 const styles = {
   base: {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    paddingBottom: 10,
   }
 }
 
-const MenuGroup = (props)=> {
+const Breadcrumb = (props)=> {
   let zcss = []
   if (props.zcss && Array.isArray(props.zcss)){
     props.zcss.map((item, index) => {
@@ -24,17 +18,16 @@ const MenuGroup = (props)=> {
   }
 
   return (
-    <div style={[
+    <button {...props} style={[
         styles.base,
         ...zcss
-      ]}>
-      {props.children}
-    </div>
+      ]}
+      >{props.children}</button>
   )
 }
 
-MenuGroup.propTypes = {
+Breadcrumb.propTypes = {
   zcss: PropTypes.array
 }
 
-export default Radium(MenuGroup)
+export default Radium(Breadcrumb)

@@ -29,43 +29,23 @@ const styles = {
     paddingRight: '0.75em',
     textAlign: 'center',
     whiteSpace: 'nowrap',
-  },
-  primary: {
-    backgroundColor: colors.primary,
-    borderColor: 'transparent',
-    color: '#fff',
     ':hover':{
-      backgroundColor: '#00c4a7',
-      borderColor: 'transparent',
-      color: '#fff'
+      zIndex: 2,
+      borderColor: '#aeb1b5',
+      color: '#222324',
+    },
+    ':focus': {
+      borderColor: colors.success,
+      outline: 'none',
+      color: '#222324',
+      zIndex: 3
     },
     ':active': {
-      backgroundColor: '#00b89c',
-      borderColor: 'transparent',
-      boxShadow: 'inset 0 1px 2px rgba(10, 10, 10, 0.2)',
-      color: '#fff'
+      boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
+      zIndex: 4
     }
   },
-  success: {
-    backgroundColor: colors.success
-  },
-  disable: {
-    backgroundColor: colors.disable,
-    pointerEvents: 'none',
-    cursor: 'default'
-  },
-  info: {
-    backgroundColor: colors.info
-  },
-  warning: {
-    backgroundColor: colors.warning
-  },
-  danger: {
-    background: colors.danger
-  },
-  cancel: {
-    background: colors.cancel
-  },
+
   white: {
     backgroundColor: colors.no,
     borderColor: 'transparent',
@@ -73,14 +53,18 @@ const styles = {
     ':hover': {
       backgroundColor: '#e6e6e6',
       borderColor: 'transparent',
-      color: '#111'
+      color: '#111',
     },
     ':focus': {
       backgroundColor: '#e6e6e6',
       borderColor: 'transparent',
-      color: '#111'
+      color: '#111',
+    },
+    ':active': {
+      borderColor: 'transparent',
     }
   },
+
   light:{
     backgroundColor: '#f5f7fa',
     borderColor: 'transparent',
@@ -88,30 +72,36 @@ const styles = {
     ':hover': {
       backgroundColor: '#d3dce9',
       borderColor: 'transparent',
-      color: '#69707a'
+      color: '#69707a',
     },
     ':focus': {
       backgroundColor: '#d3dce9',
       borderColor: 'transparent',
-      color: '#69707a'
+      color: '#69707a',
+    },
+    ':active': {
+      borderColor: 'transparent',
     }
   },
+
   black:{
     backgroundColor: '#111',
     borderColor: 'transparent',
     color: '#fff',
     ':hover': {
       backgroundColor: '#000',
+      color: '#fff',
       borderColor: 'transparent',
-      color: '#fff'
     },
     ':focus': {
       backgroundColor: '#000',
+      color: '#fff',
       borderColor: 'transparent',
-      color: '#fff'
+    },
+    ':active': {
+      borderColor: 'transparent',
     }
   },
-
 
   isLink: {
     backgroundColor: 'transparent',
@@ -120,13 +110,123 @@ const styles = {
     textDecoration: 'underline',
     ':hover': {
       backgroundColor: '#d3d6db',
-      color: '#222324'
+      color: '#222324',
+      borderColor: 'transparent',
     },
     ':focus': {
       backgroundColor: '#d3d6db',
-      color: '#222324'
+      color: '#222324',
+      borderColor: 'transparent',
     }
   },
+
+  primary: {
+    backgroundColor: colors.primary,
+    borderColor: 'transparent',
+    color: '#fff',
+    ':hover':{
+      backgroundColor: '#199fae',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':focus':{
+      backgroundColor: '#199fae',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':active': {
+      borderColor: 'transparent',
+    }
+  },
+
+  info: {
+    backgroundColor: colors.info,
+    borderColor: 'transparent',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#1f99d3',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':focus': {
+      backgroundColor: '#1f99d3',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':active': {
+      borderColor: 'transparent',
+    }
+  },
+
+  success: {
+    backgroundColor: colors.success,
+    borderColor: 'transparent',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#84cf6a',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':focus': {
+      backgroundColor: '#84cf6a',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':active': {
+      borderColor: 'transparent',
+    }
+  },
+  disable: {
+    backgroundColor: colors.disable,
+    borderColor: 'transparent',
+    color: 'rgba(17, 17, 17, 0.5)',
+    cursor: 'not-allowed'
+  },
+
+  warning: {
+    backgroundColor: colors.warning,
+    borderColor: 'transparent',
+    color: 'rgba(17, 17, 17, 0.5)',
+    ':hover':{
+      backgroundColor: '#fbda41',
+      borderColor: 'transparent',
+      color: 'rgba(17, 17, 17, 0.5)',
+    },
+    ':focus': {
+      backgroundColor: '#fbda41',
+      borderColor: 'transparent',
+      color: 'rgba(17, 17, 17, 0.5)',
+    },
+    ':active': {
+      borderColor: 'transparent',
+    }
+  },
+
+  danger: {
+    backgroundColor: colors.danger,
+    borderColor: 'transparent',
+    color: '#fff',
+    ':hover': {
+      backgroundColor: '#e84135',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':focus': {
+      backgroundColor: '#e84135',
+      borderColor: 'transparent',
+      color: '#fff',
+    },
+    ':active': {
+      borderColor: 'transparent',
+    }
+  },
+
+  cancel: {
+    backgroundColor: colors.cancel,
+    borderColor: 'transparent',
+    color: '#f5f7fa',
+  },
+
   isLoading: {
     color: 'transparent',
     pointerEvents: 'none',

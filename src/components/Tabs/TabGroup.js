@@ -6,18 +6,15 @@ import {colors, atomic} from '../constant'
 const styles = {
   base: {
     alignItems: 'center',
-    borderBottom: '1px solid #d3d6db',
+    borderBottomColor: '#dbdbdb',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: 1,
     display: 'flex',
-    flex: 1,
+    flexGrow: 1,
+    flexShrink: 0,
     justifyContent: 'flex-start',
     margin: 0,
-    padding: 0,
-    border: 0,
-    fontSize: '100%',
-    fontWeight: 'normal',
-    verticalAlign: 'baseline',
-    backgroundColor: 'transparent',
-    userSelect: 'none',
+    padding: 0
   }
 }
 
