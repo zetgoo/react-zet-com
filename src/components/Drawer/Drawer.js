@@ -3,6 +3,9 @@ import Radium from 'radium'
 import PropTypes from 'prop-types'
 import {colors, atomic} from '../constant'
 
+import Overlay from '../../components/Overlay/Overlay'
+
+
 const styles = {
   base: {
     position: 'fixed',
@@ -71,11 +74,11 @@ const Drawer = (props)=> {
 
   return (
     <div style = {[styles.base, ...zcss]}>
-      <div style = {[styles.cover, ...zcss]}>
-      </div>
-      <div style = {[styles.drawer, ...zcss]}>
-        {props.children}
-      </div>
+      <Overlay isOpen = {props.isShow} onClose = {props.handleClose}>
+        <div style = {[styles.drawer, ...zcss]}>
+          {props.children}
+        </div>
+      </Overlay>
     </div>
 
   )

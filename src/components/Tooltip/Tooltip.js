@@ -49,7 +49,7 @@ const styles = {
   }
 }
 
-const Overlay = (props)=> {
+const Tooltip = (props)=> {
   let zcss = []
   if (props.zcss && Array.isArray(props.zcss)){
     props.zcss.map((item, index) => {
@@ -76,7 +76,6 @@ const Overlay = (props)=> {
 
   return (!props.isOpen ? null : (
     <div style = {styles.base} >
-      <div style = {styles.cover}></div>
       <div style   = {styles.content} ref = {(node) =>{
             container = node
           }}>
@@ -86,8 +85,8 @@ const Overlay = (props)=> {
   ))
 }
 
-Overlay.propTypes = {
+Tooltip.propTypes = {
   zcss: PropTypes.array
 }
 
-export default Radium(Overlay)
+export default Radium(Tooltip)
