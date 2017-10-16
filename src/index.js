@@ -231,7 +231,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                 <div className="row">
                   <Modal
                     isOpen = {this.state.openModal}
-                    handleClose = {()=>this.setState(openModal: false)}
+                    handleClose = {() => this.setState({openModal: false})}
                     action ={[{ label: "Cancel", zcss: ['success'] ,onClick: ()=>this.setState({openModal: false}) },
                         { label: "Save", zcss: ['success'], onClick: () => this.console('zetgoo') }]}
                     title = "Welcome to zetgoo"
