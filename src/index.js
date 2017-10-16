@@ -30,6 +30,8 @@ import Addons from './components/Addons'
 import Image from './components/Image'
 import Avatar from './components/Avatar'
 import Modal from './components/Modal'
+import Popover from './components/Popover'
+import Tooltip from './components/Tooltip'
 
 import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
   VictoryAnimation, VictoryLabel, VictoryTheme,VictoryStack,
@@ -62,7 +64,17 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
         isSearching: false,
         url: 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==',
         tabIndex: 2,
-        openModal: false
+        openModal: false,
+        popover: false,
+        popoverTop: false,
+        popoverRight: false,
+        popoverBottom: false,
+        popoverLeft: false,
+        tooltip: false,
+        tooltipTop: false,
+        tooltipRight: false,
+        tooltipBottom: false,
+        tooltipLeft: false,
       }
     }
 
@@ -217,7 +229,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                 </div>
 
                 <div className="row">
-                  <Drawer isShow = {this.state.drawerIsShow}>
+                  <Drawer isShow = {this.state.drawerIsShow} handleClose = {()=>this.setState({drawerIsShow: false})}>
                     <LeftMenu/>
                   </Drawer>
                   <Button zcss = {['primary']} onClick = {()=>this.setState({drawerIsShow: !this.state.drawerIsShow})}>Drawer Click!</Button>
@@ -229,9 +241,55 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                 </div>
 
                 <div className="row">
+                  <div className="box">
+                    <Popover isShow = {this.state.popover} timeout = {5000}/>
+                    <Button zcss = {['']} onClick = {()=>this.setState({popover: !this.state.popover})}>Popover Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Popover isShow = {this.state.popoverTop} timeout = {5000}/>
+                    <Button zcss = {['primary']} onClick = {()=>this.setState({popoverTop: !this.state.popoverTop})}>Top Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Popover isShow = {this.state.popoverRight} timeout = {5000}/>
+                    <Button zcss = {['danger']} onClick = {()=>this.setState({popoverRight: !this.state.popoverRight})}>Right Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Popover isShow = {this.state.popoverBottom} timeout = {5000}/>
+                    <Button zcss = {['warning']} onClick = {()=>this.setState({popoverBottom: !this.state.popoverBottom})}>Bottom Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Popover isShow = {this.state.popoverLeft} timeout = {5000}/>
+                    <Button zcss = {['success']} onClick = {()=>this.setState({popoverLeft: !this.state.popoverLeft})}>Left Click!</Button>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="box">
+                    <Tooltip isShow = {this.state.tooltip} timeout = {5000}/>
+                    <Button zcss = {['']} onClick = {()=>this.setState({tooltip: !this.state.tooltip})}>Tooltip Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Tooltip isShow = {this.state.tooltipTop} timeout = {5000}/>
+                    <Button zcss = {['primary']} onClick = {()=>this.setState({tooltipTop: !this.state.tooltipTop})}>Top Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Tooltip isShow = {this.state.tooltipRight} timeout = {5000}/>
+                    <Button zcss = {['danger']} onClick = {()=>this.setState({tooltipRight: !this.state.tooltipRight})}>Right Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Tooltip isShow = {this.state.tooltipBottom} timeout = {5000}/>
+                    <Button zcss = {['warning']} onClick = {()=>this.setState({tooltipBottom: !this.state.tooltipBottom})}>Bottom Click!</Button>
+                  </div>
+                  <div className="box">
+                    <Tooltip isShow = {this.state.tooltipLeft} timeout = {5000}/>
+                    <Button zcss = {['success']} onClick = {()=>this.setState({tooltipLeft: !this.state.tooltipLeft})}>Left Click!</Button>
+                  </div>
+                </div>
+
+                <div className="row">
                   <Modal
                     isOpen = {this.state.openModal}
-                    handleClose = {()=>this.setState(openModal: false)}
+                    handleClose = {()=>this.setState({openModal: false})}
                     action ={[{ label: "Cancel", zcss: ['success'] ,onClick: ()=>this.setState({openModal: false}) },
                         { label: "Save", zcss: ['success'], onClick: () => this.console('zetgoo') }]}
                     title = "Welcome to zetgoo"
