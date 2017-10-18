@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -21,21 +23,10 @@ var _constant = require('../constant');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  base: {
-    alignItems: 'center',
-    borderBottomColor: '#dbdbdb',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-    display: 'flex',
-    flexGrow: 1,
-    flexShrink: 0,
-    justifyContent: 'flex-start',
-    margin: 0,
-    padding: 0
-  }
+  base: {}
 };
 
-var TabGroup = function TabGroup(props) {
+var Breadcrumb = function Breadcrumb(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map(function (item, index) {
@@ -45,14 +36,15 @@ var TabGroup = function TabGroup(props) {
   }
 
   return _react2.default.createElement(
-    'ul',
-    { style: [styles.base].concat(zcss) },
+    'button',
+    _extends({}, props, { style: [styles.base].concat(zcss)
+    }),
     props.children
   );
 };
 
-TabGroup.propTypes = {
+Breadcrumb.propTypes = {
   zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(TabGroup);
+exports.default = (0, _radium2.default)(Breadcrumb);
