@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -29,34 +31,12 @@ var _constant = require('../constant');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  base: {
-    alignItems: 'stretch',
-    display: 'flex',
-    justifyContent: 'space-between',
-    lineHeight: 24,
-    overflow: 'hidden',
-    overflowX: 'auto',
-    whiteSpace: 'nowrap'
-  },
-  isBox: {
-    borderSize: 1,
-    borderColor: _constant.colors.success,
-    borderStyle: 'solid'
-  },
-  list: {
-    alignItems: 'center',
-    borderBottom: '1px solid #d3d6db',
-    display: 'flex',
-    flex: 1,
-    justifyContent: 'flex-start',
-    margin: 0,
-    padding: 0,
-    border: 0,
-    fontSize: '100%',
-    fontWeight: 'normal',
-    verticalAlign: 'baseline',
-    backgroundColor: 'transparent',
-    userSelect: 'none'
+  base: {},
+  isBox: {},
+  list: {},
+  slider: {
+    position: 'absolute',
+    bottom: 0
   }
 };
 
@@ -68,21 +48,51 @@ var Tabs = function Tabs(props) {
       zcss.push(_constant.atomic[item]);
     });
   }
+  var content = null;
+  var buildHtml = function buildHtml() {
+    return _react2.default.Children.map(props.children, function (child, index) {
+      if (child.type.displayName === 'Tab') {
+        if (props.index === index) {
+          content = _react2.default.cloneElement(_react2.default.createElement('section', null), { children: child.props.children });
+          return _react2.default.cloneElement(child, _extends({}, child.props, {
+            isActive: true,
+            onClick: function onClick() {
+              return props.onChange(index);
+            }
+          }));
+        }
+      }
+      return _react2.default.cloneElement(child, _extends({}, child.props, {
+        onClick: function onClick() {
+          return props.onChange(index);
+        }
+      }));
+    });
+  };
+
+  var htmlElement = buildHtml();
 
   return _react2.default.createElement(
     'div',
     { style: [styles.base].concat(zcss) },
     _react2.default.createElement(
-      _TabGroup2.default,
-      null,
-      props.tabs && props.tabs.map(function (item, index) {
-        return _react2.default.createElement(
-          _Tab2.default,
-          { zcss: [index === props.indexActice ? 'isActived' : ''], icon: item.icon, key: index },
-          item.text
-        );
-      })
-    )
+      'div',
+      { style: { position: 'relative',
+          display: 'inline-flex',
+          width: '100%' } },
+      htmlElement,
+      _react2.default.createElement('div', { style: { position: 'absolute',
+          bottom: 0,
+          height: 2,
+          backgroundColor: '#6bb551',
+          left: 100 / props.children.length * props.index + '%',
+          transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+          transitionDuration: '.35s',
+          transitionProperty: 'left,width',
+          width: '20%'
+        } })
+    ),
+    content
   );
 };
 

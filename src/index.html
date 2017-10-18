@@ -9,5 +9,31 @@
     <div id="root" class="wrapper">
     </div>
     <script src="https://use.fontawesome.com/6a4efac510.js"></script>
+    <script src="http://zetgoo.com/js/zcaptcha.js"></script>
+    <script>
+      // window.zetgoo = function() {
+      //   zcaptcha.init();
+      // };
+      // (function () {
+      //   // let zcaptcha = zcaptcha || function () {
+      //   //   (zcaptcha.q = zcaptcha.q || []).push(arguments);
+      //   // };
+      //   var s = document.createElement('script');
+      //   s.type = 'text/javascript';
+      //   s.async = false;
+      //   s.src = 'http://zetgoo.com/js/zcaptcha.js';
+      //   var x = document.getElementsByTagName('script')[0];
+      //   x.parentNode.insertBefore(s, x);
+      // })();
+      var config = {
+        appId: 'zetgoo'
+      }
+      zcaptcha.init(config);
+
+      zcaptcha.setToken();
+
+      zcaptcha.getToken();
+
+  </script>
   </body>
 </html>

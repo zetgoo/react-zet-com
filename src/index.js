@@ -32,6 +32,7 @@ import Avatar from './components/Avatar'
 import Modal from './components/Modal'
 import Popover from './components/Popover'
 import Tooltip from './components/Tooltip'
+import Video from './components/Video'
 
 import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
   VictoryAnimation, VictoryLabel, VictoryTheme,VictoryStack,
@@ -288,8 +289,7 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
 
                 <div className="row">
                   <Modal
-                    isOpen = {this.state.openModal}
-                    handleClose = {()=>this.setState({openModal: false})}
+                    handleClose = {() => this.setState({openModal: false}
                     action ={[{ label: "Cancel", zcss: ['success'] ,onClick: ()=>this.setState({openModal: false}) },
                         { label: "Save", zcss: ['success'], onClick: () => this.console('zetgoo') }]}
                     title = "Welcome to zetgoo"
@@ -353,6 +353,9 @@ import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
                   <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
                   <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
                   <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
+                </div>
+                <div className="row">
+                  <Video/>
                 </div>
                 <div className="row">
                   <Tabs index={this.state.tabIndex} onChange={ index => this.setState({tabIndex: index})}>
