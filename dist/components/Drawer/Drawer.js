@@ -20,6 +20,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _constant = require('../constant');
 
+var _Overlay = require('../../components/Overlay/Overlay');
+
+var _Overlay2 = _interopRequireDefault(_Overlay);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -84,11 +88,14 @@ var Drawer = function Drawer(props) {
   return _react2.default.createElement(
     'div',
     { style: [styles.base].concat(zcss) },
-    _react2.default.createElement('div', { style: [styles.cover].concat(zcss) }),
     _react2.default.createElement(
-      'div',
-      { style: [styles.drawer].concat(zcss) },
-      props.children
+      _Overlay2.default,
+      { isOpen: props.isShow, onClose: props.handleClose },
+      _react2.default.createElement(
+        'div',
+        { style: [styles.drawer].concat(zcss) },
+        props.children
+      )
     )
   );
 };

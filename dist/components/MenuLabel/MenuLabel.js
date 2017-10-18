@@ -22,20 +22,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var styles = {
   base: {
-    alignItems: 'center',
-    borderBottomColor: '#dbdbdb',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: 1,
-    display: 'flex',
-    flexGrow: 1,
-    flexShrink: 0,
-    justifyContent: 'flex-start',
+    whiteSpace: 'nowrap',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    position: 'relative',
     margin: 0,
-    padding: 0
+    marginBottom: 5,
+    color: '#4b646f',
+    background: '#1a2226',
+    overflow: 'hidden',
+    textOverflow: 'clip'
   }
 };
 
-var TabGroup = function TabGroup(props) {
+var MenuLabel = function MenuLabel(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map(function (item, index) {
@@ -45,14 +46,14 @@ var TabGroup = function TabGroup(props) {
   }
 
   return _react2.default.createElement(
-    'ul',
+    'p',
     { style: [styles.base].concat(zcss) },
     props.children
   );
 };
 
-TabGroup.propTypes = {
+MenuLabel.propTypes = {
   zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(TabGroup);
+exports.default = (0, _radium2.default)(MenuLabel);

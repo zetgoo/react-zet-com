@@ -1,9 +1,26 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+'use strict';
 
-const styles = {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _radium = require('radium');
+
+var _radium2 = _interopRequireDefault(_radium);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _constant = require('../constant');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var styles = {
   base: {
     position: 'fixed',
     top: 0,
@@ -47,26 +64,25 @@ const styles = {
     transitionProperty: 'opacity',
     opacity: '.6'
   }
-}
+};
 
-const Overlay = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+var Popover = function Popover(props) {
+  var zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
+    props.zcss.map(function (item, index) {
+      zcss.push(styles[item]);
+      zcss.push(_constant.atomic[item]);
+    });
   }
 
-  const handleOutsideClick = (e) => {
+  var handleOutsideClick = function handleOutsideClick(e) {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose()
+      props.onClose();
     }
+  };
 
-  }
-
-  let container = null
+  var container = null;
 
   if (props.isOpen) {
     document.addEventListener('click', handleOutsideClick, false);
@@ -74,20 +90,21 @@ const Overlay = (props)=> {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return (!props.isOpen ? null : (
-    <div style = {styles.base} >
-      <div style = {styles.cover}></div>
-      <div style   = {styles.content} ref = {(node) =>{
-            container = node
-          }}>
-        {props.children}
-      </div>
-    </div>
-  ))
-}
+  return !props.isOpen ? null : _react2.default.createElement(
+    'div',
+    { style: styles.base },
+    _react2.default.createElement(
+      'div',
+      { style: styles.content, ref: function ref(node) {
+          container = node;
+        } },
+      props.children
+    )
+  );
+};
 
-Overlay.propTypes = {
-  zcss: PropTypes.array
-}
+Popover.propTypes = {
+  zcss: _propTypes2.default.array
+};
 
-export default Radium(Overlay)
+exports.default = (0, _radium2.default)(Popover);

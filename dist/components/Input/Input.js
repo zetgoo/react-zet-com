@@ -52,15 +52,14 @@ var styles = {
     outline: 0
   }), _base),
   disabled: {
-    backgroundColor: '#eee',
-    borderColor: _constant.colors.no,
-    ':hover': {
-      borderColor: _constant.colors.no
-    },
-    ':focus': {
-      borderColor: _constant.colors.no,
-      outline: 0
-    }
+    backgroundColor: 'whitesmoke',
+    borderColor: 'whitesmoke',
+    boxShadow: 'none',
+    color: '#7a7a7a',
+    cursor: 'not-allowed'
+  },
+  readonly: {
+    boxShadow: 'none'
   },
   error: {
     borderColor: _constant.colors.danger,

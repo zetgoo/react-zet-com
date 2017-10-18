@@ -20,29 +20,21 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _constant = require('../constant');
 
+var _Overlay = require('../../components/Overlay/Overlay');
+
+var _Overlay2 = _interopRequireDefault(_Overlay);
+
+var _Button = require('../../components/Button/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
-  base: {
-    alignItems: 'center',
-    borderBottom: '1px solid #d3d6db',
-    color: '#69707a',
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: -1,
-    padding: '6px 12px',
-    verticalAlign: 'top'
-  },
-  isActived: {
-    color: _constant.colors.success,
-    borderColor: _constant.colors.success
-  },
-  disabled: {
-    opacity: .2
-  }
+  base: {}
 };
 
-var Tab = function Tab(props) {
+var Modal = function Modal(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map(function (item, index) {
@@ -51,19 +43,31 @@ var Tab = function Tab(props) {
     });
   }
 
-  var onActive = function onActive(e) {
-    props.onActive();
-  };
-
   return _react2.default.createElement(
-    'label',
-    _extends({}, props, { style: { display: 'flex', width: '20%' } }),
-    props.label
+    'div',
+    _extends({}, props, { style: [styles.base].concat(zcss)
+    }),
+    _react2.default.createElement(
+      _Overlay2.default,
+      { isOpen: props.isOpen, onClose: props.handleClose },
+      props.children,
+      _react2.default.createElement(
+        'div',
+        null,
+        props.action && props.action.map(function (item, index) {
+          return _react2.default.createElement(
+            _Button2.default,
+            item,
+            item.label
+          );
+        })
+      )
+    )
   );
 };
 
-Tab.propTypes = {
+Modal.propTypes = {
   zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(Tab);
+exports.default = (0, _radium2.default)(Modal);

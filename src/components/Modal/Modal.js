@@ -26,7 +26,7 @@ const Modal = (props)=> {
         ...zcss
       ]}
       >
-      <Overlay isOpen = {props.isOpen}>
+      <Overlay isOpen = {props.isOpen} onClose = {props.handleClose}>
         {props.children}
         <div>
           {props.action && props.action.map((item, index)=>

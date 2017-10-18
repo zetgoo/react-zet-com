@@ -17,11 +17,11 @@ var colors = exports.colors = {
   defaultBorder: '#dbdbdb',
   default: '#363636',
 
-  primary: '#0275d8',
+  primary: '#1fc8db',
   success: '#6bb551',
   disable: '#98c699',
   info: '#5bc0de',
-  danger: '#ff1f4b',
+  danger: '#ed6c63',
   warning: '#ffdd57',
   cancel: '#B0B0B0'
 };

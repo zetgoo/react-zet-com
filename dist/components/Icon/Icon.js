@@ -22,7 +22,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var styles = {
   base: {
-    fontSize: '0.875em'
+    // fontSize: '0.875em'
   },
   icon: {},
   text: {

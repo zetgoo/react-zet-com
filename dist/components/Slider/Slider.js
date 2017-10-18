@@ -24,7 +24,7 @@ var styles = {
   base: {}
 };
 
-var Addons = function Addons(props) {
+var Slider = function Slider(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map(function (item, index) {
@@ -45,8 +45,8 @@ var Addons = function Addons(props) {
   );
 };
 
-Addons.propTypes = {
+Slider.propTypes = {
   zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(Addons);
+exports.default = (0, _radium2.default)(Slider);

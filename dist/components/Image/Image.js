@@ -52,6 +52,9 @@ var styles = {
       height: 32,
       width: 32
     }
+  },
+  isBlur: {
+    transition: 'opacity 2s linear'
   }
 };
 
@@ -66,7 +69,7 @@ var Image = function Image(props) {
 
   return _react2.default.createElement(
     'figure',
-    _extends({}, props, { style: [styles.base, { width: props.width, height: props.width / props.ratio }]
+    _extends({}, props, { style: [styles.base, { maxWidth: props.width, height: props.width / props.ratio }]
     }),
     _react2.default.createElement('img', { style: [styles.image].concat(zcss), src: props.src, alt: props.alt })
   );
