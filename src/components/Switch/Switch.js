@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import ToggleLib from 'react-toggle'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import ToggleLib from 'react-toggle';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -35,32 +35,32 @@ const styles = {
     backgroundColor: colors.primary,
     borderColor: 'transparent',
     color: '#fff',
-    ':hover':{
+    ':hover': {
       backgroundColor: '#00c4a7',
       borderColor: 'transparent',
-      color: '#fff'
+      color: '#fff',
     },
     ':active': {
       backgroundColor: '#00b89c',
       borderColor: 'transparent',
       boxShadow: 'inset 0 1px 2px rgba(10, 10, 10, 0.2)',
-      color: '#fff'
-    }
+      color: '#fff',
+    },
   },
   success: {
-    backgroundColor: colors.success
+    backgroundColor: colors.success,
   },
   disable: {
-    backgroundColor: colors.disable
+    backgroundColor: colors.disable,
   },
   info: {
-    backgroundColor: colors.info
+    backgroundColor: colors.info,
   },
   warning: {
-    backgroundColor: colors.warning
+    backgroundColor: colors.warning,
   },
   danger: {
-    background: colors.danger
+    background: colors.danger,
   },
   isLoading: {
     color: 'transparent',
@@ -77,30 +77,30 @@ const styles = {
       width: '1em',
       left: 2,
       top: 2,
-      position: 'absolute'
-    }
-  }
-}
+      position: 'absolute',
+    },
+  },
+};
 
-const Toggle = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Toggle = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <ToggleLib
       id='cheese-status'
       defaultChecked={true}
-      onChange={()=>console.log('ballard is king')} />
-  )
-}
+      onChange={() => console.log('ballard is king')} />
+  );
+};
 
 Toggle.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Toggle)
+export default Radium(Toggle);

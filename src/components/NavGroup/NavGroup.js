@@ -1,8 +1,8 @@
-  import React, {Component} from 'react'
-import Radium from 'radium'
-import ToggleLib from 'react-toggle'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import ToggleLib from 'react-toggle';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -15,52 +15,52 @@ const styles = {
     flex: 1,
     fontWeight: 'normal',
     verticalAlign: 'baseline',
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   menu: {
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       display: 'block',
       position: 'absolute',
       backgroundColor: '#fff',
       left: 0,
       right: 0,
-      top: '100%'
-    }
+      top: '100%',
+    },
   },
   menuHide: {
-    '@media (max-width: 575px)':{
-      display: 'none'
-    }
+    '@media (max-width: 575px)': {
+      display: 'none',
+    },
   },
   logo: {
-    '@media (max-width: 575px)':{
-      justifyContent: 'center'
-    }
+    '@media (max-width: 575px)': {
+      justifyContent: 'center',
+    },
   },
   icon: {
     display: 'flex',
-    justifyContent: 'flex-end'
-  }
-}
+    justifyContent: 'flex-end',
+  },
+};
 
-const NavGroup = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const NavGroup = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <div style = {[styles.base, ...zcss]}>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 NavGroup.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(NavGroup)
+export default Radium(NavGroup);

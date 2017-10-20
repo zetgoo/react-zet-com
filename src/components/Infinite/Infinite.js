@@ -1,9 +1,9 @@
-import React, { PureComponent } from "react";
-import Radium from 'radium'
-import PropTypes from "prop-types";
-import {AutoSizer,InfiniteLoader,List} from 'react-virtualized'
-import {colors, atomic} from '../constant'
-import Immutable from "immutable";
+import React, { PureComponent } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { AutoSizer, InfiniteLoader, List } from 'react-virtualized';
+import { colors, atomic } from '../constant';
+import Immutable from 'immutable';
 
 const STATUS_LOADING = 1;
 const STATUS_LOADED = 2;
@@ -19,7 +19,7 @@ export default class InfiniteLoaderExample extends PureComponent {
     this.state = {
       loadedRowCount: 0,
       loadedRowsMap: {},
-      loadingRowCount: 0
+      loadingRowCount: 0,
     };
 
     this._timeoutIdMap = {};
@@ -31,7 +31,7 @@ export default class InfiniteLoaderExample extends PureComponent {
   }
 
   componentWillUnmount() {
-    Object.keys(this._timeoutIdMap).forEach(timeoutId => {
+    Object.keys(this._timeoutIdMap).forEach((timeoutId) => {
       clearTimeout(timeoutId);
     });
   }
@@ -67,7 +67,7 @@ export default class InfiniteLoaderExample extends PureComponent {
     this.setState({
       loadedRowCount: 0,
       loadedRowsMap: {},
-      loadingRowCount: 0
+      loadingRowCount: 0,
     });
   }
 
@@ -80,12 +80,12 @@ export default class InfiniteLoaderExample extends PureComponent {
     const { loadedRowsMap, loadingRowCount } = this.state;
     const increment = stopIndex - startIndex + 1;
 
-    for (var i = startIndex; i <= stopIndex; i++) {
+    for (let i = startIndex; i <= stopIndex; i++) {
       loadedRowsMap[i] = STATUS_LOADING;
     }
 
     this.setState({
-      loadingRowCount: loadingRowCount + increment
+      loadingRowCount: loadingRowCount + increment,
     });
 
     const timeoutId = setTimeout(() => {
@@ -93,13 +93,13 @@ export default class InfiniteLoaderExample extends PureComponent {
 
       delete this._timeoutIdMap[timeoutId];
 
-      for (var i = startIndex; i <= stopIndex; i++) {
+      for (let i = startIndex; i <= stopIndex; i++) {
         loadedRowsMap[i] = STATUS_LOADED;
       }
 
       this.setState({
         loadingRowCount: loadingRowCount - increment,
-        loadedRowCount: loadedRowCount + increment
+        loadedRowCount: loadedRowCount + increment,
       });
 
       promiseResolver();
@@ -109,7 +109,7 @@ export default class InfiniteLoaderExample extends PureComponent {
 
     let promiseResolver;
 
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       promiseResolver = resolve;
     });
   }

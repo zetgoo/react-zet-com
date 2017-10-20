@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -16,7 +16,7 @@ const styles = {
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    pointerEvents: 'all'
+    pointerEvents: 'all',
   },
 
   content: {
@@ -33,7 +33,7 @@ const styles = {
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
     transitionProperty: 'opacity,transform',
-    zIndex: 1
+    zIndex: 1,
   },
 
   cover: {
@@ -45,28 +45,27 @@ const styles = {
     backgroundColor: '#000',
     transitionDuration: '.35s',
     transitionProperty: 'opacity',
-    opacity: '.6'
-  }
-}
+    opacity: '.6',
+  },
+};
 
-const Popover = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Popover = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   const handleOutsideClick = (e) => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose()
+      props.onClose();
     }
+  };
 
-  }
-
-  let container = null
+  let container = null;
 
   if (props.isOpen) {
     document.addEventListener('click', handleOutsideClick, false);
@@ -76,17 +75,17 @@ const Popover = (props)=> {
 
   return (!props.isOpen ? null : (
     <div style = {styles.base} >
-      <div style   = {styles.content} ref = {(node) =>{
-            container = node
+      <div style = {styles.content} ref = {(node) => {
+            container = node;
           }}>
         {props.children}
       </div>
     </div>
-  ))
-}
+  ));
+};
 
 Popover.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Popover)
+export default Radium(Popover);

@@ -1,7 +1,7 @@
-  import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -10,32 +10,32 @@ const styles = {
     fontWeight: 300,
     wordBreak: 'break-word',
     textRendering: 'optimizeLegibility',
-    color: '#69707a'
-  }
-}
+    color: '#69707a',
+  },
+};
 
-const SubTitle = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const SubTitle = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
       <p
         style={[
             styles.base,
-            ...zcss
+            ...zcss,
           ]}>
         {props.children}
       </p>
-  )
-}
+  );
+};
 
 SubTitle.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(SubTitle)
+export default Radium(SubTitle);

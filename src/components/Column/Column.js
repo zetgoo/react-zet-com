@@ -1,23 +1,23 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
 import {
   colors,
   atomic,
   smallBreakpoint,
   mediumBreakpoint,
   largeBreakpoint,
-  xLargeBreakpoint
-} from '../constant'
+  xLargeBreakpoint,
+} from '../constant';
 
 const styles = {
   base: {
     boxSizing: 'border-box',
-    order: 'initial'
-  }
-}
+    order: 'initial',
+  },
+};
 
-const custom = (props) =>{
+const custom = (props) => {
   const {
     col,
     smallCol,
@@ -31,43 +31,43 @@ const custom = (props) =>{
     xLargeCell,
     breakpoints,
     gutter,
-    order
-  } = props
+    order,
+  } = props;
 
-  let viewport = {}
-    viewport.small = {flexBasis: `calc(${(smallCell/smallCol)*100}% - ${gutter})`}
-    viewport.medium = {flexBasis: `calc(${(mediumCell/mediumCol)*100}% - ${gutter})`}
-    viewport.large = {flexBasis:  `calc(${(largeCell/largeCol)*100}% - ${gutter})`}
-    viewport.xLarge = {flexBasis: `calc(${(xLargeCell/xLargeCol)*100}% - ${gutter})`}
-    return viewport
-}
+  const viewport = {};
+  viewport.small = { flexBasis: `calc(${(smallCell / smallCol) * 100}% - ${gutter})` };
+  viewport.medium = { flexBasis: `calc(${(mediumCell / mediumCol) * 100}% - ${gutter})` };
+  viewport.large = { flexBasis: `calc(${(largeCell / largeCol) * 100}% - ${gutter})` };
+  viewport.xLarge = { flexBasis: `calc(${(xLargeCell / xLargeCol) * 100}% - ${gutter})` };
+  return viewport;
+};
 
-const Column = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Column = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
-  let viewport = custom(props)
+  const viewport = custom(props);
 
-  styles.base['@media (min-width: 1200px)'] = viewport.xLarge
-  styles.base['@media (min-width: 768px) and (max-width: 991px)'] = viewport.large
-  styles.base['@media (min-width: 576px) and (max-width: 767px)'] = viewport.medium
-  styles.base['@media (max-width: 575px)'] = viewport.small
+  styles.base['@media (min-width: 1200px)'] = viewport.xLarge;
+  styles.base['@media (min-width: 768px) and (max-width: 991px)'] = viewport.large;
+  styles.base['@media (min-width: 576px) and (max-width: 767px)'] = viewport.medium;
+  styles.base['@media (max-width: 575px)'] = viewport.small;
 
 
   return (
     <div {...props} style={[
         styles.base,
-        ...zcss
+        ...zcss,
       ]}>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 Column.propTypes = {
   col: PropTypes.number,
@@ -84,11 +84,11 @@ Column.propTypes = {
     small: PropTypes.string,
     medium: PropTypes.string,
     large: PropTypes.string,
-    xLarge: PropTypes.string
+    xLarge: PropTypes.string,
   }),
   gutter: PropTypes.string,
   order: PropTypes.number,
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
-export default Radium(Column)
+export default Radium(Column);

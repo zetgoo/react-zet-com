@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -11,30 +11,30 @@ const styles = {
     margin: 0,
     padding: 0,
     paddingBottom: 10,
-  }
-}
+  },
+};
 
-const MenuGroup = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const MenuGroup = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <div style={[
         styles.base,
-        ...zcss
+        ...zcss,
       ]}>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 MenuGroup.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(MenuGroup)
+export default Radium(MenuGroup);

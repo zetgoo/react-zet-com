@@ -1,14 +1,14 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
 import {
   colors,
   atomic,
   smallBreakpoint,
   mediumBreakpoint,
   largeBreakpoint,
-  xLargeBreakpoint
-} from '../constant'
+  xLargeBreakpoint,
+} from '../constant';
 
 const styles = {
   base: {
@@ -21,31 +21,29 @@ const styles = {
     backgroundColor: 'transparent',
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'space-between'
-  }
-}
+    justifyContent: 'space-between',
+  },
+};
 
-const Columns = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Columns = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
 
   return (
     <div {...props} style={[
         styles.base,
-        ...zcss
+        ...zcss,
       ]}>
-      {React.Children.map(props.children, function(child) {
-        return React.cloneElement(child, {...props, children: child.props.children});
-      })}
+      {React.Children.map(props.children, child => React.cloneElement(child, { ...props, children: child.props.children }))}
     </div>
-  )
-}
+  );
+};
 
 Columns.propTypes = {
   col: PropTypes.number,
@@ -57,13 +55,13 @@ Columns.propTypes = {
     small: PropTypes.string,
     medium: PropTypes.string,
     large: PropTypes.string,
-    xlarge: PropTypes.string
+    xlarge: PropTypes.string,
   }),
 
   gutter: PropTypes.string,
 
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 Columns.defaultProps = {
   col: 3,
@@ -71,9 +69,9 @@ Columns.defaultProps = {
     small: smallBreakpoint,
     medium: mediumBreakpoint,
     large: largeBreakpoint,
-    xLarge: xLargeBreakpoint
+    xLarge: xLargeBreakpoint,
   },
-  gutter: '16px'
+  gutter: '16px',
 };
 
-export default Radium(Columns)
+export default Radium(Columns);

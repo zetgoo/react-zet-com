@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -14,39 +14,37 @@ const styles = {
     verticalAlign: 'baseline',
     position: 'relative',
     textAlign: 'left',
-    display: 'flex'
+    display: 'flex',
   },
   isCenter: {
     justifyContent: 'center',
   },
   isRight: {
-    justifyContent: 'flex-end'
-  }
-}
+    justifyContent: 'flex-end',
+  },
+};
 
-const Addons = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Addons = props => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <span>
-      <p {...props} style={[
-          styles.base,
-          ...zcss
-        ]}>
+      <p {...props} style={[styles.base, ...zcss]}>
         {props.children}
       </p>
     </span>
-  )
-}
+  );
+};
 
 Addons.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+  children: PropTypes.array,
+};
 
-export default Radium(Addons)
+export default Radium(Addons);
