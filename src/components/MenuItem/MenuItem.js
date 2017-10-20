@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -14,7 +14,7 @@ const styles = {
     boxSizing: 'border-box',
     fontSize: 14,
     fontWeight: 'normal',
-    verticalAlign: 'baseline'
+    verticalAlign: 'baseline',
   },
   item: {
     paddingTop: '0.5em',
@@ -24,44 +24,44 @@ const styles = {
   },
   isActived: {
 
-  }
-}
+  },
+};
 
-const MenuItem = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const MenuItem = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   const buildHtml = () => {
-    if (!Array.isArray(props.children)) return props.children
-    if(props.children && Array.isArray(props.children)){
-      const htmlElements = props.children.map((item, index)=>{
-        if(item.type === 'li'){
-          return React.cloneElement(item, [...item.props], item.props.children)
+    if (!Array.isArray(props.children)) return props.children;
+    if (props.children && Array.isArray(props.children)) {
+      const htmlElements = props.children.map((item, index) => {
+        if (item.type === 'li') {
+          return React.cloneElement(item, [...item.props], item.props.children);
         }
-        return <li style = {styles.item}>{item}</li>
-      })
-      return htmlElements
+        return <li style = {styles.item}>{item}</li>;
+      });
+      return htmlElements;
     }
-    return null
-  }
+    return null;
+  };
 
   return (
     <ul style={[
         styles.base,
-        ...zcss
+        ...zcss,
       ]}>
       {buildHtml()}
     </ul>
-  )
-}
+  );
+};
 
 MenuItem.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(MenuItem)
+export default Radium(MenuItem);

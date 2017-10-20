@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -15,52 +15,52 @@ const styles = {
     fontWeight: 'normal',
     verticalAlign: 'top',
     display: 'inline-block',
-    position: 'relative'
+    position: 'relative',
   },
 
   image: {
     display: 'block',
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
 
   isCircle: {
-    borderRadius: '50%'
+    borderRadius: '50%',
   },
 
   isAvatar: {
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       height: 32,
-      width: 32
-    }
+      width: 32,
+    },
   },
   isBlur: {
     transition: 'opacity 2s linear',
-  }
-}
+  },
+};
 
-const Image = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Image = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <figure {...props} style={[
         styles.base,
-        {maxWidth: props.width, height: (props.width / props.ratio)}
+        { maxWidth: props.width, height: (props.width / props.ratio) },
       ]}
       >
       <img style = {[styles.image, ...zcss]} src={props.src} alt={props.alt} />
     </figure>
-  )
-}
+  );
+};
 
 Image.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Image)
+export default Radium(Image);

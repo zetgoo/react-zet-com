@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -19,33 +19,33 @@ const styles = {
     backgroundColor: '#212121',
     borderRadius: '.2rem',
     transition: 'all .35s cubic-bezier(.4,0,.2,1) .35s',
-  }
-}
+  },
+};
 
-const SnackBar = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const SnackBar = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
-  if (!props.isShow) return null
+  if (!props.isShow) return null;
 
   return (
     <div
       style={[
           styles.base,
-          ...zcss
+          ...zcss,
         ]}>
       {props.children}
     </div>
-  )
-}
+  );
+};
 
 SnackBar.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(SnackBar)
+export default Radium(SnackBar);

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -29,7 +29,7 @@ const styles = {
     paddingRight: '0.75em',
     textAlign: 'center',
     whiteSpace: 'nowrap',
-    ':hover':{
+    ':hover': {
       zIndex: 2,
       borderColor: '#aeb1b5',
       color: '#222324',
@@ -38,12 +38,12 @@ const styles = {
       borderColor: colors.success,
       outline: 'none',
       color: '#222324',
-      zIndex: 3
+      zIndex: 3,
     },
     ':active': {
       boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
-      zIndex: 4
-    }
+      zIndex: 4,
+    },
   },
 
   white: {
@@ -62,10 +62,10 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
-  light:{
+  light: {
     backgroundColor: '#f5f7fa',
     borderColor: 'transparent',
     color: '#69707a',
@@ -81,10 +81,10 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
-  black:{
+  black: {
     backgroundColor: '#111',
     borderColor: 'transparent',
     color: '#fff',
@@ -100,7 +100,7 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
   isLink: {
@@ -117,26 +117,26 @@ const styles = {
       backgroundColor: '#d3d6db',
       color: '#222324',
       borderColor: 'transparent',
-    }
+    },
   },
 
   primary: {
     backgroundColor: colors.primary,
     borderColor: 'transparent',
     color: '#fff',
-    ':hover':{
+    ':hover': {
       backgroundColor: '#199fae',
       borderColor: 'transparent',
       color: '#fff',
     },
-    ':focus':{
+    ':focus': {
       backgroundColor: '#199fae',
       borderColor: 'transparent',
       color: '#fff',
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
   info: {
@@ -155,7 +155,7 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
   success: {
@@ -174,20 +174,20 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
   disable: {
     backgroundColor: colors.disable,
     borderColor: 'transparent',
     color: 'rgba(17, 17, 17, 0.5)',
-    cursor: 'not-allowed'
+    cursor: 'not-allowed',
   },
 
   warning: {
     backgroundColor: colors.warning,
     borderColor: 'transparent',
     color: 'rgba(17, 17, 17, 0.5)',
-    ':hover':{
+    ':hover': {
       backgroundColor: '#fbda41',
       borderColor: 'transparent',
       color: 'rgba(17, 17, 17, 0.5)',
@@ -199,7 +199,7 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
   danger: {
@@ -218,7 +218,7 @@ const styles = {
     },
     ':active': {
       borderColor: 'transparent',
-    }
+    },
   },
 
   cancel: {
@@ -242,31 +242,31 @@ const styles = {
       width: '1em',
       left: 2,
       top: 2,
-      position: 'absolute'
-    }
-  }
-}
+      position: 'absolute',
+    },
+  },
+};
 
-const Button = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Button = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <button {...props} style={[
         styles.base,
-        ...zcss
+        ...zcss,
       ]}
       >{props.children}</button>
-  )
-}
+  );
+};
 
 Button.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Button)
+export default Radium(Button);

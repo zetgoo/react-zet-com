@@ -1,10 +1,10 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import ToggleLib from 'react-toggle'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
-import Icon from '../Icon/Icon'
-import Link from '../Link/Link'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import ToggleLib from 'react-toggle';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
+import Icon from '../Icon/Icon';
+import Link from '../Link/Link';
 
 const styles = {
   base: {
@@ -17,21 +17,21 @@ const styles = {
     borderRadius: 5,
     margin: 0,
     display: 'none',
-    '@media (max-width: 575px)':{
-      display:'flex',
+    '@media (max-width: 575px)': {
+      display: 'flex',
       flex: 1,
-      padding: '0 5px'
-    }
-  }
-}
+      padding: '0 5px',
+    },
+  },
+};
 
-const NavToggle = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const NavToggle = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
@@ -39,11 +39,11 @@ const NavToggle = (props)=> {
       {!props.isActive && <Icon zcss = {['cl_success', 'f1r']} icon = 'fa fa-bars' text = 'ZetGoo'/>}
       {props.isActive && <Icon zcss = {['cl_disable', 'f1r']} icon = 'fa fa-times'text = 'ZetGoo'/>}
     </button>
-  )
-}
+  );
+};
 
 NavToggle.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(NavToggle)
+export default Radium(NavToggle);

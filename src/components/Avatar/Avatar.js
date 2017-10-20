@@ -1,16 +1,16 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
-import Image from '../Image/Image'
-import Icon from '../Icon/Icon'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
+import Image from '../Image/Image';
+import Icon from '../Icon/Icon';
 
 const styles = {
   base: {
     position: 'relative',
     display: 'inline-block',
     width: 32,
-    height:32,
+    height: 32,
     lineHeight: 1.5,
     overflow: 'hidden',
     fontSize: '1.25em',
@@ -19,15 +19,15 @@ const styles = {
     verticalAlign: 'middle',
     backgroundColor: '#9e9e9e',
     borderRadius: 5,
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       height: 32,
-      width: 32
-    }
+      width: 32,
+    },
   },
   isCircle: {
-    borderRadius: '50%'
-  }
-}
+    borderRadius: '50%',
+  },
+};
 
 const GithubIcon = () => (
   <svg viewBox="0 0 284 277">
@@ -35,17 +35,17 @@ const GithubIcon = () => (
   </svg>
 );
 
-const Avatar = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Avatar = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
-  if(props.image){
-    return <Image zcss = {[...props.zcss, 'isAvatar']} src = {props.image} width = {32} ratio = {1}/>
+  if (props.image) {
+    return <Image zcss = {[...props.zcss, 'isAvatar']} src = {props.image} width = {32} ratio = {1}/>;
   }
 
   return (
@@ -53,11 +53,11 @@ const Avatar = (props)=> {
       {props.icon && <Icon icon = {props.icon} />}
       {props.text && props.text}
     </div>
-  )
-}
+  );
+};
 
 Avatar.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Avatar)
+export default Radium(Avatar);
