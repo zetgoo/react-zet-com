@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -17,7 +17,7 @@ const styles = {
     paddingLeft: '0.75em',
     paddingRight: '0.75em',
     whiteSpace: 'nowrap',
-    verticalAlign: 'top'
+    verticalAlign: 'top',
   },
   button: {
     padding: '0.25em',
@@ -26,26 +26,26 @@ const styles = {
     display: 'inline-flex',
     backgroundColor: 'rgba(17, 17, 17, 0.2)',
     border: 0,
-    borderRadius: '30%'
+    borderRadius: '30%',
   },
   isSmall: {
     fontSize: 11,
     height: 20,
     paddingLeft: 8,
-    paddingRight: 8
+    paddingRight: 8,
   },
   isMedium: {
     fontSize: 14,
     height: 32,
     paddingLeft: 14,
-    paddingRight: 14
+    paddingRight: 14,
   },
-  isLarge:{
+  isLarge: {
     fontSize: 18,
     height: 40,
     lineHeight: 24,
     paddingLeft: 18,
-    paddingRight: 18
+    paddingRight: 18,
   },
 
   primary: {
@@ -53,49 +53,49 @@ const styles = {
   },
 
   success: {
-    backgroundColor: colors.success
+    backgroundColor: colors.success,
   },
   disable: {
     backgroundColor: colors.disable,
     pointerEvents: 'none',
-    cursor: 'default'
+    cursor: 'default',
   },
   info: {
-    backgroundColor: colors.info
+    backgroundColor: colors.info,
   },
   warning: {
-    backgroundColor: colors.warning
+    backgroundColor: colors.warning,
   },
   danger: {
-    background: colors.danger
+    background: colors.danger,
   },
   cancel: {
-    background: colors.cancel
+    background: colors.cancel,
   },
   white: {
     backgroundColor: colors.no,
     borderColor: 'transparent',
-    color: '#111'
+    color: '#111',
   },
-  light:{
+  light: {
     backgroundColor: '#f5f7fa',
     borderColor: 'transparent',
-    color: '#69707a'
+    color: '#69707a',
   },
-  black:{
+  black: {
     backgroundColor: '#111',
     borderColor: 'transparent',
-    color: '#fff'
+    color: '#fff',
   },
-}
+};
 
-const Tag = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Tag = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
@@ -103,11 +103,11 @@ const Tag = (props)=> {
       {props.text}
       <button className = {props.icon} style = {[styles.button]} onClick = {props.onClick}/>
     </span>
-  )
-}
+  );
+};
 
 Tag.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Tag)
+export default Radium(Tag);

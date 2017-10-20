@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
 
-import {colors,atomic} from '../constant'
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -27,15 +27,15 @@ const styles = {
     maxWidth: '100%',
     width: '100%',
     boxSizing: 'border-box',
-    ':hover':{
-      borderColor: colors.success
+    ':hover': {
+      borderColor: colors.success,
     },
-    ':focus':{
+    ':focus': {
       borderColor: colors.success,
       outline: 0,
-    }
+    },
   },
-  disabled:{
+  disabled: {
     backgroundColor: 'whitesmoke',
     borderColor: 'whitesmoke',
     boxShadow: 'none',
@@ -43,39 +43,39 @@ const styles = {
     cursor: 'not-allowed',
   },
   readonly: {
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
   error: {
     borderColor: colors.danger,
-    ':hover':{
-      borderColor: colors.danger
-    },
-    ':focus':{
+    ':hover': {
       borderColor: colors.danger,
-      outline: 0
-    }
-  }
-}
+    },
+    ':focus': {
+      borderColor: colors.danger,
+      outline: 0,
+    },
+  },
+};
 
-const Input = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Input = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
   return (
     <input {...props} style= {[
         styles.base,
-        ...zcss
+        ...zcss,
       ]} />
-    )
-  }
+  );
+};
 
-  Input.propTypes = {
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired
-  }
+Input.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  export default Radium(Input)
+export default Radium(Input);

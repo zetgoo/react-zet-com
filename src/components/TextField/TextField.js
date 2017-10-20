@@ -1,44 +1,44 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
 
-import Input from '../Input/Input'
-import Label from '../Label/Label'
-import Icon from '../Icon/Icon'
+import Input from '../Input/Input';
+import Label from '../Label/Label';
+import Icon from '../Icon/Icon';
 
-import {colors,atomic} from '../constant'
+import { colors, atomic } from '../constant';
 
 const styles = {
 
   base: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container: {
-    paddingBottom: '.75em'
+    paddingBottom: '.75em',
   },
   help: {
     fontSize: '0.75em',
     display: 'block',
     marginBottom: 0,
-    color: '#6a737d'
+    color: '#6a737d',
   },
   label: {
     display: 'block',
     fontSize: '0.875em',
     fontWeight: 'inherit',
     textAlign: 'left',
-    position: 'static'
-  }
-}
+    position: 'static',
+  },
+};
 
-const TextField = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const TextField = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
   return (
     <div>
@@ -54,16 +54,15 @@ const TextField = (props)=> {
         {props.errors && props.errors.length > 0 && <Icon zcss = {['cl_danger', 'mgL1/2e']} icon = 'fa fa-exclamation-circle'/>}
         {props.valid && <Icon zcss = {['cl_success', 'mgL1/2e']} icon = 'fa fa-check-circle'/>}
       </div>
-      {props.errors && props.errors.length > 0 && props.errors.map((item,index)=>
+      {props.errors && props.errors.length > 0 && props.errors.map((item, index) =>
         <span style={[styles.help, atomic.cl_danger]}>
           {item.text}
-        </span>
-      )}
+        </span>)}
     </div>
-    )
-  }
+  );
+};
 
-  TextField.propTypes = {
-  }
+TextField.propTypes = {
+};
 
-  export default Radium(TextField)
+export default Radium(TextField);

@@ -1,9 +1,9 @@
-  import React, {Component} from 'react'
-import Radium from 'radium'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
-import Overlay from '../../components/Overlay/Overlay'
+import Overlay from '../../components/Overlay/Overlay';
 
 
 const styles = {
@@ -19,7 +19,7 @@ const styles = {
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    pointerEvents: 'all'
+    pointerEvents: 'all',
   },
   drawer: {
     boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
@@ -45,7 +45,7 @@ const styles = {
     borderRight: '1px solid #e0e0e0',
     pointerEvents: 'all',
     transform: 'translateX(0)',
-    zIndex: 2
+    zIndex: 2,
   },
   cover: {
     position: 'absolute',
@@ -58,19 +58,19 @@ const styles = {
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
     transitionProperty: 'opacity',
-  }
-}
+  },
+};
 
-const Drawer = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const Drawer = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
-  if(!props.isShow) return null
+  if (!props.isShow) return null;
 
   return (
     <div style = {[styles.base, ...zcss]}>
@@ -81,11 +81,11 @@ const Drawer = (props)=> {
       </Overlay>
     </div>
 
-  )
-}
+  );
+};
 
 Drawer.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(Drawer)
+export default Radium(Drawer);

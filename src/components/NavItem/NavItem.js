@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
-import Radium from 'radium'
-import ToggleLib from 'react-toggle'
-import PropTypes from 'prop-types'
-import {colors, atomic} from '../constant'
+import React, { Component } from 'react';
+import Radium from 'radium';
+import ToggleLib from 'react-toggle';
+import PropTypes from 'prop-types';
+import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
@@ -15,51 +15,51 @@ const styles = {
     verticalAlign: 'baseline',
     display: 'flex',
     alignItems: 'center',
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       width: '100%',
-      padding: '0px 5px'
-    }
+      padding: '0px 5px',
+    },
   },
   logo: {
     width: '100%',
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       display: 'none',
       // justifyContent: 'center',
       // padding: '0 5px'
-    }
+    },
   },
   icon: {
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       display: 'flex',
-      justifyContent: 'flex-end'
-    }
+      justifyContent: 'flex-end',
+    },
   },
   menu: {
-    '@media (max-width: 575px)':{
+    '@media (max-width: 575px)': {
       padding: 10,
-      borderBottom: 'solid 1px #dbdbdb'
-    }
-  }
-}
+      borderBottom: 'solid 1px #dbdbdb',
+    },
+  },
+};
 
-const NavItem = (props)=> {
-  let zcss = []
-  if (props.zcss && Array.isArray(props.zcss)){
+const NavItem = (props) => {
+  const zcss = [];
+  if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
-      zcss.push(styles[item])
-      zcss.push(atomic[item])
-    })
+      zcss.push(styles[item]);
+      zcss.push(atomic[item]);
+    });
   }
 
   return (
     <span style = {[styles.base, ...zcss]} onClick = {props.action}>
         {props.children}
     </span>
-  )
-}
+  );
+};
 
 NavItem.propTypes = {
-  zcss: PropTypes.array
-}
+  zcss: PropTypes.array,
+};
 
-export default Radium(NavItem)
+export default Radium(NavItem);

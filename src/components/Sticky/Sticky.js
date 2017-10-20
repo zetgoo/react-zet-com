@@ -1,3 +1,4 @@
+// http://rawgit.com/captivationsoftware/react-sticky/master/examples/stacked/index.html
 import React, { Component } from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
@@ -5,16 +6,10 @@ import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
-    // fontSize: '0.875em'
-  },
-  icon: {
-  },
-  text: {
-    marginLeft: 5,
   },
 };
 
-const Icon = (props) => {
+const Sticky = (props) => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -24,15 +19,17 @@ const Icon = (props) => {
   }
 
   return (
-    <span style = {[styles.base, ...zcss]}>
-      <i className={props.icon} style = {[styles.icon, ...zcss]}></i>
-      {props.text && props.text.length !== 0 && <span style = {styles.text}>{props.text}</span>}
+    <span>
+      <p
+        style={[]}>
+        {this.props.children}
+      </p>
     </span>
   );
 };
 
-Icon.propTypes = {
+Sticky.propTypes = {
   zcss: PropTypes.array,
 };
 
-export default Radium(Icon);
+export default Radium(Sticky);
