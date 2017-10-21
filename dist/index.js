@@ -107,39 +107,39 @@ var _Container = require('./components/Container/Container');
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _Drawer = require('./components/Drawer');
+var _Drawer = require('./components/Drawer/Drawer');
 
 var _Drawer2 = _interopRequireDefault(_Drawer);
 
-var _SnackBar = require('./components/SnackBar');
+var _SnackBar = require('./components/SnackBar/SnackBar');
 
 var _SnackBar2 = _interopRequireDefault(_SnackBar);
 
-var _Addons = require('./components/Addons');
+var _Addons = require('./components/Addons/Addons');
 
 var _Addons2 = _interopRequireDefault(_Addons);
 
-var _Image = require('./components/Image');
+var _Image = require('./components/Image/Image');
 
 var _Image2 = _interopRequireDefault(_Image);
 
-var _Avatar = require('./components/Avatar');
+var _Avatar = require('./components/Avatar/Avatar');
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
-var _Modal = require('./components/Modal');
+var _Modal = require('./components/Modal/Modal');
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
-var _Popover = require('./components/Popover');
+var _Popover = require('./components/Popover/Popover');
 
 var _Popover2 = _interopRequireDefault(_Popover);
 
-var _Tooltip = require('./components/Tooltip');
+var _Tooltip = require('./components/Tooltip/Tooltip');
 
 var _Tooltip2 = _interopRequireDefault(_Tooltip);
 
-var _Video = require('./components/Video');
+var _Video = require('./components/Video/Video');
 
 var _Video2 = _interopRequireDefault(_Video);
 

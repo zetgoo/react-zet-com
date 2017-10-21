@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -27,7 +27,7 @@ const styles = {
 const Addons = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
+    const decorate = props.zcss.map(item => {
       zcss.push(styles[item]);
       zcss.push(atomic[item]);
     });
@@ -42,9 +42,14 @@ const Addons = props => {
   );
 };
 
+Addons.defaultProps = {
+  zcss: [],
+  children: [],
+};
+
 Addons.propTypes = {
-  zcss: PropTypes.array,
-  children: PropTypes.array,
+  zcss: PropTypes.array.isRequire,
+  children: PropTypes.array.isRequire,
 };
 
 export default Radium(Addons);

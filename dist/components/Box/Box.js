@@ -26,6 +26,8 @@ var _Sack2 = _interopRequireDefault(_Sack);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var Box = function Box(props) {
   var zcss = props.zcss || [];
   zcss.push('pd1r');
@@ -36,7 +38,7 @@ var Box = function Box(props) {
 
   return _react2.default.createElement(
     _Sack2.default,
-    _extends({}, props, { zcss: zcss }),
+    _extends({}, props, { zcss: [].concat(_toConsumableArray(props.zcss), _toConsumableArray(zcss)) }),
     props.children
   );
 };

@@ -84,9 +84,8 @@ var Form = function Form(props) {
         } else if (child.type.displayName === 'Button' && child.props.type === 'submit' && hasError) {
           child.props.zcss.push('disable');
         } else if (child.type.displayName === 'Button' && child.props.type === 'reset') {
-          childProps = { onClick: reset
-            // child.props.onClick = reset
-          };
+          childProps = { onClick: reset };
+          // child.props.onClick = reset
         }
         // childProps = {...someNew: "propToAdd"};
       }

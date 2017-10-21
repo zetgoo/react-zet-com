@@ -95,9 +95,12 @@ var Tooltip = function Tooltip(props) {
     { style: styles.base },
     _react2.default.createElement(
       'div',
-      { style: styles.content, ref: function ref(node) {
+      {
+        style: styles.content,
+        ref: function ref(node) {
           container = node;
-        } },
+        }
+      },
       props.children
     )
   );

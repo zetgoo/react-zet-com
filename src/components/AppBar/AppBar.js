@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
@@ -81,7 +81,7 @@ const styles = {
   },
 };
 
-const AppBar = (props) => {
+const AppBar = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -93,22 +93,10 @@ const AppBar = (props) => {
   return (
     <header>
       <div>
-        <IconButton
-          inverse
-          onClick={onLeftIconClick}
-          icon={leftIcon}
-        />
-        {
-          typeof title === 'string'
-          ? <h1>{title}</h1>
-          : title
-        }
+        <IconButton inverse onClick={onLeftIconClick} icon={leftIcon} />
+        {typeof title === 'string' ? <h1>{title}</h1> : title}
         {props.children}
-        <IconButton
-          inverse
-          onClick={onRightIconClick}
-          icon={rightIcon}
-        />
+        <IconButton inverse onClick={onRightIconClick} icon={rightIcon} />
       </div>
     </header>
   );

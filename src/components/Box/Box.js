@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
 import Sack from '../Sack/Sack';
 
-const Box = (props) => {
+const Box = props => {
   const zcss = props.zcss || [];
   zcss.push('pd1r');
   zcss.push('bd_s_solid');
@@ -13,7 +13,7 @@ const Box = (props) => {
   zcss.push('bd_r_5');
 
   return (
-    <Sack {...props} zcss = {zcss}>
+    <Sack {...props} zcss={[...props.zcss, ...zcss]}>
       {props.children}
     </Sack>
   );

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,23 +6,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _radium = require("radium");
+var _radium = require('radium');
 
 var _radium2 = _interopRequireDefault(_radium);
 
-var _propTypes = require("prop-types");
+var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactVirtualized = require("react-virtualized");
+var _reactVirtualized = require('react-virtualized');
 
-var _constant = require("../constant");
+var _constant = require('../constant');
 
-var _immutable = require("immutable");
+var _immutable = require('immutable');
 
 var _immutable2 = _interopRequireDefault(_immutable);
 
@@ -65,14 +65,14 @@ var InfiniteLoaderExample = function (_PureComponent) {
   }
 
   _createClass(InfiniteLoaderExample, [{
-    key: "componentWillUnmount",
+    key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       Object.keys(this._timeoutIdMap).forEach(function (timeoutId) {
         clearTimeout(timeoutId);
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this2 = this;
 
@@ -112,7 +112,7 @@ var InfiniteLoaderExample = function (_PureComponent) {
       );
     }
   }, {
-    key: "_clearData",
+    key: '_clearData',
     value: function _clearData() {
       this.setState({
         loadedRowCount: 0,
@@ -121,7 +121,7 @@ var InfiniteLoaderExample = function (_PureComponent) {
       });
     }
   }, {
-    key: "_isRowLoaded",
+    key: '_isRowLoaded',
     value: function _isRowLoaded(_ref3) {
       var index = _ref3.index;
       var loadedRowsMap = this.state.loadedRowsMap;
@@ -129,7 +129,7 @@ var InfiniteLoaderExample = function (_PureComponent) {
       return !!loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
     }
   }, {
-    key: "_loadMoreRows",
+    key: '_loadMoreRows',
     value: function _loadMoreRows(_ref4) {
       var _this3 = this;
 
@@ -157,8 +157,8 @@ var InfiniteLoaderExample = function (_PureComponent) {
 
         delete _this3._timeoutIdMap[timeoutId];
 
-        for (var i = startIndex; i <= stopIndex; i++) {
-          loadedRowsMap[i] = STATUS_LOADED;
+        for (var _i = startIndex; _i <= stopIndex; _i++) {
+          loadedRowsMap[_i] = STATUS_LOADED;
         }
 
         _this3.setState({
@@ -178,7 +178,7 @@ var InfiniteLoaderExample = function (_PureComponent) {
       });
     }
   }, {
-    key: "_rowRenderer",
+    key: '_rowRenderer',
     value: function _rowRenderer(_ref5) {
       var index = _ref5.index,
           key = _ref5.key,
@@ -194,14 +194,14 @@ var InfiniteLoaderExample = function (_PureComponent) {
         content = row.name;
       } else {
         content = _react2.default.createElement(
-          "div",
+          'div',
           null,
-          "Ballard"
+          'Ballard'
         );
       }
 
       return _react2.default.createElement(
-        "div",
+        'div',
         { key: key },
         content
       );

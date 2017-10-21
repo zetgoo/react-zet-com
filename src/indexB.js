@@ -25,15 +25,15 @@ import Form from './components/Form/Form';
 import FormGroup from './components/FormGroup/FormGroup';
 import Box from './components/Box/Box';
 import Container from './components/Container/Container';
-import Drawer from './components/Drawer';
-import SnackBar from './components/SnackBar';
-import Addons from './components/Addons';
-import Image from './components/Image';
-import Avatar from './components/Avatar';
-import Modal from './components/Modal';
-import Popover from './components/Popover';
-import Tooltip from './components/Tooltip';
-import Video from './components/Video';
+import Drawer from './components/Drawer/Drawer';
+import SnackBar from './components/SnackBar/SnackBar';
+import Addons from './components/Addons/Addons';
+import Image from './components/Image/Image';
+import Avatar from './components/Avatar/Avatar';
+import Modal from './components/Modal/Modal';
+import Popover from './components/Popover/Popover';
+import Tooltip from './components/Tooltip/Tooltip';
+import Video from './components/Video/Video';
 
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
@@ -78,7 +78,6 @@ export {
   Popover,
   Tooltip,
   Video,
-
   Header,
   Footer,
   LeftMenu,

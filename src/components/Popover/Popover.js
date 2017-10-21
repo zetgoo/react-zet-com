@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
@@ -49,7 +49,7 @@ const styles = {
   },
 };
 
-const Popover = (props) => {
+const Popover = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -58,7 +58,7 @@ const Popover = (props) => {
     });
   }
 
-  const handleOutsideClick = (e) => {
+  const handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
       props.onClose();
@@ -73,19 +73,26 @@ const Popover = (props) => {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return (!props.isOpen ? null : (
-    <div style = {styles.base} >
-      <div style = {styles.content} ref = {(node) => {
-            container = node;
-          }}>
+  return !props.isOpen ? null : (
+    <div style={styles.base}>
+      <div
+        style={styles.content}
+        ref={node => {
+          container = node;
+        }}
+      >
         {props.children}
       </div>
     </div>
-  ));
+  );
+};
+
+Popover.defaultProps = {
+  zcss: [],
 };
 
 Popover.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.array.isRequired,
 };
 
 export default Radium(Popover);

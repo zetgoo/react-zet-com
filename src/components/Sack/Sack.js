@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
 
 const styles = {
-  base: {
-  },
+  base: {},
   container: {
     maxWidth: 1012,
     marginRight: 'auto',
@@ -13,7 +12,7 @@ const styles = {
   },
 };
 
-const Sack = (props) => {
+const Sack = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -23,16 +22,22 @@ const Sack = (props) => {
   }
 
   return (
-    <div {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}
-      >{props.children}</div>
+    <div {...props} style={[styles.base, ...zcss, props.style]}>
+      {props.children}
+    </div>
   );
 };
 
+Sack.defaultProps = {
+  zcss: [],
+  style: {},
+  children: [],
+};
+
 Sack.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.array.isRequire,
+  style: PropTypes.object.isRequire,
+  children: PropTypes.array.isRequire,
 };
 
 export default Radium(Sack);
