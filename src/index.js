@@ -34,9 +34,18 @@ import Popover from './components/Popover';
 import Tooltip from './components/Tooltip';
 import Video from './components/Video';
 
-import { VictoryPie, VictoryChart, VictoryBar, VictoryLine,
-  VictoryAnimation, VictoryLabel, VictoryTheme, VictoryStack,
-  VictoryArea, Bar } from 'victory';
+import {
+  VictoryPie,
+  VictoryChart,
+  VictoryBar,
+  VictoryLine,
+  VictoryAnimation,
+  VictoryLabel,
+  VictoryTheme,
+  VictoryStack,
+  VictoryArea,
+  Bar,
+} from 'victory';
 
 import Header from './layout/Header';
 import Footer from './layout/Footer';
@@ -64,7 +73,8 @@ class App extends Component {
       formForceChecked: false,
       formForceChecked1: false,
       isSearching: false,
-      url: 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==',
+      url:
+        'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==',
       tabIndex: 2,
       openModal: false,
       popover: false,
@@ -106,555 +116,874 @@ class App extends Component {
 
   render() {
     return (
-        <AppContainer>
-          <Header
-            isActive = {this.state.toggleActive}
-            userLogined = {{ userName: 'Ballard', avatar: 'https://avatars1.githubusercontent.com/u/6657580?v=4&s=80' }}
-            isSearching = {this.state.isSearching}
-            search = {() => this.setState({ isSearching: !this.state.isSearching })}
-            toogleClick = {() => this.setState({ toggleActive: !this.state.toggleActive })}
-            menu = {[{
-              icon: 'fa fa-home', text: 'Menu', to: '/', zcss: ['fw500'],
+      <AppContainer>
+        <Header
+          isActive={this.state.toggleActive}
+          userLogined={{
+            userName: 'Ballard',
+            avatar: 'https://avatars1.githubusercontent.com/u/6657580?v=4&s=80',
+          }}
+          isSearching={this.state.isSearching}
+          search={() => this.setState({ isSearching: !this.state.isSearching })}
+          toogleClick={() =>
+            this.setState({ toggleActive: !this.state.toggleActive })}
+          menu={[
+            {
+              icon: 'fa fa-home',
+              text: 'Menu',
+              to: '/',
+              zcss: ['fw500'],
             },
             {
-              icon: 'fa fa-user-circle', text: 'Login', to: '/login', zcss: ['fw500'],
-            }]}
-            menuNoneUser = {[{
-              icon: 'fa fa-home', text: 'Register', to: '/register', zcss: ['cl_success'],
+              icon: 'fa fa-user-circle',
+              text: 'Login',
+              to: '/login',
+              zcss: ['fw500'],
+            },
+          ]}
+          menuNoneUser={[
+            {
+              icon: 'fa fa-home',
+              text: 'Register',
+              to: '/register',
+              zcss: ['cl_success'],
             },
             {
-              icon: 'fa fa-user-circle', text: 'Login', to: '/login', zcss: ['cl_success'],
-            }]}
-            iconMenuUser = {[{
-              icon: 'fa fa-search', text: '', action: this.showNotify, zcss: [''],
+              icon: 'fa fa-user-circle',
+              text: 'Login',
+              to: '/login',
+              zcss: ['cl_success'],
+            },
+          ]}
+          iconMenuUser={[
+            {
+              icon: 'fa fa-search',
+              text: '',
+              action: this.showNotify,
+              zcss: [''],
             },
             {
-              icon: 'fa fa-bell', text: '', action: this.showNotify, zcss: [''],
-            }]}
-            />
-          <Container>
-            <Columns xLargeCol = {6} smallCol = {1} gutter = '8px'>
-              <Column zcss = {['']} xLargeCell = {2} smallCell = {1}>
-                <LeftMenu
-                  data = {[{
+              icon: 'fa fa-bell',
+              text: '',
+              action: this.showNotify,
+              zcss: [''],
+            },
+          ]}
+        />
+        <Container>
+          <Columns xLargeCol={6} smallCol={1} gutter="8px">
+            <Column zcss={['']} xLargeCell={2} smallCell={1}>
+              <LeftMenu
+                data={[
+                  {
                     groupLabel: 'Main',
-                    childMenu: [{
-                      icon: 'aws.fa-user-circle-o',
-                      label: '1',
-                      rightActived: 'aws.fa-user-circle-o',
-                      rightNoAcitved: 'aws.fa-user-circle-o',
-                      isActived: true,
-                      type: 'link',
-                      uri: 'http://vision.zetgoo.com/face/detect/2017',
-                      childMenu: [{
+                    childMenu: [
+                      {
                         icon: 'aws.fa-user-circle-o',
-                        label: '1.1',
+                        label: '1',
                         rightActived: 'aws.fa-user-circle-o',
                         rightNoAcitved: 'aws.fa-user-circle-o',
                         isActived: true,
                         type: 'link',
                         uri: 'http://vision.zetgoo.com/face/detect/2017',
-                        childMenu: [{
-                          icon: 'aws.fa-user-circle-o',
-                          label: '1.1.1',
-                          rightActived: 'aws.fa-user-circle-o',
-                          rightNoAcitved: 'aws.fa-user-circle-o',
-                          isActived: true,
-                          type: 'link',
-                          uri: 'http://vision.zetgoo.com/face/detect/2017',
-                        }, {
-                          icon: 'aws.fa-user-circle-o',
-                          label: '1.1.2',
-                          rightActived: 'aws.fa-user-circle-o',
-                          rightNoAcitved: 'aws.fa-user-circle-o',
-                          isActived: true,
-                          type: 'link',
-                          uri: 'http://vision.zetgoo.com/face/detect/2017',
-                        }],
-                      }, {
-                        icon: 'aws.fa-user-circle-o',
-                        label: '1.2',
-                        rightActived: 'aws.fa-user-circle-o',
-                        rightNoAcitved: 'aws.fa-user-circle-o',
-                        isActived: true,
-                        type: 'link',
-                        uri: 'http://vision.zetgoo.com/face/detect/2017',
-                        childMenu: [{
-                          icon: 'aws.fa-user-circle-o',
-                          label: '1.2.1',
-                          rightActived: 'aws.fa-user-circle-o',
-                          rightNoAcitved: 'aws.fa-user-circle-o',
-                          isActived: true,
-                          type: 'link',
-                          uri: 'http://vision.zetgoo.com/face/detect/2017',
-                        }],
-                      }],
-                    }],
+                        childMenu: [
+                          {
+                            icon: 'aws.fa-user-circle-o',
+                            label: '1.1',
+                            rightActived: 'aws.fa-user-circle-o',
+                            rightNoAcitved: 'aws.fa-user-circle-o',
+                            isActived: true,
+                            type: 'link',
+                            uri: 'http://vision.zetgoo.com/face/detect/2017',
+                            childMenu: [
+                              {
+                                icon: 'aws.fa-user-circle-o',
+                                label: '1.1.1',
+                                rightActived: 'aws.fa-user-circle-o',
+                                rightNoAcitved: 'aws.fa-user-circle-o',
+                                isActived: true,
+                                type: 'link',
+                                uri:
+                                  'http://vision.zetgoo.com/face/detect/2017',
+                              },
+                              {
+                                icon: 'aws.fa-user-circle-o',
+                                label: '1.1.2',
+                                rightActived: 'aws.fa-user-circle-o',
+                                rightNoAcitved: 'aws.fa-user-circle-o',
+                                isActived: true,
+                                type: 'link',
+                                uri:
+                                  'http://vision.zetgoo.com/face/detect/2017',
+                              },
+                            ],
+                          },
+                          {
+                            icon: 'aws.fa-user-circle-o',
+                            label: '1.2',
+                            rightActived: 'aws.fa-user-circle-o',
+                            rightNoAcitved: 'aws.fa-user-circle-o',
+                            isActived: true,
+                            type: 'link',
+                            uri: 'http://vision.zetgoo.com/face/detect/2017',
+                            childMenu: [
+                              {
+                                icon: 'aws.fa-user-circle-o',
+                                label: '1.2.1',
+                                rightActived: 'aws.fa-user-circle-o',
+                                rightNoAcitved: 'aws.fa-user-circle-o',
+                                isActived: true,
+                                type: 'link',
+                                uri:
+                                  'http://vision.zetgoo.com/face/detect/2017',
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
                   },
-
-                ]
-              }
-              ></LeftMenu>
-          </Column>
-          <Column zcss = {['']} xLargeCell = {4} smallCell = {1}>
-            {/* <div className="row" style = {{height: 400, width: '100%'}}>
+                ]}
+              />
+            </Column>
+            <Column zcss={['']} xLargeCell={4} smallCell={1}>
+              {/* <div className="row" style = {{height: 400, width: '100%'}}>
             <MagicEye url = {this.state.url} />
             </div> */}
-            <div className="row">
-              <div className="box">
-                <Button zcss = {['']}>Nomal</Button>
+              <div className="row">
+                <div className="box">
+                  <Button zcss={['']}>Nomal</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['white']}>white</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['light']}>light</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['black']}>black</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['isLink']}>Link</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['primary']}>primary</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['info']}>info</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['success']}>success</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['warning']}>warning</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['danger']}>danger</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['disable']}>disable</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['cancel']}>cancel</Button>
+                </div>
+                <div className="box">
+                  <Button zcss={['isLoading']}>loading</Button>
+                </div>
               </div>
-              <div className="box">
-                <Button zcss = {['white']}>white</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['light']}>light</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['black']}>black</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['isLink']}>Link</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['primary']}>primary</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['info']}>info</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['success']}>success</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['warning']}>warning</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['danger']}>danger</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['disable']}>disable</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['cancel']}>cancel</Button>
-              </div>
-              <div className="box">
-                <Button zcss = {['isLoading']}>loading</Button>
-              </div>
-            </div>
 
-            <div className="row">
-              <Drawer isShow = {this.state.drawerIsShow} handleClose = {() => this.setState({ drawerIsShow: false })}>
-                <LeftMenu/>
-              </Drawer>
-              <Button zcss = {['primary']} onClick = {() => this.setState({ drawerIsShow: !this.state.drawerIsShow })}>Drawer Click!</Button>
-            </div>
-
-            <div className="row">
-              <SnackBar isShow = {this.state.snackBarIsShow} timeout = {5000}/>
-              <Button zcss = {['primary']} onClick = {() => this.setState({ snackBarIsShow: !this.state.snackBarIsShow })}>SnackBar Click!</Button>
-            </div>
-
-            <div className="row">
-              <div className="box">
-                <Popover isShow = {this.state.popover} timeout = {5000}/>
-                <Button zcss = {['']} onClick = {() => this.setState({ popover: !this.state.popover })}>Popover Click!</Button>
-              </div>
-              <div className="box">
-                <Popover isShow = {this.state.popoverTop} timeout = {5000}/>
-                <Button zcss = {['primary']} onClick = {() => this.setState({ popoverTop: !this.state.popoverTop })}>Top Click!</Button>
-              </div>
-              <div className="box">
-                <Popover isShow = {this.state.popoverRight} timeout = {5000}/>
-                <Button zcss = {['danger']} onClick = {() => this.setState({ popoverRight: !this.state.popoverRight })}>Right Click!</Button>
-              </div>
-              <div className="box">
-                <Popover isShow = {this.state.popoverBottom} timeout = {5000}/>
-                <Button zcss = {['warning']} onClick = {() => this.setState({ popoverBottom: !this.state.popoverBottom })}>Bottom Click!</Button>
-              </div>
-              <div className="box">
-                <Popover isShow = {this.state.popoverLeft} timeout = {5000}/>
-                <Button zcss = {['success']} onClick = {() => this.setState({ popoverLeft: !this.state.popoverLeft })}>Left Click!</Button>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="box">
-                <Tooltip isShow = {this.state.tooltip} timeout = {5000}/>
-                <Button zcss = {['']} onClick = {() => this.setState({ tooltip: !this.state.tooltip })}>Tooltip Click!</Button>
-              </div>
-              <div className="box">
-                <Tooltip isShow = {this.state.tooltipTop} timeout = {5000}/>
-                <Button zcss = {['primary']} onClick = {() => this.setState({ tooltipTop: !this.state.tooltipTop })}>Top Click!</Button>
-              </div>
-              <div className="box">
-                <Tooltip isShow = {this.state.tooltipRight} timeout = {5000}/>
-                <Button zcss = {['danger']} onClick = {() => this.setState({ tooltipRight: !this.state.tooltipRight })}>Right Click!</Button>
-              </div>
-              <div className="box">
-                <Tooltip isShow = {this.state.tooltipBottom} timeout = {5000}/>
-                <Button zcss = {['warning']} onClick = {() => this.setState({ tooltipBottom: !this.state.tooltipBottom })}>Bottom Click!</Button>
-              </div>
-              <div className="box">
-                <Tooltip isShow = {this.state.tooltipLeft} timeout = {5000}/>
-                <Button zcss = {['success']} onClick = {() => this.setState({ tooltipLeft: !this.state.tooltipLeft })}>Left Click!</Button>
-              </div>
-            </div>
-
-            <div className="row">
-              <Modal
-                handleClose = {() => this.setState({ openModal: false })}
-                action ={[{ label: 'Cancel', zcss: ['success'], onClick: () => this.setState({ openModal: false }) },
-                { label: 'Save', zcss: ['success'], onClick: () => this.console('zetgoo') }]}
-                title = "Welcome to zetgoo"
+              <div className="row">
+                <Drawer
+                  isShow={this.state.drawerIsShow}
+                  handleClose={() => this.setState({ drawerIsShow: false })}
                 >
-                <h2>Welcome to zetgoo</h2>
-              </Modal>
-              <Button zcss = {['success']} onClick = {() => this.setState({ openModal: !this.state.openModal })}>Modal Click!</Button>
-            </div>
+                  <LeftMenu />
+                </Drawer>
+                <Button
+                  zcss={['primary']}
+                  onClick={() =>
+                    this.setState({ drawerIsShow: !this.state.drawerIsShow })}
+                >
+                  Drawer Click!
+                </Button>
+              </div>
 
-            <div className="row">
-              <Input zcss = {[]} placeholder = 'zetgoo' value = {this.state.inputText}
-                onChange = {(event, text) => this.setState({ inputText: text })}/>
-            </div>
+              <div className="row">
+                <SnackBar isShow={this.state.snackBarIsShow} timeout={5000} />
+                <Button
+                  zcss={['primary']}
+                  onClick={() =>
+                    this.setState({
+                      snackBarIsShow: !this.state.snackBarIsShow,
+                    })}
+                >
+                  SnackBar Click!
+                </Button>
+              </div>
 
-            <div className="row">
-              <Input zcss = {['readonly']} placeholder = 'read only' readOnly value = {this.state.inputText}
-                onChange = {(event, text) => this.setState({ inputText: text })}/>
-            </div>
+              <div className="row">
+                <div className="box">
+                  <Popover isShow={this.state.popover} timeout={5000} />
+                  <Button
+                    zcss={['']}
+                    onClick={() =>
+                      this.setState({ popover: !this.state.popover })}
+                  >
+                    Popover Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Popover isShow={this.state.popoverTop} timeout={5000} />
+                  <Button
+                    zcss={['primary']}
+                    onClick={() =>
+                      this.setState({ popoverTop: !this.state.popoverTop })}
+                  >
+                    Top Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Popover isShow={this.state.popoverRight} timeout={5000} />
+                  <Button
+                    zcss={['danger']}
+                    onClick={() =>
+                      this.setState({ popoverRight: !this.state.popoverRight })}
+                  >
+                    Right Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Popover isShow={this.state.popoverBottom} timeout={5000} />
+                  <Button
+                    zcss={['warning']}
+                    onClick={() =>
+                      this.setState({
+                        popoverBottom: !this.state.popoverBottom,
+                      })}
+                  >
+                    Bottom Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Popover isShow={this.state.popoverLeft} timeout={5000} />
+                  <Button
+                    zcss={['success']}
+                    onClick={() =>
+                      this.setState({ popoverLeft: !this.state.popoverLeft })}
+                  >
+                    Left Click!
+                  </Button>
+                </div>
+              </div>
 
-            <div className="row">
-              <Input zcss = {['disabled']} placeholder = 'disable' value = {this.state.inputText}
-                onChange = {(event, text) => this.setState({ inputText: text })} disabled/>
-            </div>
-            <div className="row">
-              <Input zcss = {['error']} placeholder = 'input error' value = {this.state.inputText}
-                onChange = {(event, text) => this.setState({ inputText: text })}/>
-            </div>
-            <div className="row">
-              <TextField
-                label="Username"
-                errors={[
-                  { text: 'it is require' },
-                  { text: 'More than 6 characters' },
-                ]}
-                valid={false}
-                help="More than 6 characters"
-                placeholder="textfield error"
-                type="text"
+              <div className="row">
+                <div className="box">
+                  <Tooltip isShow={this.state.tooltip} timeout={5000} />
+                  <Button
+                    zcss={['']}
+                    onClick={() =>
+                      this.setState({ tooltip: !this.state.tooltip })}
+                  >
+                    Tooltip Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Tooltip isShow={this.state.tooltipTop} timeout={5000} />
+                  <Button
+                    zcss={['primary']}
+                    onClick={() =>
+                      this.setState({ tooltipTop: !this.state.tooltipTop })}
+                  >
+                    Top Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Tooltip isShow={this.state.tooltipRight} timeout={5000} />
+                  <Button
+                    zcss={['danger']}
+                    onClick={() =>
+                      this.setState({ tooltipRight: !this.state.tooltipRight })}
+                  >
+                    Right Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Tooltip isShow={this.state.tooltipBottom} timeout={5000} />
+                  <Button
+                    zcss={['warning']}
+                    onClick={() =>
+                      this.setState({
+                        tooltipBottom: !this.state.tooltipBottom,
+                      })}
+                  >
+                    Bottom Click!
+                  </Button>
+                </div>
+                <div className="box">
+                  <Tooltip isShow={this.state.tooltipLeft} timeout={5000} />
+                  <Button
+                    zcss={['success']}
+                    onClick={() =>
+                      this.setState({ tooltipLeft: !this.state.tooltipLeft })}
+                  >
+                    Left Click!
+                  </Button>
+                </div>
+              </div>
+
+              <div className="row">
+                <Modal
+                  handleClose={() => this.setState({ openModal: false })}
+                  action={[
+                    {
+                      label: 'Cancel',
+                      zcss: ['success'],
+                      onClick: () => this.setState({ openModal: false }),
+                    },
+                    {
+                      label: 'Save',
+                      zcss: ['success'],
+                      onClick: () => this.console('zetgoo'),
+                    },
+                  ]}
+                  title="Welcome to zetgoo"
+                >
+                  <h2>Welcome to zetgoo</h2>
+                </Modal>
+                <Button
+                  zcss={['success']}
+                  onClick={() =>
+                    this.setState({ openModal: !this.state.openModal })}
+                >
+                  Modal Click!
+                </Button>
+              </div>
+
+              <div className="row">
+                <Input
+                  zcss={[]}
+                  placeholder="zetgoo"
+                  value={this.state.inputText}
+                  onChange={(event, text) => this.setState({ inputText: text })}
                 />
-            </div>
-            <div className="row">
-              <TextField
-                label="Password"
-                placeholder="password"
-                valid
-                value="Zetgoo"
-                help="More than 6 characters"
-                type="password"
+              </div>
+
+              <div className="row">
+                <Input
+                  zcss={['readonly']}
+                  placeholder="read only"
+                  readOnly
+                  value={this.state.inputText}
+                  onChange={(event, text) => this.setState({ inputText: text })}
                 />
-            </div>
-            <div className="row">
-              <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
-              <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
-              <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
-              <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
-              <Checkbox zcss = {['']} label = 'zetgoo' name = 'zetgooCheckbox'/>
-            </div>
-            <div className="row">
-              <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
-              <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
-              <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
-              <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
-              <Radio zcss = {['']} label = 'zetgoo' name = 'zetgooRadio'/>
-            </div>
-            <div className="row">
-              <Video/>
-            </div>
-            <div className="row">
-              <Tabs index={this.state.tabIndex} onChange={ index => this.setState({ tabIndex: index })}>
-                <Tab zcss = {['']} label='Primary'><h2>Primary content</h2></Tab>
-                <Tab zcss = {['']} label='Secondary' onActive={this.handleActive}><h2>Secondary content</h2></Tab>
-                <Tab zcss = {['']} label='Third' disabled><h2>Disabled content</h2></Tab>
-                <Tab zcss = {['']} label='Fourth'><h2>Fourth content hidden</h2></Tab>
-                <Tab zcss = {['']} label='Fifth'><h2>Fifth content</h2></Tab>
-              </Tabs>
-            </div>
-            <div className="row">
-              <Select options = {[{ label: 'bl', value: 1 }, { label: 'yl', value: 2 }]} zcss = {['']}
-                value = {this.state.selectedValue ? this.state.selectedValue : 1}
-                onChange = {value => this.setState({ selectedValue: value })}/>
-            </div>
-            <div className="row">
-              <div className="box">
-                <Tag zcss = {['isSmall', 'success']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {() => console.log('trainee')}/>
               </div>
-              <div className="box">
-                <Tag zcss = {['isMedium', 'primary']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {() => console.log('trainee')}/>
-              </div>
-              <div className="box">
-                <Tag zcss = {['isLarge', 'cancel']} text = 'zetgoo' icon = 'fa fa-remove' onClick = {() => console.log('trainee')}/>
-              </div>
-            </div>
-            <div className="row">
-              <Switch/>
-            </div>
-            <div className="row">
-              <Columns xLargeCol = {6} smallCol = {1} gutter = '10px'>
-                <Column zcss = {['bg_success']} xLargeCell = {2} smallCell = {1}>
-                  First column
-                </Column>
-                <Column zcss = {['bg_danger']} xLargeCell = {2} smallCell = {1}>
-                  Second column
-                </Column>
-                <Column zcss = {['bg_primary']} xLargeCell = {2} smallCell = {1}>
-                  Third column
-                </Column>
-              </Columns>
-            </div>
-            <div className="row">
-              <Icon zcss = {['cl_primary']} icon = 'fa fa-home' text = 'zetgoo'/>
-              <Icon zcss = {['cl_success']} icon = 'fa fa-check'/>
-              <Icon zcss = {['cl_success']} icon = 'fa fa-check-circle'/>
-              <Icon zcss = {['cl_danger']} icon = 'fa fa-exclamation-circle'/>
-            </div>
-            <div className="row">
-              <Avatar image = 'https://placeimg.com/80/80/animals' zcss = {['isCircle']}/>
-              <Avatar icon = 'fa fa-play-circle-o' zcss = {['isCircle']}/>
-              <Avatar text = 'BL' zcss = {['isCircle']}/>
-              <Avatar image = 'https://placeimg.com/80/80/animals' zcss = {[]}/>
-              <Avatar icon = 'fa fa-play-circle-o' zcss = {[]}/>
-              <Avatar text = 'BL' zcss = {[]}/>
-            </div>
 
+              <div className="row">
+                <Input
+                  zcss={['disabled']}
+                  placeholder="disable"
+                  value={this.state.inputText}
+                  onChange={(event, text) => this.setState({ inputText: text })}
+                  disabled
+                />
+              </div>
+              <div className="row">
+                <Input
+                  zcss={['error']}
+                  placeholder="input error"
+                  value={this.state.inputText}
+                  onChange={(event, text) => this.setState({ inputText: text })}
+                />
+              </div>
+              <div className="row">
+                <TextField
+                  label="Username"
+                  errors={[
+                    { text: 'it is require' },
+                    { text: 'More than 6 characters' },
+                  ]}
+                  valid={false}
+                  help="More than 6 characters"
+                  placeholder="textfield error"
+                  type="text"
+                />
+              </div>
+              <div className="row">
+                <TextField
+                  label="Password"
+                  placeholder="password"
+                  valid
+                  value="Zetgoo"
+                  help="More than 6 characters"
+                  type="password"
+                />
+              </div>
+              <div className="row">
+                <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
+                <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
+                <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
+                <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
+                <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
+              </div>
+              <div className="row">
+                <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
+                <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
+                <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
+                <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
+                <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
+              </div>
+              <div className="row">
+                <Video />
+              </div>
+              <div className="row">
+                <Tabs
+                  index={this.state.tabIndex}
+                  onChange={index => this.setState({ tabIndex: index })}
+                >
+                  <Tab zcss={['']} label="Primary">
+                    <h2>Primary content</h2>
+                  </Tab>
+                  <Tab
+                    zcss={['']}
+                    label="Secondary"
+                    onActive={this.handleActive}
+                  >
+                    <h2>Secondary content</h2>
+                  </Tab>
+                  <Tab zcss={['']} label="Third" disabled>
+                    <h2>Disabled content</h2>
+                  </Tab>
+                  <Tab zcss={['']} label="Fourth">
+                    <h2>Fourth content hidden</h2>
+                  </Tab>
+                  <Tab zcss={['']} label="Fifth">
+                    <h2>Fifth content</h2>
+                  </Tab>
+                </Tabs>
+              </div>
+              <div className="row">
+                <Select
+                  options={[
+                    { label: 'bl', value: 1 },
+                    { label: 'yl', value: 2 },
+                  ]}
+                  zcss={['']}
+                  value={
+                    this.state.selectedValue ? this.state.selectedValue : 1
+                  }
+                  onChange={value => this.setState({ selectedValue: value })}
+                />
+              </div>
+              <div className="row">
+                <div className="box">
+                  <Tag
+                    zcss={['isSmall', 'success']}
+                    text="zetgoo"
+                    icon="fa fa-remove"
+                    onClick={() => console.log('trainee')}
+                  />
+                </div>
+                <div className="box">
+                  <Tag
+                    zcss={['isMedium', 'primary']}
+                    text="zetgoo"
+                    icon="fa fa-remove"
+                    onClick={() => console.log('trainee')}
+                  />
+                </div>
+                <div className="box">
+                  <Tag
+                    zcss={['isLarge', 'cancel']}
+                    text="zetgoo"
+                    icon="fa fa-remove"
+                    onClick={() => console.log('trainee')}
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <Switch />
+              </div>
+              <div className="row">
+                <Columns xLargeCol={6} smallCol={1} gutter="10px">
+                  <Column zcss={['bg_success']} xLargeCell={2} smallCell={1}>
+                    First column
+                  </Column>
+                  <Column zcss={['bg_danger']} xLargeCell={2} smallCell={1}>
+                    Second column
+                  </Column>
+                  <Column zcss={['bg_primary']} xLargeCell={2} smallCell={1}>
+                    Third column
+                  </Column>
+                </Columns>
+              </div>
+              <div className="row">
+                <Icon zcss={['cl_primary']} icon="fa fa-home" text="zetgoo" />
+                <Icon zcss={['cl_success']} icon="fa fa-check" />
+                <Icon zcss={['cl_success']} icon="fa fa-check-circle" />
+                <Icon zcss={['cl_danger']} icon="fa fa-exclamation-circle" />
+              </div>
+              <div className="row">
+                <Avatar
+                  image="https://placeimg.com/80/80/animals"
+                  zcss={['isCircle']}
+                />
+                <Avatar icon="fa fa-play-circle-o" zcss={['isCircle']} />
+                <Avatar text="BL" zcss={['isCircle']} />
+                <Avatar image="https://placeimg.com/80/80/animals" zcss={[]} />
+                <Avatar icon="fa fa-play-circle-o" zcss={[]} />
+                <Avatar text="BL" zcss={[]} />
+              </div>
 
-            {/* <div className="row">
+              {/* <div className="row">
               <Infinite/>
               </div> */}
               <div className="row">
-                <Title zcss = {['is1']}>Title 1</Title>
+                <Title zcss={['is1']}>Title 1</Title>
               </div>
               <div className="row">
-                <Title zcss = {['is2']}>Title 2</Title>
+                <Title zcss={['is2']}>Title 2</Title>
               </div>
               <div className="row">
-                <Title zcss = {['is3']}>Title 3</Title>
+                <Title zcss={['is3']}>Title 3</Title>
               </div>
               <div className="row">
-                <Title zcss = {['is4']}>Title 1</Title>
+                <Title zcss={['is4']}>Title 1</Title>
               </div>
               <div className="row">
-                <Title zcss = {['is5']}>Title 2</Title>
+                <Title zcss={['is5']}>Title 2</Title>
               </div>
               <div className="row">
-                <Title zcss = {['is6']}>Title 3</Title>
+                <Title zcss={['is6']}>Title 3</Title>
               </div>
               <div className="row">
-                <SubTitle zcss = {['is4']}>SubTitle 1</SubTitle>
+                <SubTitle zcss={['is4']}>SubTitle 1</SubTitle>
               </div>
               <div className="row">
-                <SubTitle zcss = {['is5']}>SubTitle 2</SubTitle>
+                <SubTitle zcss={['is5']}>SubTitle 2</SubTitle>
               </div>
               <div className="row">
-                <SubTitle zcss = {['is6']}>SubTitle 3</SubTitle>
-              </div>
-
-              <div className="row">
-                <ControlLabel zcss = {['f1r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss = {['f2r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss = {['f3r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss = {['f1e']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss = {['f2e']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss = {['f3e']}>ControlLabel</ControlLabel>
+                <SubTitle zcss={['is6']}>SubTitle 3</SubTitle>
               </div>
 
               <div className="row">
-                <Notification zcss = {['bg_danger']} enableCloseButton
+                <ControlLabel zcss={['f1r']}>ControlLabel</ControlLabel>
+                <ControlLabel zcss={['f2r']}>ControlLabel</ControlLabel>
+                <ControlLabel zcss={['f3r']}>ControlLabel</ControlLabel>
+                <ControlLabel zcss={['f1e']}>ControlLabel</ControlLabel>
+                <ControlLabel zcss={['f2e']}>ControlLabel</ControlLabel>
+                <ControlLabel zcss={['f3e']}>ControlLabel</ControlLabel>
+              </div>
+
+              <div className="row">
+                <Notification
+                  zcss={['bg_danger']}
+                  enableCloseButton
                   closeButtonProps={{ onClick: () => console.log('clicked') }}
-                  >
-                  lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit lorem ipsum dolor sit amet,
-                  consectetur adipiscing elit
+                >
+                  lorem ipsum dolor sit amet, consectetur adipiscing elit lorem
+                  ipsum dolor sit amet, consectetur adipiscing elit
                 </Notification>
               </div>
 
               <div className="row">
-                <Columns xLargeCol = {6} smallCol = {1} gutter = '10px'>
-                  <Column zcss = {['']} xLargeCell = {3} smallCell = {1}>
+                <Columns xLargeCol={6} smallCol={1} gutter="10px">
+                  <Column zcss={['']} xLargeCell={3} smallCell={1}>
                     <Addons hasAddonsRight>
-                      <Button zcss = {['primary', 'bd_rTR_0', 'bd_rBR_0']}>Transfer</Button>
-                      <Input zcss = {['bd_rTL_0', 'bd_rBL_0']} placeholder="Amount of money" />
-
+                      <Button zcss={['primary', 'bd_rTR_0', 'bd_rBR_0']}>
+                        Transfer
+                      </Button>
+                      <Input
+                        zcss={['bd_rTL_0', 'bd_rBL_0']}
+                        placeholder="Amount of money"
+                      />
                     </Addons>
                   </Column>
-                  <Column zcss = {['']} xLargeCell = {3} smallCell = {1}>
+                  <Column zcss={['']} xLargeCell={3} smallCell={1}>
                     <Addons hasAddonsRight>
-                      <Input zcss = {['bd_rTR_0', 'bd_rBR_0']} placeholder="Amount of money"/>
-                      <Button zcss = {['light', 'bd_rTL_0', 'bd_rBL_0']}>Transfer</Button>
+                      <Input
+                        zcss={['bd_rTR_0', 'bd_rBR_0']}
+                        placeholder="Amount of money"
+                      />
+                      <Button zcss={['light', 'bd_rTL_0', 'bd_rBL_0']}>
+                        Transfer
+                      </Button>
                     </Addons>
                   </Column>
                 </Columns>
               </div>
 
               <div className="row">
-                <Form schema = {{
+                <Form
+                  schema={{
                     username: {
-                      type: 'text', maxLength: 20, minLength: 0, isRequire: true, message: { isRequire: 'Username is require', length: 'Length of Username between 0 and 20' },
+                      type: 'text',
+                      maxLength: 20,
+                      minLength: 0,
+                      isRequire: true,
+                      message: {
+                        isRequire: 'Username is require',
+                        length: 'Length of Username between 0 and 20',
+                      },
                     },
                     email: {
-                      type: 'email', maxLength: 20, minLength: 0, isRequire: true, message: { isRequire: 'Email is require', length: 'Length of Email between 0 and 20' },
+                      type: 'email',
+                      maxLength: 20,
+                      minLength: 0,
+                      isRequire: true,
+                      message: {
+                        isRequire: 'Email is require',
+                        length: 'Length of Email between 0 and 20',
+                      },
                     },
                   }}
-                  onSubmit = {() => console.log('form submit')}
-                  onReset = {() => console.log('form reset')}>
+                  onSubmit={() => console.log('form submit')}
+                  onReset={() => console.log('form reset')}
+                >
                   <FormGroup>
-                    <Columns xLargeCol = {6} smallCol = {1} gutter = '10px'>
-                      <Column zcss = {['']} xLargeCell = {3} smallCell = {1}>
-
+                    <Columns xLargeCol={6} smallCol={1} gutter="10px">
+                      <Column zcss={['']} xLargeCell={3} smallCell={1}>
                         <TextField
-                          name = 'username'
+                          name="username"
                           label="Username"
-                          errors={[
-                          ]}
+                          errors={[]}
                           valid={false}
                           help="More than 6 characters"
                           placeholder="username"
                           type="text"
-                          value = {this.state.formText}
-                          onChange = {e => this.setState({ formText: e.target.value })}
-                          />
-
+                          value={this.state.formText}
+                          onChange={e =>
+                            this.setState({ formText: e.target.value })}
+                        />
                       </Column>
-                      <Column zcss = {['']} xLargeCell = {3} smallCell = {1}>
+                      <Column zcss={['']} xLargeCell={3} smallCell={1}>
                         <TextField
-                          name = 'username'
+                          name="username"
                           label="Username"
-                          errors={[
-                          ]}
+                          errors={[]}
                           valid={false}
                           help="More than 6 characters"
                           placeholder="username"
                           type="text"
-                          value = {this.state.formText}
-                          onChange = {e => this.setState({ formText: e.target.value })}
-                          />
-
+                          value={this.state.formText}
+                          onChange={e =>
+                            this.setState({ formText: e.target.value })}
+                        />
                       </Column>
                     </Columns>
                   </FormGroup>
-                  <Columns xLargeCol = {6} smallCol = {1} gutter = '10px'>
-
-                    <Column zcss = {['']} xLargeCell = {3} smallCell = {1}>
+                  <Columns xLargeCol={6} smallCol={1} gutter="10px">
+                    <Column zcss={['']} xLargeCell={3} smallCell={1}>
                       <FormGroup>
                         <TextField
-                          name = 'email'
+                          name="email"
                           label="Username"
-                          errors={[
-                          ]}
+                          errors={[]}
                           valid={false}
                           help="More than 6 characters"
                           placeholder="username"
                           type="text"
-                          value = {this.state.formEmail}
-                          onChange = {e => this.setState({ formEmail: e.target.value })}
-                          />
+                          value={this.state.formEmail}
+                          onChange={e =>
+                            this.setState({ formEmail: e.target.value })}
+                        />
                         <TextField
-                          name = 'email'
+                          name="email"
                           label="Username"
-                          errors={[
-                          ]}
+                          errors={[]}
                           valid={false}
                           help="More than 6 characters"
                           placeholder="username"
                           type="text"
-                          value = {this.state.formEmail}
-                          onChange = {e => this.setState({ formEmail: e.target.value })}
-                          />
+                          value={this.state.formEmail}
+                          onChange={e =>
+                            this.setState({ formEmail: e.target.value })}
+                        />
                       </FormGroup>
                     </Column>
                   </Columns>
-                  <Columns xLargeCol = {6} smallCol = {1} gutter = '10px'>
-
-                    <Column zcss = {['']} xLargeCell = {6} smallCell = {1}>
+                  <Columns xLargeCol={6} smallCol={1} gutter="10px">
+                    <Column zcss={['']} xLargeCell={6} smallCell={1}>
                       <FormGroup>
-                        <Checkbox zcss = {['']} isForce checked = {this.state.formForceChecked1} label = 'I accept to terms'
-                          onClick = {() => this.setState({ formForceChecked1: !this.state.formForceChecked1 })}/>
+                        <Checkbox
+                          zcss={['']}
+                          isForce
+                          checked={this.state.formForceChecked1}
+                          label="I accept to terms"
+                          onClick={() =>
+                            this.setState({
+                              formForceChecked1: !this.state.formForceChecked1,
+                            })}
+                        />
                       </FormGroup>
                     </Column>
                   </Columns>
-                  <Button zcss={['success']} type = 'submit'>Submit</Button>
+                  <Button zcss={['success']} type="submit">
+                    Submit
+                  </Button>
                   {/* <Button zcss={['cancel']} type = 'reset'>Reset</Button> */}
                 </Form>
               </div>
-              <div className = "row">
+              <div className="row">
                 <Box zcss={['bg_primary']}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Aenean efficitur sit amet massa fringilla egestas. Nullam
+                  condimentum luctus turpis.
                 </Box>
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {16} ratio={1}/>
-
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={16}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {24} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={24}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {32} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={32}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {48} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={48}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {64} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={64}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {96} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={96}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {128} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={128}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {256} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={256}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {320} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={320}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {['isCircle']} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={1}/>
+                <Image
+                  zcss={['isCircle']}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={1}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={4 / 3}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={4 / 3}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={3 / 2}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={3 / 2}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={16 / 9}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={16 / 9}
+                />
               </div>
               <div className="row">
-                <Image zcss = {[]} src = 'http://placehold.it/480x480'
-                  alt = 'Zetgoo' title = 'Zetgoo' width = {480} ratio={2}/>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={2}
+                />
               </div>
               {/* <div className="row">
                 <NavToggle/>
                 </div> */}
-                {/* <div className="row">
+              {/* <div className="row">
                   <Columns xLargeCol = {4} largeCol = {3} mediumCol = {2} smallCol = {2}>
                   <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
                   <VictoryChart style={{
@@ -798,25 +1127,22 @@ class App extends Component {
                   </Column>
                   </Columns>
                   </div> */}
-                </Column>
-
-              </Columns>
-
-            </Container>
-
-          </AppContainer>
+            </Column>
+          </Columns>
+        </Container>
+      </AppContainer>
     );
   }
 }
 
 const routes = [
-  { path: '/', action: () => <App/> },
+  { path: '/', action: () => <App /> },
   { path: '/two', action: () => <h1>Page Two</h1> },
   { path: '*', action: () => <h1>Not Found</h1> },
 ];
 
 const router = new Router(routes);
 
-router.resolve({ path: '/' }).then((component) => {
+router.resolve({ path: '/' }).then(component => {
   ReactDOM.render(component, document.getElementById('root'));
 });
