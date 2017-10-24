@@ -103,7 +103,6 @@ export const atomic = {
   mgL2e: { marginLeft: '2em' },
   mgL3e: { marginLeft: '3em' },
 
-
   // background color
   bg_primary: { backgroundColor: colors.primary },
   bg_success: { backgroundColor: colors.success },
