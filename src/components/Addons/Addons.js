@@ -27,10 +27,7 @@ const styles = {
 const Addons = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    const decorate = props.zcss.map(item => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
-    });
+    props.zcss.map(item => zcss.concat(styles[item], atomic[item]));
   }
 
   return (
@@ -42,14 +39,12 @@ const Addons = props => {
   );
 };
 
-Addons.defaultProps = {
-  zcss: [],
-  children: [],
-};
-
 Addons.propTypes = {
-  zcss: PropTypes.array.isRequire,
-  children: PropTypes.array.isRequire,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Addons);

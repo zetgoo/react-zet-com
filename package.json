@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "webpack-dev-server",
-    "build": "babel src/ -d dist/"
+    "build": "babel src/ -d dist/",
+    "lint": "eslint src/layout/Header/*.js --fix"
   },
   "repository": {
     "type": "git",

@@ -15,10 +15,7 @@ const styles = {
 const Sack = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
-    });
+    props.zcss.map(item => zcss.concat(styles[item], atomic[item]));
   }
 
   return (
@@ -28,16 +25,13 @@ const Sack = props => {
   );
 };
 
-Sack.defaultProps = {
-  zcss: [],
-  style: {},
-  children: [],
-};
-
 Sack.propTypes = {
-  zcss: PropTypes.array.isRequire,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   style: PropTypes.object.isRequire,
-  children: PropTypes.array.isRequire,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Sack);
