@@ -12,7 +12,6 @@ const styles = {
     textRendering: 'optimizeLegibility',
     color: '#222324',
     fontSize: 28,
-    lineHeight: 1,
   },
   is1: {
     fontSize: '3em',
@@ -34,7 +33,7 @@ const styles = {
   },
 };
 
-const Title = (props) => {
+const Title = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -43,15 +42,7 @@ const Title = (props) => {
     });
   }
 
-  return (
-      <p
-        style={[
-            styles.base,
-            ...zcss,
-          ]}>
-        {props.children}
-      </p>
-  );
+  return <p style={[styles.base, ...zcss]}>{props.children}</p>;
 };
 
 Title.propTypes = {

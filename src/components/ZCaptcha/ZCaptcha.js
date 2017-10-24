@@ -28,7 +28,6 @@ const ZCaptcha = props => {
   const resetToken = () => {};
 
   const checkRobot = () => {
-    console.log('zg');
     isRobot = true;
   };
 

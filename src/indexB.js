@@ -23,6 +23,7 @@ import Link from './components/Link/Link';
 import Notification from './components/Notification/Notification';
 import Form from './components/Form/Form';
 import FormGroup from './components/FormGroup/FormGroup';
+import Sack from './components/Sack/Sack';
 import Box from './components/Box/Box';
 import Container from './components/Container/Container';
 import Drawer from './components/Drawer/Drawer';
@@ -67,6 +68,7 @@ export {
   Notification,
   Form,
   FormGroup,
+  Sack,
   Box,
   Container,
   Drawer,

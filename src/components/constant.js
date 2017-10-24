@@ -145,9 +145,16 @@ export const atomic = {
   bd_r_10: { borderRadius: 10 },
 
   // font size
+  'f.5r': { fontSize: '.5rem' },
+  'f.75r': { fontSize: '.75rem' },
+  'f.875r': { fontSize: '.875rem' },
   f1r: { fontSize: '1rem' },
   f2r: { fontSize: '2rem' },
   f3r: { fontSize: '3rem' },
+
+  'f.5e': { fontSize: '.5em' },
+  'f.75e': { fontSize: '.75em' },
+  'f.875e': { fontSize: '.875em' },
   f1e: { fontSize: '1em' },
   f2e: { fontSize: '2em' },
   f3e: { fontSize: '3em' },
@@ -170,9 +177,18 @@ export const atomic = {
   dp_if: { display: 'inline-flex' },
   dp_n: { display: 'none' },
 
+  // justifyContent
   jc_st: { justifyContent: 'flex-start' },
   jc_ed: { justifyContent: 'flex-end' },
   jc_ct: { justifyContent: 'center' },
+
+  // width
+  wd_f: { width: '100%' },
+
+  // text-align
+  ta_l: { textAlign: 'left' },
+  ta_c: { textAlign: 'center' },
+  ta_r: { textAlign: 'right' },
 };
 
 // break pointer for responsive

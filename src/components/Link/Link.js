@@ -5,24 +5,22 @@ import { colors, atomic } from '../constant';
 
 const styles = {
   base: {
-    color: 'inherit',
     cursor: 'pointer',
     textDecoration: 'none',
     transition: 'none 86ms ease-out',
     ':hover': {
-      color: '#6bb551',
+      textDecoration: 'underline',
     },
     ':active': {
       color: '#6bb551',
     },
-
   },
 };
 
 const isLeftClickEvent = event => event.button === 0;
 
-const isModifiedEvent = event => !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-
+const isModifiedEvent = event =>
+  !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const Link = (props, context) => {
   const zcss = [];
@@ -33,7 +31,7 @@ const Link = (props, context) => {
     });
   }
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     if (props.onClick) {
       props.onClick(event);
     }
@@ -51,21 +49,27 @@ const Link = (props, context) => {
   };
 
   return (
-    <a href={props.to} {...props} onClick={handleClick} style={[
-        styles.base,
-        ...zcss,
-      ]}>
+    <a
+      href={props.to}
+      {...props}
+      onClick={handleClick}
+      style={[styles.base, ...zcss]}
+    >
       {props.children}
     </a>
   );
 };
 
-Link.propTypes = {
-  zcss: PropTypes.array,
-};
-
 Link.contextTypes = {
   history: PropTypes.object.isRequired,
+};
+
+Link.defaultProps = {
+  zcss: [],
+};
+
+Link.propTypes = {
+  zcss: PropTypes.array.isRequired,
 };
 
 export default Radium(Link);
