@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-const SearchInput = (props) => {
+const SearchInput = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -31,7 +31,7 @@ const SearchInput = (props) => {
     });
   }
 
-  const searchEnter = (e) => {
+  const searchEnter = e => {
     if (e.which == 13 || e.keyCode == 13) {
       e.preventDefault;
       props.search();
@@ -39,20 +39,23 @@ const SearchInput = (props) => {
   };
 
   return (
-    <div {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}>
-        <Input zcss = {['pdL2e']} placeholder="Search for products and resources" onKeyDown = {searchEnter}/>
-        {!props.isSearching && <i style = {styles.icon} className = 'fa fa-search'></i>}
-        {props.isSearching && <i style = {styles.icon} className = 'fa fa-spinner fa-spin'></i>}
+    <div {...props} style={[styles.base, ...zcss]}>
+      <Input
+        zcss={['pdL2e']}
+        placeholder="Search for products and resources"
+        onKeyDown={searchEnter}
+      />
+      {!props.isSearching && <i style={styles.icon} className="fa fa-search" />}
+      {props.isSearching && (
+        <i style={styles.icon} className="fa fa-spinner fa-spin" />
+      )}
       {props.children}
     </div>
   );
 };
 
 SearchInput.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequire,
 };
 
 export default Radium(SearchInput);

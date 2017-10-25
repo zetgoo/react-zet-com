@@ -112,22 +112,14 @@ var AppBar = function AppBar(props) {
     _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(IconButton, {
-        inverse: true,
-        onClick: onLeftIconClick,
-        icon: leftIcon
-      }),
+      _react2.default.createElement(IconButton, { inverse: true, onClick: onLeftIconClick, icon: leftIcon }),
       typeof title === 'string' ? _react2.default.createElement(
         'h1',
         null,
         title
       ) : title,
       props.children,
-      _react2.default.createElement(IconButton, {
-        inverse: true,
-        onClick: onRightIconClick,
-        icon: rightIcon
-      })
+      _react2.default.createElement(IconButton, { inverse: true, onClick: onRightIconClick, icon: rightIcon })
     )
   );
 };

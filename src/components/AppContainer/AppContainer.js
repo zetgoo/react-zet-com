@@ -1,15 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { StyleRoot, Style } from 'radium';
+import Sack from '../Sack/Sack';
 // import normalize from 'radium-normalize';
 
 const AppContainer = props => (
-    <StyleRoot>
-      <div>
-        {/* <Style rules={normalize} /> */}
-        <Style rules={props.style} />
-        {props.children}
-      </div>
-    </StyleRoot>
+  <StyleRoot>
+    {/* <Style rules={normalize} /> */}
+    <Style rules={props.rules} />
+    <Sack {...props}>{props.children}</Sack>
+  </StyleRoot>
 );
+
+AppContainer.defaultProps = {
+  zcss: [],
+};
+
+AppContainer.propTypes = {
+  zcss: PropTypes.array.isRequired,
+};
 
 export default AppContainer;

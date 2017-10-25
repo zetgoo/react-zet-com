@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -49,23 +49,23 @@ const styles = {
   },
 };
 
-const Overlay = (props) => {
+const Overlay = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
+    props.zcss.map(item => {
       zcss.push(styles[item]);
       zcss.push(atomic[item]);
     });
   }
 
-  const handleOutsideClick = (e) => {
+  let container = null;
+
+  const handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
       props.onClose();
     }
   };
-
-  let container = null;
 
   if (props.isOpen) {
     document.addEventListener('click', handleOutsideClick, false);
@@ -73,20 +73,33 @@ const Overlay = (props) => {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return (!props.isOpen ? null : (
-    <div style = {styles.base} >
-      <div style = {styles.cover}></div>
-      <div style = {styles.content} ref = {(node) => {
-            container = node;
-          }}>
+  return !props.isOpen ? null : (
+    <div style={styles.base}>
+      <div style={styles.cover} />
+      <div
+        style={styles.content}
+        ref={node => {
+          container = node;
+        }}
+      >
         {props.children}
       </div>
     </div>
-  ));
+  );
+};
+
+Overlay.defaultProps = {
+  zcss: [],
+  children: [],
+  isOpen: false,
+  onClose: null,
 };
 
 Overlay.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.array.isRequired,
+  children: PropTypes.array.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default Radium(Overlay);

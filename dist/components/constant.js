@@ -27,7 +27,7 @@ var colors = exports.colors = {
 };
 
 var atomic = exports.atomic = (_atomic = {
-  //layout grid: padding
+  // layout grid: padding
   'pd1/2r': { padding: '0.5rem' },
   pd1r: { padding: '1rem' },
   pd2r: { padding: '2rem' },
@@ -70,7 +70,7 @@ var atomic = exports.atomic = (_atomic = {
   pdL2e: { paddingLeft: '2em' },
   pdL3e: { paddingLeft: '3em' },
 
-  //layout grid: margin
+  // layout grid: margin
   'mg1/2r': { margin: '.5rem' },
   mg1r: { margin: '1rem' },
   mg2r: { margin: '2rem' },
@@ -113,7 +113,7 @@ var atomic = exports.atomic = (_atomic = {
   mgL2e: { marginLeft: '2em' },
   mgL3e: { marginLeft: '3em' },
 
-  //background color
+  // background color
   bg_primary: { backgroundColor: colors.primary },
   bg_success: { backgroundColor: colors.success },
   bg_disable: { backgroundColor: colors.disable },
@@ -121,8 +121,9 @@ var atomic = exports.atomic = (_atomic = {
   bg_danger: { backgroundColor: colors.danger },
   bg_warning: { backgroundColor: colors.warning },
   bg_cancel: { backgroundColor: colors.cancel },
+  bg_no: { backgroundColor: colors.no },
 
-  //color
+  // color
   cl_primary: { color: colors.primary },
   cl_success: { color: colors.success },
   cl_disable: { color: colors.disable },
@@ -131,15 +132,15 @@ var atomic = exports.atomic = (_atomic = {
   cl_warning: { color: colors.warning },
   cl_cancel: { color: colors.cancel },
 
-  //border style
+  // border style
   bd_s_solid: { borderStyle: 'solid' },
   bd_s_none: { borderStyle: 'none' },
 
-  //border size
+  // border size
   bd_w_1: { borderWidth: 1 },
   bd_w_2: { borderWidth: 2 },
 
-  //border size
+  // border size
   bd_c_default: { borderColor: colors.defaultBorder },
   // bd_w_2: {borderWidth: 2},
 

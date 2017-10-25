@@ -95,16 +95,23 @@ var Popover = function Popover(props) {
     { style: styles.base },
     _react2.default.createElement(
       'div',
-      { style: styles.content, ref: function ref(node) {
+      {
+        style: styles.content,
+        ref: function ref(node) {
           container = node;
-        } },
+        }
+      },
       props.children
     )
   );
 };
 
+Popover.defaultProps = {
+  zcss: []
+};
+
 Popover.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequired
 };
 
 exports.default = (0, _radium2.default)(Popover);

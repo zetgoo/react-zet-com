@@ -42,14 +42,21 @@ var Sack = function Sack(props) {
 
   return _react2.default.createElement(
     'div',
-    _extends({}, props, { style: [styles.base].concat(zcss)
-    }),
+    _extends({}, props, { style: [styles.base].concat(zcss, [props.style]) }),
     props.children
   );
 };
 
+Sack.defaultProps = {
+  zcss: [],
+  style: {},
+  children: []
+};
+
 Sack.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequire,
+  style: _propTypes2.default.object.isRequire,
+  children: _propTypes2.default.array.isRequire
 };
 
 exports.default = (0, _radium2.default)(Sack);

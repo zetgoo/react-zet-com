@@ -41,9 +41,9 @@ const Addons = props => {
 
 Addons.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.arrayOf(React.PropTypes.node),
-    React.PropTypes.node,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
   ]).isRequired,
 };
 

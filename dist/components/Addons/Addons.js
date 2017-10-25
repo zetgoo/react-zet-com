@@ -46,7 +46,7 @@ var styles = {
 var Addons = function Addons(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
+    var decorate = props.zcss.map(function (item) {
       zcss.push(styles[item]);
       zcss.push(_constant.atomic[item]);
     });
@@ -63,8 +63,14 @@ var Addons = function Addons(props) {
   );
 };
 
+Addons.defaultProps = {
+  zcss: [],
+  children: []
+};
+
 Addons.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequire,
+  children: _propTypes2.default.array.isRequire
 };
 
 exports.default = (0, _radium2.default)(Addons);

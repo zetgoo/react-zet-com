@@ -79,24 +79,34 @@ var LeftMenu = function LeftMenu(props) {
           _react2.default.createElement('li', null),
           _react2.default.createElement('li', null)
         );
-      } else {
-        return;
+      }
+
+      return;
+      _react2.default.createElement(
+        _MenuItem2.default,
+        null,
         _react2.default.createElement(
-          _MenuItem2.default,
+          'li',
           null,
           _react2.default.createElement(
-            'li',
-            null,
-            _react2.default.createElement(
-              _Link2.default,
-              { to: '/home' },
-              _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa ' + item.icon.split('.')[1], text: item.label })
-            ),
-            item.isActived ? _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa ' + item.rightActived.split('.')[1] }) : _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa ' + item.rightNoAcitved.split('.')[1] })
+            _Link2.default,
+            { to: '/home' },
+            _react2.default.createElement(_Icon2.default, {
+              zcss: [''],
+              icon: 'fa ' + item.icon.split('.')[1],
+              text: item.label
+            })
           ),
-          _react2.default.createElement('li', null)
-        );
-      }
+          item.isActived ? _react2.default.createElement(_Icon2.default, {
+            zcss: ['fr', 'mgR1/2e'],
+            icon: 'fa ' + item.rightActived.split('.')[1]
+          }) : _react2.default.createElement(_Icon2.default, {
+            zcss: ['fr', 'mgR1/2e'],
+            icon: 'fa ' + item.rightNoAcitved.split('.')[1]
+          })
+        ),
+        _react2.default.createElement('li', null)
+      );
 
       childArr.push(node);
 

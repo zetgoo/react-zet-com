@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
-  base: {
-  },
+  base: {},
   container: {
     maxWidth: 1012,
     marginRight: 'auto',
@@ -13,26 +12,26 @@ const styles = {
   },
 };
 
-const Sack = (props) => {
+const Sack = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
-    });
+    props.zcss.map(item => zcss.concat(styles[item], atomic[item]));
   }
 
   return (
-    <div {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}
-      >{props.children}</div>
+    <div {...props} style={[styles.base, ...zcss, props.style]}>
+      {props.children}
+    </div>
   );
 };
 
 Sack.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.object.isRequire,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Sack);

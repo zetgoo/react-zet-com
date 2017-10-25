@@ -12,12 +12,10 @@ import Icon from '../../components/Icon/Icon';
 import Sack from '../../components/Sack/Sack';
 
 const styles = {
-  base: {
-
-  },
+  base: {},
 };
 
-const LeftMenu = (props) => {
+const LeftMenu = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -26,41 +24,50 @@ const LeftMenu = (props) => {
     });
   }
 
-  const rootNode = React.cloneElement(<Sack/>, [], []);
+  const rootNode = React.cloneElement(<Sack />, [], []);
   const childArr = [];
 
-  const buildHtml = (data) => {
+  const buildHtml = data => {
     if (!data) return null;
-
 
     const currentNode = null;
 
     return data.map((item, index) => {
       const node = null;
       if (item.groupLabel) {
-        return (<MenuLabel>
-          {item.groupLabel}
-          <li></li>
-          <li></li>
-
-        </MenuLabel>);
+        return (
+          <MenuLabel>
+            {item.groupLabel}
+            <li />
+            <li />
+          </MenuLabel>
+        );
       }
 
       return;
-      (<MenuItem>
-            <li>
-              <Link to = '/home'>
-                <Icon zcss = {['']} icon = {`fa ${item.icon.split('.')[1]}`} text = {item.label}/>
-              </Link>
-              {
-                item.isActived
-                ? <Icon zcss = {['fr', 'mgR1/2e']} icon = {`fa ${item.rightActived.split('.')[1]}`}/>
-                : <Icon zcss = {['fr', 'mgR1/2e']} icon = {`fa ${item.rightNoAcitved.split('.')[1]}`}/>
-              }
-            </li>
-            <li></li>
-          </MenuItem>);
-
+      <MenuItem>
+        <li>
+          <Link to="/home">
+            <Icon
+              zcss={['']}
+              icon={`fa ${item.icon.split('.')[1]}`}
+              text={item.label}
+            />
+          </Link>
+          {item.isActived ? (
+            <Icon
+              zcss={['fr', 'mgR1/2e']}
+              icon={`fa ${item.rightActived.split('.')[1]}`}
+            />
+          ) : (
+            <Icon
+              zcss={['fr', 'mgR1/2e']}
+              icon={`fa ${item.rightNoAcitved.split('.')[1]}`}
+            />
+          )}
+        </li>
+        <li />
+      </MenuItem>;
 
       childArr.push(node);
 
@@ -79,72 +86,70 @@ const LeftMenu = (props) => {
   return (
     <Menu>
       <MenuGroup>
-        <MenuLabel>
-          MAIN NAVIGATION
-        </MenuLabel>
+        <MenuLabel>MAIN NAVIGATION</MenuLabel>
         <MenuItem>
           <li>
-            <Link to = '/home'>
-              <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Dashboard'/>
+            <Link to="/home">
+              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard" />
             </Link>
-            <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+            <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
-              <Link to = '/home'>
-                <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Visited'/>
+              <Link to="/home">
+                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
               </Link>
-              <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+              <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
             </MenuItem>
           </MenuItem>
         </MenuItem>
         <MenuItem>
           <li>
-            <Link to = '/home'>
-              <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Dashboard 1'/>
+            <Link to="/home">
+              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard 1" />
             </Link>
-            <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+            <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
-              <Link to = '/home'>
-                <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Visited'/>
+              <Link to="/home">
+                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
               </Link>
-              <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+              <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Month'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Month" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <MenuItem>
                 <li>
-                  <Link to = '/home'>
-                    <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week child'/>
+                  <Link to="/home">
+                    <Icon zcss={['']} icon="fa fa-cog" text="On Week child" />
                   </Link>
-                  <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                  <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
                 <li>
-                  <Link to = '/home'>
-                    <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Month child'/>
+                  <Link to="/home">
+                    <Icon zcss={['']} icon="fa fa-cog" text="On Month child" />
                   </Link>
-                  <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                  <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
               </MenuItem>
             </MenuItem>
@@ -152,72 +157,70 @@ const LeftMenu = (props) => {
         </MenuItem>
       </MenuGroup>
       <MenuGroup>
-        <MenuLabel>
-          MAIN NAVIGATION
-        </MenuLabel>
+        <MenuLabel>MAIN NAVIGATION</MenuLabel>
         <MenuItem>
           <li>
-            <Link to = '/home'>
-              <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Dashboard'/>
+            <Link to="/home">
+              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard" />
             </Link>
-            <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+            <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
-              <Link to = '/home'>
-                <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Visited'/>
+              <Link to="/home">
+                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
               </Link>
-              <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+              <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
             </MenuItem>
           </MenuItem>
         </MenuItem>
         <MenuItem>
           <li>
-            <Link to = '/home'>
-              <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Dashboard 1'/>
+            <Link to="/home">
+              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard 1" />
             </Link>
-            <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+            <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
-              <Link to = '/home'>
-                <Icon zcss = {['']} icon = 'fa fa-cog' text = 'Visited'/>
+              <Link to="/home">
+                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
               </Link>
-              <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+              <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <li>
-                <Link to = '/home'>
-                  <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Month'/>
+                <Link to="/home">
+                  <Icon zcss={['']} icon="fa fa-cog" text="On Month" />
                 </Link>
-                <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <MenuItem>
                 <li>
-                  <Link to = '/home'>
-                    <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Week child'/>
+                  <Link to="/home">
+                    <Icon zcss={['']} icon="fa fa-cog" text="On Week child" />
                   </Link>
-                  <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                  <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
                 <li>
-                  <Link to = '/home'>
-                    <Icon zcss = {['']} icon = 'fa fa-cog' text = 'On Month child'/>
+                  <Link to="/home">
+                    <Icon zcss={['']} icon="fa fa-cog" text="On Month child" />
                   </Link>
-                  <Icon zcss = {['fr', 'mgR1/2e']} icon = 'fa fa-hand-o-left'/>
+                  <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
               </MenuItem>
             </MenuItem>

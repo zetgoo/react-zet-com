@@ -72,7 +72,11 @@ var SearchInput = function SearchInput(props) {
   return _react2.default.createElement(
     'div',
     _extends({}, props, { style: [styles.base].concat(zcss) }),
-    _react2.default.createElement(_Input2.default, { zcss: ['pdL2e'], placeholder: 'Search for products and resources', onKeyDown: searchEnter }),
+    _react2.default.createElement(_Input2.default, {
+      zcss: ['pdL2e'],
+      placeholder: 'Search for products and resources',
+      onKeyDown: searchEnter
+    }),
     !props.isSearching && _react2.default.createElement('i', { style: styles.icon, className: 'fa fa-search' }),
     props.isSearching && _react2.default.createElement('i', { style: styles.icon, className: 'fa fa-spinner fa-spin' }),
     props.children
@@ -80,7 +84,7 @@ var SearchInput = function SearchInput(props) {
 };
 
 SearchInput.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequire
 };
 
 exports.default = (0, _radium2.default)(SearchInput);

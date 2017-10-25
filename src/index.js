@@ -33,6 +33,7 @@ import Modal from './components/Modal';
 import Popover from './components/Popover';
 import Tooltip from './components/Tooltip';
 import Video from './components/Video';
+import ZCaptcha from './components/ZCaptcha';
 
 import {
   VictoryPie,
@@ -99,7 +100,14 @@ class App extends Component {
     //     percent, data: this.getData(percent)
     //   });
     // }, 2000);
-    setTimeout(() => this.setState({ url: 'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg' }), 2000);
+    setTimeout(
+      () =>
+        this.setState({
+          url:
+            'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg',
+        }),
+      2000,
+    );
   }
 
   componentWillUnmount() {
@@ -536,6 +544,9 @@ class App extends Component {
                 <Video />
               </div>
               <div className="row">
+                <ZCaptcha />
+              </div>
+              <div className="row">
                 <Tabs
                   index={this.state.tabIndex}
                   onChange={index => this.setState({ tabIndex: index })}
@@ -638,40 +649,56 @@ class App extends Component {
               <Infinite/>
               </div> */}
               <div className="row">
-                <Title zcss={['is1']}>Title 1</Title>
+                <div className="box">
+                  <Title zcss={['is1']}>Title 1</Title>
+                </div>
+                <div className="box">
+                  <Title zcss={['is2']}>Title 2</Title>
+                </div>
+                <div className="box">
+                  <Title zcss={['is3']}>Title 3</Title>
+                </div>
+                <div className="box">
+                  <Title zcss={['is4']}>Title 4</Title>
+                </div>
+                <div className="box">
+                  <Title zcss={['is5']}>Title 5</Title>
+                </div>
+                <div className="box">
+                  <Title zcss={['is6']}>Title 6</Title>
+                </div>
               </div>
               <div className="row">
-                <Title zcss={['is2']}>Title 2</Title>
-              </div>
-              <div className="row">
-                <Title zcss={['is3']}>Title 3</Title>
-              </div>
-              <div className="row">
-                <Title zcss={['is4']}>Title 1</Title>
-              </div>
-              <div className="row">
-                <Title zcss={['is5']}>Title 2</Title>
-              </div>
-              <div className="row">
-                <Title zcss={['is6']}>Title 3</Title>
-              </div>
-              <div className="row">
-                <SubTitle zcss={['is4']}>SubTitle 1</SubTitle>
-              </div>
-              <div className="row">
-                <SubTitle zcss={['is5']}>SubTitle 2</SubTitle>
-              </div>
-              <div className="row">
-                <SubTitle zcss={['is6']}>SubTitle 3</SubTitle>
+                <div className="box">
+                  <SubTitle zcss={['is1']}>SubTitle 1</SubTitle>
+                </div>
+                <div className="box">
+                  <SubTitle zcss={['is2']}>SubTitle 2</SubTitle>
+                </div>
+                <div className="box">
+                  <SubTitle zcss={['is3']}>SubTitle 3</SubTitle>
+                </div>
+                <div className="box">
+                  <SubTitle zcss={['is4']}>SubTitle 4</SubTitle>
+                </div>
+                <div className="box">
+                  <SubTitle zcss={['is5']}>SubTitle 5</SubTitle>
+                </div>
+                <div className="box">
+                  <SubTitle zcss={['is6']}>SubTitle 6</SubTitle>
+                </div>
               </div>
 
               <div className="row">
-                <ControlLabel zcss={['f1r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss={['f2r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss={['f3r']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss={['f1e']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss={['f2e']}>ControlLabel</ControlLabel>
-                <ControlLabel zcss={['f3e']}>ControlLabel</ControlLabel>
+                <div className="box">
+                  <ControlLabel zcss={['f1e']}>ControlLabel</ControlLabel>
+                </div>
+                <div className="box">
+                  <ControlLabel zcss={['f2e']}>ControlLabel</ControlLabel>
+                </div>
+                <div className="box">
+                  <ControlLabel zcss={['f3e']}>ControlLabel</ControlLabel>
+                </div>
               </div>
 
               <div className="row">
