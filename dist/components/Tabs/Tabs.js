@@ -53,7 +53,9 @@ var Tabs = function Tabs(props) {
     return _react2.default.Children.map(props.children, function (child, index) {
       if (child.type.displayName === 'Tab') {
         if (props.index === index) {
-          content = _react2.default.cloneElement(_react2.default.createElement('section', null), { children: child.props.children });
+          content = _react2.default.cloneElement(_react2.default.createElement('section', null), {
+            children: child.props.children
+          });
           return _react2.default.cloneElement(child, _extends({}, child.props, {
             isActived: true,
             onClick: function onClick() {
@@ -82,9 +84,11 @@ var Tabs = function Tabs(props) {
           position: 'relative',
           display: 'inline-flex',
           width: '100%'
-        } },
+        }
+      },
       htmlElement,
-      _react2.default.createElement('div', { style: {
+      _react2.default.createElement('div', {
+        style: {
           position: 'absolute',
           bottom: 0,
           height: 2,
@@ -93,8 +97,9 @@ var Tabs = function Tabs(props) {
           transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
           transitionDuration: '.35s',
           transitionProperty: 'left,width',
-          width: '20%'
-        } })
+          width: 100 / props.children.length + '%'
+        }
+      })
     ),
     content
   );

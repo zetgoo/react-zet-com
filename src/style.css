@@ -1,8 +1,9 @@
+@import "normalize.css"
 @import "./css/react-select.css"
 @import "./css/react-toggle.css"
 
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
+   * React Starter Kit (https://www.reactstarterkit.com/)
  *
  * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
  *
@@ -37,7 +38,6 @@ button, input, optgroup, select, textarea, p
   font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif
 
 a
-  color: rgba(255,255,255,0.75)
   font-size: 0.875em
 
 
@@ -191,10 +191,3 @@ textarea
   h2,
   h3
     page-break-after: avoid
-
-.row
-  margin: 5px 0
-
-.box
-  margin: 0 5px 5px 0
-  display: inline-flex

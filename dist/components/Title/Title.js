@@ -28,8 +28,7 @@ var styles = {
     wordBreak: 'break-word',
     textRendering: 'optimizeLegibility',
     color: '#222324',
-    fontSize: 28,
-    lineHeight: 1
+    fontSize: 28
   },
   is1: {
     fontSize: '3em'
@@ -62,8 +61,7 @@ var Title = function Title(props) {
 
   return _react2.default.createElement(
     'p',
-    {
-      style: [styles.base].concat(zcss) },
+    { style: [styles.base].concat(zcss) },
     props.children
   );
 };

@@ -13,9 +13,14 @@ const styles = {
 };
 
 const Sack = props => {
-  const zcss = [];
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(item => zcss.concat(styles[item], atomic[item]));
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
+    });
   }
 
   return (

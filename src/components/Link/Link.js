@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -15,6 +15,11 @@ const styles = {
       color: '#6bb551',
     },
   },
+  noUnder: {
+    ':hover': {
+      textDecoration: 'none',
+    },
+  },
 };
 
 const isLeftClickEvent = event => event.button === 0;
@@ -23,11 +28,13 @@ const isModifiedEvent = event =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const Link = (props, context) => {
-  const zcss = [];
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
@@ -53,7 +60,7 @@ const Link = (props, context) => {
       href={props.to}
       {...props}
       onClick={handleClick}
-      style={[styles.base, ...zcss]}
+      style={[styles.base, ...zcss, props.style]}
     >
       {props.children}
     </a>
@@ -64,12 +71,15 @@ Link.contextTypes = {
   history: PropTypes.object.isRequired,
 };
 
-Link.defaultProps = {
-  zcss: [],
-};
-
 Link.propTypes = {
-  zcss: PropTypes.array.isRequired,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Link);

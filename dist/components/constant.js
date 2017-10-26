@@ -3,11 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _atomic;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var colors = exports.colors = {
   no: '#fff',
   dark: '#000',
@@ -26,7 +21,7 @@ var colors = exports.colors = {
   cancel: '#B0B0B0'
 };
 
-var atomic = exports.atomic = (_atomic = {
+var atomic = exports.atomic = {
   // layout grid: padding
   'pd1/2r': { padding: '0.5rem' },
   pd1r: { padding: '1rem' },
@@ -149,8 +144,60 @@ var atomic = exports.atomic = (_atomic = {
   bd_rTL_0: { borderTopLeftRadius: 0 },
   bd_rBL_0: { borderBottomLeftRadius: 0 },
   bd_rTR_0: { borderTopRightRadius: 0 },
-  bd_rBR_0: { borderBottomRightRadius: 0 }
-}, _defineProperty(_atomic, 'bd_r_0', { borderRadius: 0 }), _defineProperty(_atomic, 'bd_r_5', { borderRadius: 5 }), _defineProperty(_atomic, 'bd_r_10', { borderRadius: 10 }), _defineProperty(_atomic, 'f1r', { fontSize: '1rem' }), _defineProperty(_atomic, 'f2r', { fontSize: '2rem' }), _defineProperty(_atomic, 'f3r', { fontSize: '3rem' }), _defineProperty(_atomic, 'f1e', { fontSize: '1em' }), _defineProperty(_atomic, 'f2e', { fontSize: '2em' }), _defineProperty(_atomic, 'f3e', { fontSize: '3em' }), _defineProperty(_atomic, 'fw300', { fontWeight: 300 }), _defineProperty(_atomic, 'fw400', { fontWeight: 400 }), _defineProperty(_atomic, 'fw500', { fontWeight: 500 }), _defineProperty(_atomic, 'fw600', { fontWeight: 600 }), _defineProperty(_atomic, 'fl', { float: 'left' }), _defineProperty(_atomic, 'fr', { float: 'right' }), _defineProperty(_atomic, 'fc', { float: 'center' }), _defineProperty(_atomic, 'dp_i', { display: 'inline' }), _defineProperty(_atomic, 'dp_ib', { display: 'inline-block' }), _defineProperty(_atomic, 'dp_b', { display: 'block' }), _defineProperty(_atomic, 'dp_f', { display: 'flex' }), _defineProperty(_atomic, 'dp_if', { display: 'inline-flex' }), _defineProperty(_atomic, 'dp_n', { display: 'none' }), _defineProperty(_atomic, 'jc_st', { justifyContent: 'flex-start' }), _defineProperty(_atomic, 'jc_ed', { justifyContent: 'flex-end' }), _defineProperty(_atomic, 'jc_ct', { justifyContent: 'center' }), _atomic);
+  bd_rBR_0: { borderBottomRightRadius: 0 },
+  bd_r_5: { borderRadius: 5 },
+  bd_rTL_5: { borderTopLeftRadius: 5 },
+  bd_rBL_5: { borderBottomLeftRadius: 5 },
+  bd_rTR_5: { borderTopRightRadius: 5 },
+  bd_rBR_5: { borderBottomRightRadius: 5 },
+  bd_r_10: { borderRadius: 10 },
+
+  // font size
+  'f.5r': { fontSize: '.5rem' },
+  'f.75r': { fontSize: '.75rem' },
+  'f.875r': { fontSize: '.875rem' },
+  f1r: { fontSize: '1rem' },
+  f2r: { fontSize: '2rem' },
+  f3r: { fontSize: '3rem' },
+
+  'f.5e': { fontSize: '.5em' },
+  'f.75e': { fontSize: '.75em' },
+  'f.875e': { fontSize: '.875em' },
+  f1e: { fontSize: '1em' },
+  f2e: { fontSize: '2em' },
+  f3e: { fontSize: '3em' },
+  // font weight
+  fw300: { fontWeight: 300 },
+  fw400: { fontWeight: 400 },
+  fw500: { fontWeight: 500 },
+  fw600: { fontWeight: 600 },
+
+  // float
+  fl: { float: 'left' },
+  fr: { float: 'right' },
+  fc: { float: 'center' },
+
+  // display
+  dp_i: { display: 'inline' },
+  dp_ib: { display: 'inline-block' },
+  dp_b: { display: 'block' },
+  dp_f: { display: 'flex' },
+  dp_if: { display: 'inline-flex' },
+  dp_n: { display: 'none' },
+
+  // justifyContent
+  jc_st: { justifyContent: 'flex-start' },
+  jc_ed: { justifyContent: 'flex-end' },
+  jc_ct: { justifyContent: 'center' },
+
+  // width
+  wd_f: { width: '100%' },
+
+  // text-align
+  ta_l: { textAlign: 'left' },
+  ta_c: { textAlign: 'center' },
+  ta_r: { textAlign: 'right' }
+};
 
 // break pointer for responsive
 var smallBreakpoint = exports.smallBreakpoint = 576;

@@ -31,29 +31,42 @@ var styles = {
 var MagicEye = function MagicEye(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    props.zcss.map(function (item) {
+      return zcss.concat(styles[item], _constant.atomic[item]);
     });
   }
 
-  var imgLink = 'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==';
+  // let imgLink =
+  //   'data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAABQBQCdASoqABwAP/3+/3+/urWyMBVYA/A/iWIAAR7p/Y3etgh4KD8QqXEZj6waibITSIAA/cndnUz4/z4LEgByYUql75Cq/12W33KFIKQpc8L0Dt19C7NFXin0tKlxd70dzSF978msbuqLjDgAAA==';
 
   setTimeout(function () {
-    imgLink = 'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg';
+    var imgLink = 'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg';
   }, 2000);
 
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_Image2.default, { zcss: ['' + (props.isFinished ? '' : 'isBlur')], width: 1000, ratio: 8, src: props.url,
-      alt: 'Zetgoo', title: 'Zetgoo' }),
-    _react2.default.createElement('div', { style: 'padding-bottom: 66.6%;' })
+    _react2.default.createElement(_Image2.default, {
+      zcss: ['' + (props.isFinished ? '' : 'isBlur')],
+      width: 1000,
+      ratio: 8,
+      src: props.url,
+      alt: 'Zetgoo',
+      title: 'Zetgoo'
+    }),
+    _react2.default.createElement('div', { style: { paddingBottom: '66.6%' } })
   );
 };
 
 MagicEye.propTypes = {
-  zcss: _propTypes2.default.array
+  isFinished: _propTypes2.default.boolean,
+  url: _propTypes2.default.string,
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
+};
+
+MagicEye.defaultProps = {
+  isFinished: false,
+  url: ''
 };
 
 exports.default = (0, _radium2.default)(MagicEye);

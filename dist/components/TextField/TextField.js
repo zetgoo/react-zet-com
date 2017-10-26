@@ -35,7 +35,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var styles = {
-
   base: {
     display: 'flex',
     alignItems: 'center'
@@ -47,7 +46,8 @@ var styles = {
     fontSize: '0.75em',
     display: 'block',
     marginBottom: 0,
-    color: '#6a737d'
+    color: '#6a737d',
+    textAlign: 'left'
   },
   label: {
     display: 'block',
@@ -84,10 +84,17 @@ var TextField = function TextField(props) {
     _react2.default.createElement(
       'div',
       { style: [styles.base] },
-      _react2.default.createElement(_Input2.default, (_React$createElement = { disabled: props.disabled,
-        zcss: ['' + (props.errors && props.errors.length > 0 ? 'error' : ''), '' + (props.disabled ? 'disabled' : '')], placeholder: 'zetgoo', value: props.value,
-        onChange: props.onChange }, _defineProperty(_React$createElement, 'placeholder', props.placeholder), _defineProperty(_React$createElement, 'type', props.type), _React$createElement)),
-      props.errors && props.errors.length > 0 && _react2.default.createElement(_Icon2.default, { zcss: ['cl_danger', 'mgL1/2e'], icon: 'fa fa-exclamation-circle' }),
+      _react2.default.createElement(_Input2.default, (_React$createElement = {
+        disabled: props.disabled,
+        zcss: ['' + (props.errors && props.errors.length > 0 ? 'error' : ''), '' + (props.disabled ? 'disabled' : '')],
+        placeholder: 'zetgoo',
+        value: props.value,
+        onChange: props.onChange
+      }, _defineProperty(_React$createElement, 'placeholder', props.placeholder), _defineProperty(_React$createElement, 'type', props.type), _React$createElement)),
+      props.errors && props.errors.length > 0 && _react2.default.createElement(_Icon2.default, {
+        zcss: ['cl_danger', 'mgL1/2e'],
+        icon: 'fa fa-exclamation-circle'
+      }),
       props.valid && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'mgL1/2e'], icon: 'fa fa-check-circle' })
     ),
     props.errors && props.errors.length > 0 && props.errors.map(function (item, index) {
