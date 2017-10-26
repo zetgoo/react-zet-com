@@ -66,7 +66,6 @@ var ZCaptcha = function ZCaptcha(props) {
   var resetToken = function resetToken() {};
 
   var checkRobot = function checkRobot() {
-    console.log('zg');
     isRobot = true;
   };
 

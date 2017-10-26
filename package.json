@@ -28,6 +28,7 @@
     "history": "^4.6.3",
     "html-webpack-plugin": "^2.29.0",
     "immutable": "^3.8.1",
+    "normalize.css": "^7.0.0",
     "prop-types": "^15.6.0",
     "radium": "^0.19.1",
     "radium-normalize": "^2.0.5",

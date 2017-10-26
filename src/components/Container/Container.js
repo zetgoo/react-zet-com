@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
 import Sack from '../Sack/Sack';
 
-const Container = (props) => {
+const Container = props => {
   const zcss = props.zcss || [];
   zcss.push('container');
 
   return (
-    <Sack {...props} zcss = {zcss}>
+    <Sack {...props} zcss={zcss}>
       {props.children}
     </Sack>
   );
 };
 
 Container.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Container);

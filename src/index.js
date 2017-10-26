@@ -56,6 +56,12 @@ import MagicEye from './layout/MagicEye';
 import './style.css';
 import avtDemo from './';
 
+const rowStyle = { margin: '5px 0' };
+const boxStyle = {
+  margin: '0 5px 5px 0',
+  display: 'inline-flex',
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -125,59 +131,63 @@ class App extends Component {
   render() {
     return (
       <AppContainer>
-        <Header
-          isActive={this.state.toggleActive}
-          userLogined={{
-            userName: 'Ballard',
-            avatar: 'https://avatars1.githubusercontent.com/u/6657580?v=4&s=80',
-          }}
-          isSearching={this.state.isSearching}
-          search={() => this.setState({ isSearching: !this.state.isSearching })}
-          toogleClick={() =>
-            this.setState({ toggleActive: !this.state.toggleActive })}
-          menu={[
-            {
-              icon: 'fa fa-home',
-              text: 'Menu',
-              to: '/',
-              zcss: ['fw500'],
-            },
-            {
-              icon: 'fa fa-user-circle',
-              text: 'Login',
-              to: '/login',
-              zcss: ['fw500'],
-            },
-          ]}
-          menuNoneUser={[
-            {
-              icon: 'fa fa-home',
-              text: 'Register',
-              to: '/register',
-              zcss: ['cl_success'],
-            },
-            {
-              icon: 'fa fa-user-circle',
-              text: 'Login',
-              to: '/login',
-              zcss: ['cl_success'],
-            },
-          ]}
-          iconMenuUser={[
-            {
-              icon: 'fa fa-search',
-              text: '',
-              action: this.showNotify,
-              zcss: [''],
-            },
-            {
-              icon: 'fa fa-bell',
-              text: '',
-              action: this.showNotify,
-              zcss: [''],
-            },
-          ]}
-        />
+        <Container>
+          <Header
+            isActive={this.state.toggleActive}
+            userLogined={{
+              userName: 'Ballard',
+              avatar:
+                'https://avatars1.githubusercontent.com/u/6657580?v=4&s=80',
+            }}
+            isSearching={this.state.isSearching}
+            search={() =>
+              this.setState({ isSearching: !this.state.isSearching })}
+            toogleClick={() =>
+              this.setState({ toggleActive: !this.state.toggleActive })}
+            menu={[
+              {
+                icon: 'fa fa-home',
+                text: 'Menu',
+                to: '/',
+                zcss: [''],
+              },
+              {
+                icon: 'fa fa-user-circle',
+                text: 'Login',
+                to: '/login',
+                zcss: [''],
+              },
+            ]}
+            menuNoneUser={[
+              {
+                icon: 'fa fa-home',
+                text: 'Register',
+                to: '/register',
+                zcss: ['cl_success'],
+              },
+              {
+                icon: 'fa fa-user-circle',
+                text: 'Login',
+                to: '/login',
+                zcss: ['cl_success'],
+              },
+            ]}
+            iconMenuUser={[
+              {
+                icon: 'fa fa-search',
+                text: '',
+                action: this.showNotify,
+                zcss: ['f.8125r'],
+              },
+              {
+                icon: 'fa fa-bell',
+                text: '',
+                action: this.showNotify,
+                zcss: ['f.8125r'],
+              },
+            ]}
+          />
+        </Container>
         <Container>
           <Columns xLargeCol={6} smallCol={1} gutter="8px">
             <Column zcss={['']} xLargeCell={2} smallCell={1}>
@@ -255,52 +265,52 @@ class App extends Component {
               />
             </Column>
             <Column zcss={['']} xLargeCell={4} smallCell={1}>
-              {/* <div className="row" style = {{height: 400, width: '100%'}}>
+              {/* <div style={rowStyle} style = {{height: 400, width: '100%'}}>
             <MagicEye url = {this.state.url} />
             </div> */}
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <Button zcss={['']}>Nomal</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['white']}>white</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['light']}>light</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['black']}>black</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['isLink']}>Link</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['primary']}>primary</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['info']}>info</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['success']}>success</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['warning']}>warning</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['danger']}>danger</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['disable']}>disable</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['cancel']}>cancel</Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Button zcss={['isLoading']}>loading</Button>
                 </div>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Drawer
                   isShow={this.state.drawerIsShow}
                   handleClose={() => this.setState({ drawerIsShow: false })}
@@ -316,7 +326,7 @@ class App extends Component {
                 </Button>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <SnackBar isShow={this.state.snackBarIsShow} timeout={5000} />
                 <Button
                   zcss={['primary']}
@@ -329,8 +339,8 @@ class App extends Component {
                 </Button>
               </div>
 
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <Popover isShow={this.state.popover} timeout={5000} />
                   <Button
                     zcss={['']}
@@ -340,7 +350,7 @@ class App extends Component {
                     Popover Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Popover isShow={this.state.popoverTop} timeout={5000} />
                   <Button
                     zcss={['primary']}
@@ -350,7 +360,7 @@ class App extends Component {
                     Top Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Popover isShow={this.state.popoverRight} timeout={5000} />
                   <Button
                     zcss={['danger']}
@@ -360,7 +370,7 @@ class App extends Component {
                     Right Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Popover isShow={this.state.popoverBottom} timeout={5000} />
                   <Button
                     zcss={['warning']}
@@ -372,7 +382,7 @@ class App extends Component {
                     Bottom Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Popover isShow={this.state.popoverLeft} timeout={5000} />
                   <Button
                     zcss={['success']}
@@ -384,8 +394,8 @@ class App extends Component {
                 </div>
               </div>
 
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <Tooltip isShow={this.state.tooltip} timeout={5000} />
                   <Button
                     zcss={['']}
@@ -395,7 +405,7 @@ class App extends Component {
                     Tooltip Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tooltip isShow={this.state.tooltipTop} timeout={5000} />
                   <Button
                     zcss={['primary']}
@@ -405,7 +415,7 @@ class App extends Component {
                     Top Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tooltip isShow={this.state.tooltipRight} timeout={5000} />
                   <Button
                     zcss={['danger']}
@@ -415,7 +425,7 @@ class App extends Component {
                     Right Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tooltip isShow={this.state.tooltipBottom} timeout={5000} />
                   <Button
                     zcss={['warning']}
@@ -427,7 +437,7 @@ class App extends Component {
                     Bottom Click!
                   </Button>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tooltip isShow={this.state.tooltipLeft} timeout={5000} />
                   <Button
                     zcss={['success']}
@@ -439,7 +449,7 @@ class App extends Component {
                 </div>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Modal
                   handleClose={() => this.setState({ openModal: false })}
                   action={[
@@ -467,7 +477,7 @@ class App extends Component {
                 </Button>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Input
                   zcss={[]}
                   placeholder="zetgoo"
@@ -476,7 +486,7 @@ class App extends Component {
                 />
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Input
                   zcss={['readonly']}
                   placeholder="read only"
@@ -486,7 +496,7 @@ class App extends Component {
                 />
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Input
                   zcss={['disabled']}
                   placeholder="disable"
@@ -495,7 +505,7 @@ class App extends Component {
                   disabled
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Input
                   zcss={['error']}
                   placeholder="input error"
@@ -503,7 +513,7 @@ class App extends Component {
                   onChange={(event, text) => this.setState({ inputText: text })}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <TextField
                   label="Username"
                   errors={[
@@ -516,7 +526,7 @@ class App extends Component {
                   type="text"
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <TextField
                   label="Password"
                   placeholder="password"
@@ -526,27 +536,27 @@ class App extends Component {
                   type="password"
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
                 <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
                 <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
                 <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
                 <Checkbox zcss={['']} label="zetgoo" name="zetgooCheckbox" />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
                 <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
                 <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
                 <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
                 <Radio zcss={['']} label="zetgoo" name="zetgooRadio" />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Video />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <ZCaptcha />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Tabs
                   index={this.state.tabIndex}
                   onChange={index => this.setState({ tabIndex: index })}
@@ -572,7 +582,7 @@ class App extends Component {
                   </Tab>
                 </Tabs>
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Select
                   options={[
                     { label: 'bl', value: 1 },
@@ -585,8 +595,8 @@ class App extends Component {
                   onChange={value => this.setState({ selectedValue: value })}
                 />
               </div>
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <Tag
                     zcss={['isSmall', 'success']}
                     text="zetgoo"
@@ -594,7 +604,7 @@ class App extends Component {
                     onClick={() => console.log('trainee')}
                   />
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tag
                     zcss={['isMedium', 'primary']}
                     text="zetgoo"
@@ -602,7 +612,7 @@ class App extends Component {
                     onClick={() => console.log('trainee')}
                   />
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Tag
                     zcss={['isLarge', 'cancel']}
                     text="zetgoo"
@@ -611,10 +621,10 @@ class App extends Component {
                   />
                 </div>
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Switch />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Columns xLargeCol={6} smallCol={1} gutter="10px">
                   <Column zcss={['bg_success']} xLargeCell={2} smallCell={1}>
                     First column
@@ -627,13 +637,13 @@ class App extends Component {
                   </Column>
                 </Columns>
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Icon zcss={['cl_primary']} icon="fa fa-home" text="zetgoo" />
                 <Icon zcss={['cl_success']} icon="fa fa-check" />
                 <Icon zcss={['cl_success']} icon="fa fa-check-circle" />
                 <Icon zcss={['cl_danger']} icon="fa fa-exclamation-circle" />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Avatar
                   image="https://placeimg.com/80/80/animals"
                   zcss={['isCircle']}
@@ -645,63 +655,63 @@ class App extends Component {
                 <Avatar text="BL" zcss={[]} />
               </div>
 
-              {/* <div className="row">
+              {/* <div style={rowStyle}>
               <Infinite/>
               </div> */}
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <Title zcss={['is1']}>Title 1</Title>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Title zcss={['is2']}>Title 2</Title>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Title zcss={['is3']}>Title 3</Title>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Title zcss={['is4']}>Title 4</Title>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Title zcss={['is5']}>Title 5</Title>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <Title zcss={['is6']}>Title 6</Title>
                 </div>
               </div>
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <SubTitle zcss={['is1']}>SubTitle 1</SubTitle>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <SubTitle zcss={['is2']}>SubTitle 2</SubTitle>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <SubTitle zcss={['is3']}>SubTitle 3</SubTitle>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <SubTitle zcss={['is4']}>SubTitle 4</SubTitle>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <SubTitle zcss={['is5']}>SubTitle 5</SubTitle>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <SubTitle zcss={['is6']}>SubTitle 6</SubTitle>
                 </div>
               </div>
 
-              <div className="row">
-                <div className="box">
+              <div style={rowStyle}>
+                <div style={boxStyle}>
                   <ControlLabel zcss={['f1e']}>ControlLabel</ControlLabel>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <ControlLabel zcss={['f2e']}>ControlLabel</ControlLabel>
                 </div>
-                <div className="box">
+                <div style={boxStyle}>
                   <ControlLabel zcss={['f3e']}>ControlLabel</ControlLabel>
                 </div>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Notification
                   zcss={['bg_danger']}
                   enableCloseButton
@@ -712,7 +722,7 @@ class App extends Component {
                 </Notification>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Columns xLargeCol={6} smallCol={1} gutter="10px">
                   <Column zcss={['']} xLargeCell={3} smallCell={1}>
                     <Addons hasAddonsRight>
@@ -739,7 +749,7 @@ class App extends Component {
                 </Columns>
               </div>
 
-              <div className="row">
+              <div style={rowStyle}>
                 <Form
                   schema={{
                     username: {
@@ -850,14 +860,14 @@ class App extends Component {
                   {/* <Button zcss={['cancel']} type = 'reset'>Reset</Button> */}
                 </Form>
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Box zcss={['bg_primary']}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Aenean efficitur sit amet massa fringilla egestas. Nullam
                   condimentum luctus turpis.
                 </Box>
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -867,7 +877,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -877,7 +887,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -887,7 +897,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -897,7 +907,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -907,7 +917,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -917,7 +927,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -927,7 +937,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -937,7 +947,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -947,7 +957,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -957,7 +967,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={['isCircle']}
                   src="http://placehold.it/480x480"
@@ -967,7 +977,7 @@ class App extends Component {
                   ratio={1}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -977,7 +987,7 @@ class App extends Component {
                   ratio={4 / 3}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -987,7 +997,7 @@ class App extends Component {
                   ratio={3 / 2}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -997,7 +1007,7 @@ class App extends Component {
                   ratio={16 / 9}
                 />
               </div>
-              <div className="row">
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -1007,10 +1017,10 @@ class App extends Component {
                   ratio={2}
                 />
               </div>
-              {/* <div className="row">
+              {/* <div style={rowStyle}>
                 <NavToggle/>
                 </div> */}
-              {/* <div className="row">
+              {/* <div style={rowStyle}>
                   <Columns xLargeCol = {4} largeCol = {3} mediumCol = {2} smallCol = {2}>
                   <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
                   <VictoryChart style={{

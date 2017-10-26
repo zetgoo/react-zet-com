@@ -115,10 +115,10 @@ Overlay.defaultProps = {
 };
 
 Overlay.propTypes = {
-  zcss: _propTypes2.default.array.isRequire,
-  children: _propTypes2.default.array.isRequire,
-  isOpen: _propTypes2.default.boolean.isRequire,
-  onClose: _propTypes2.default.func.isRequire
+  zcss: _propTypes2.default.array.isRequired,
+  children: _propTypes2.default.array.isRequired,
+  isOpen: _propTypes2.default.bool.isRequired,
+  onClose: _propTypes2.default.func.isRequired
 };
 
 exports.default = (0, _radium2.default)(Overlay);

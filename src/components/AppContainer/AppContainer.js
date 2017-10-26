@@ -12,12 +12,13 @@ const AppContainer = props => (
   </StyleRoot>
 );
 
-AppContainer.defaultProps = {
-  zcss: [],
-};
-
 AppContainer.propTypes = {
-  zcss: PropTypes.array.isRequired,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rules: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default AppContainer;
