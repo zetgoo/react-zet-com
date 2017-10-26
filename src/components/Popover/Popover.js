@@ -1,25 +1,21 @@
 import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
+import HOCPopover from './HOCPopover';
 
 const styles = {
   base: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    zIndex: 300,
+    position: 'relative',
     display: 'flex',
-    width: '100vw',
-    height: '100vh',
     flexDirection: 'column',
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
     pointerEvents: 'all',
   },
-
   content: {
+    position: 'absolute',
     opacity: 1,
     width: '50vw',
     display: 'flex',
@@ -33,66 +29,63 @@ const styles = {
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
     transitionProperty: 'opacity,transform',
-    zIndex: 1,
-  },
-
-  cover: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#000',
-    transitionDuration: '.35s',
-    transitionProperty: 'opacity',
-    opacity: '.6',
   },
 };
 
 const Popover = props => {
-  const zcss = [];
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
+
+  let container = null;
 
   const handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose();
+      props.onShow();
     }
   };
 
-  let container = null;
-
-  if (props.isOpen) {
+  if (props.isShow) {
     document.addEventListener('click', handleOutsideClick, false);
   } else {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return !props.isOpen ? null : (
+  return (
     <div style={styles.base}>
-      <div
-        style={styles.content}
-        ref={node => {
-          container = node;
-        }}
-      >
-        {props.children}
-      </div>
+      {React.cloneElement(props.zFront, { onClick: props.onShow })}
+      {props.isShow && (
+        <div
+          style={styles.content}
+          ref={node => {
+            container = node;
+          }}
+        >
+          {props.children}
+        </div>
+      )}
     </div>
   );
 };
 
-Popover.defaultProps = {
-  zcss: [],
-};
-
 Popover.propTypes = {
-  zcss: PropTypes.array.isRequired,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  isShow: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  zFront: PropTypes.node.isRequired,
 };
 
-export default Radium(Popover);
+const enhancePopover = HOCPopover(Popover);
+
+export default Radium(enhancePopover);

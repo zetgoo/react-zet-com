@@ -1,6 +1,5 @@
 import React from 'react';
 import Radium from 'radium';
-import ToggleLib from 'react-toggle';
 import PropTypes from 'prop-types';
 import { atomic } from '../constant';
 

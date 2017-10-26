@@ -312,18 +312,10 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <Drawer
-                  isShow={this.state.drawerIsShow}
-                  handleClose={() => this.setState({ drawerIsShow: false })}
+                  zFront={<Button zcss={['primary']}>Drawer Click!</Button>}
                 >
                   <LeftMenu />
                 </Drawer>
-                <Button
-                  zcss={['primary']}
-                  onClick={() =>
-                    this.setState({ drawerIsShow: !this.state.drawerIsShow })}
-                >
-                  Drawer Click!
-                </Button>
               </div>
 
               <div style={rowStyle}>
@@ -340,57 +332,83 @@ class App extends Component {
               </div>
 
               <div style={rowStyle}>
-                <div style={boxStyle}>
-                  <Popover isShow={this.state.popover} timeout={5000} />
-                  <Button
-                    zcss={['']}
-                    onClick={() =>
-                      this.setState({ popover: !this.state.popover })}
+                <div style={{ ...boxStyle, position: 'relative' }}>
+                  <Popover
+                    isShow={this.state.popover}
+                    timeout={5000}
+                    zFront={<Button zcss={['']}>Popover Click!</Button>}
                   >
-                    Popover Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Popover>
                 </div>
                 <div style={boxStyle}>
-                  <Popover isShow={this.state.popoverTop} timeout={5000} />
-                  <Button
-                    zcss={['primary']}
-                    onClick={() =>
-                      this.setState({ popoverTop: !this.state.popoverTop })}
+                  <Popover
+                    isShow={this.state.popoverTop}
+                    timeout={5000}
+                    zFront={
+                      <Button
+                        zcss={['']}
+                        onClick={() =>
+                          this.setState({ popover: !this.state.popover })}
+                      >
+                        Top Click!
+                      </Button>
+                    }
                   >
-                    Top Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Popover>
                 </div>
                 <div style={boxStyle}>
-                  <Popover isShow={this.state.popoverRight} timeout={5000} />
-                  <Button
-                    zcss={['danger']}
-                    onClick={() =>
-                      this.setState({ popoverRight: !this.state.popoverRight })}
+                  <Popover
+                    isShow={this.state.popoverRight}
+                    timeout={5000}
+                    zFront={
+                      <Button
+                        zcss={['']}
+                        onClick={() =>
+                          this.setState({ popover: !this.state.popover })}
+                      >
+                        Right Click!
+                      </Button>
+                    }
                   >
-                    Right Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Popover>
                 </div>
                 <div style={boxStyle}>
-                  <Popover isShow={this.state.popoverBottom} timeout={5000} />
-                  <Button
-                    zcss={['warning']}
-                    onClick={() =>
-                      this.setState({
-                        popoverBottom: !this.state.popoverBottom,
-                      })}
+                  <Popover
+                    isShow={this.state.popoverBottom}
+                    timeout={5000}
+                    zFront={
+                      <Button
+                        zcss={['']}
+                        onClick={() =>
+                          this.setState({ popover: !this.state.popover })}
+                      >
+                        Bottom Click!
+                      </Button>
+                    }
                   >
-                    Bottom Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Popover>
                 </div>
                 <div style={boxStyle}>
-                  <Popover isShow={this.state.popoverLeft} timeout={5000} />
-                  <Button
-                    zcss={['success']}
-                    onClick={() =>
-                      this.setState({ popoverLeft: !this.state.popoverLeft })}
+                  <Popover
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={
+                      <Button
+                        zcss={['']}
+                        onClick={() =>
+                          this.setState({ popover: !this.state.popover })}
+                      >
+                        Left Click!
+                      </Button>
+                    }
                   >
-                    Left Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Popover>
                 </div>
               </div>
 
@@ -451,7 +469,6 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <Modal
-                  handleClose={() => this.setState({ openModal: false })}
                   action={[
                     {
                       label: 'Cancel',
@@ -464,17 +481,11 @@ class App extends Component {
                       onClick: () => this.console('zetgoo'),
                     },
                   ]}
+                  zFront={<Button zcss={['success']}>Modal Click!</Button>}
                   title="Welcome to zetgoo"
                 >
                   <h2>Welcome to zetgoo</h2>
                 </Modal>
-                <Button
-                  zcss={['success']}
-                  onClick={() =>
-                    this.setState({ openModal: !this.state.openModal })}
-                >
-                  Modal Click!
-                </Button>
               </div>
 
               <div style={rowStyle}>
