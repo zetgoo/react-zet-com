@@ -49,7 +49,7 @@ const styles = {
   },
 };
 
-const Tooltip = (props) => {
+const Tooltip = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -58,7 +58,7 @@ const Tooltip = (props) => {
     });
   }
 
-  const handleOutsideClick = (e) => {
+  const handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
       props.onClose();
@@ -73,15 +73,18 @@ const Tooltip = (props) => {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return (!props.isOpen ? null : (
-    <div style = {styles.base} >
-      <div style = {styles.content} ref = {(node) => {
-            container = node;
-          }}>
+  return !props.isOpen ? null : (
+    <div style={styles.base}>
+      <div
+        style={styles.content}
+        ref={node => {
+          container = node;
+        }}
+      >
         {props.children}
       </div>
     </div>
-  ));
+  );
 };
 
 Tooltip.propTypes = {

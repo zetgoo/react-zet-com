@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
+import HOCOverlay from './HOCOverlay';
 
 const styles = {
   base: {
@@ -49,44 +50,63 @@ const styles = {
   },
 };
 
-const Overlay = (props) => {
-  const zcss = [];
+const Overlay = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
-  const handleOutsideClick = (e) => {
+  let container = null;
+
+  const handleOutsideClick = e => {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose();
+      props.onShow();
     }
   };
 
-  let container = null;
-
-  if (props.isOpen) {
+  if (props.isShow) {
     document.addEventListener('click', handleOutsideClick, false);
   } else {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return (!props.isOpen ? null : (
-    <div style = {styles.base} >
-      <div style = {styles.cover}></div>
-      <div style = {styles.content} ref = {(node) => {
-            container = node;
-          }}>
-        {props.children}
-      </div>
+  return (
+    <div>
+      {React.cloneElement(props.zFront, { onClick: props.onShow })}
+      {props.isShow && (
+        <div style={styles.base}>
+          <div style={styles.cover} />
+          <div
+            style={styles.content}
+            ref={node => {
+              container = node;
+            }}
+          >
+            {props.children}
+          </div>
+        </div>
+      )}
     </div>
-  ));
+  );
 };
 
 Overlay.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  isShow: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  zFront: PropTypes.node.isRequired,
 };
 
-export default Radium(Overlay);
+const enhanceOverlay = HOCOverlay(Overlay);
+
+export default Radium(enhanceOverlay);

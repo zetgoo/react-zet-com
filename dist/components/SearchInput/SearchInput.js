@@ -38,6 +38,8 @@ var _Icon2 = _interopRequireDefault(_Icon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     position: 'relative',
@@ -56,23 +58,29 @@ var styles = {
 var SearchInput = function SearchInput(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   var searchEnter = function searchEnter(e) {
-    if (e.which == 13 || e.keyCode == 13) {
-      e.preventDefault;
+    if (e.which === 13 || e.keyCode === 13) {
+      e.preventDefault();
       props.search();
     }
   };
 
   return _react2.default.createElement(
     'div',
-    _extends({}, props, { style: [styles.base].concat(zcss) }),
-    _react2.default.createElement(_Input2.default, { zcss: ['pdL2e'], placeholder: 'Search for products and resources', onKeyDown: searchEnter }),
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss)) }),
+    _react2.default.createElement(_Input2.default, {
+      zcss: ['pdL2e'],
+      placeholder: 'Search for products and resources',
+      onKeyDown: searchEnter
+    }),
     !props.isSearching && _react2.default.createElement('i', { style: styles.icon, className: 'fa fa-search' }),
     props.isSearching && _react2.default.createElement('i', { style: styles.icon, className: 'fa fa-spinner fa-spin' }),
     props.children
@@ -80,7 +88,10 @@ var SearchInput = function SearchInput(props) {
 };
 
 SearchInput.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  search: _propTypes2.default.func.isRequired,
+  isSearching: _propTypes2.default.bool.isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(SearchInput);

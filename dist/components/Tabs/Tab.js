@@ -24,27 +24,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var styles = {
   base: {
-    alignItems: 'center',
-    borderBottom: '1px solid #d3d6db',
-    color: '#69707a',
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: -1,
-    padding: '6px 12px',
-    verticalAlign: 'top'
+    padding: '1.7rem 1.2rem',
+    fontSize: '.75em',
+    fontWeight: 500,
+    lineHeight: 1,
+    color: 'rgba(0,0,0,.7)',
+    textTransform: 'uppercase',
+    transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+    transitionDuration: '.35s',
+    transitionProperty: 'box-shadow,color',
+    flex: 1,
+    textAlign: 'center',
+    cursor: 'pointer'
   },
   isActived: {
-    color: _constant.colors.success,
-    borderColor: _constant.colors.success
+    color: '#000'
   },
   disabled: {
-    opacity: .2
+    opacity: '.2',
+    cursor: 'default'
   }
 };
 
 var Tab = function Tab(props) {
   var zcss = [];
+
   if (props.zcss && Array.isArray(props.zcss)) {
+    if (props.isActived) {
+      props.zcss.push('isActived');
+    }
+    if (props.disabled) {
+      props.zcss.push('disabled');
+    }
     props.zcss.map(function (item, index) {
       zcss.push(styles[item]);
       zcss.push(_constant.atomic[item]);
@@ -57,7 +68,7 @@ var Tab = function Tab(props) {
 
   return _react2.default.createElement(
     'label',
-    _extends({}, props, { style: { display: 'flex', width: '20%' } }),
+    _extends({}, props, { style: [styles.base].concat(zcss) }),
     props.label
   );
 };

@@ -1,39 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
-    color: 'inherit',
     cursor: 'pointer',
     textDecoration: 'none',
     transition: 'none 86ms ease-out',
     ':hover': {
-      color: '#6bb551',
+      textDecoration: 'underline',
     },
     ':active': {
       color: '#6bb551',
     },
-
+  },
+  noUnder: {
+    ':hover': {
+      textDecoration: 'none',
+    },
   },
 };
 
 const isLeftClickEvent = event => event.button === 0;
 
-const isModifiedEvent = event => !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-
+const isModifiedEvent = event =>
+  !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 const Link = (props, context) => {
-  const zcss = [];
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
-  const handleClick = (event) => {
+  const handleClick = event => {
     if (props.onClick) {
       props.onClick(event);
     }
@@ -51,21 +56,30 @@ const Link = (props, context) => {
   };
 
   return (
-    <a href={props.to} {...props} onClick={handleClick} style={[
-        styles.base,
-        ...zcss,
-      ]}>
+    <a
+      href={props.to}
+      {...props}
+      onClick={handleClick}
+      style={[styles.base, ...zcss, props.style]}
+    >
       {props.children}
     </a>
   );
 };
 
-Link.propTypes = {
-  zcss: PropTypes.array,
-};
-
 Link.contextTypes = {
   history: PropTypes.object.isRequired,
+};
+
+Link.propTypes = {
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Link);

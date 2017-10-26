@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
-import ToggleLib from 'react-toggle';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 import Icon from '../Icon/Icon';
-import Link from '../Link/Link';
 
 const styles = {
   base: {
@@ -25,25 +23,33 @@ const styles = {
   },
 };
 
-const NavToggle = (props) => {
-  const zcss = [];
+const NavToggle = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <button style = {[styles.base]} onClick = {props.toggle}>
-      {!props.isActive && <Icon zcss = {['cl_success', 'f1r']} icon = 'fa fa-bars' text = 'ZetGoo'/>}
-      {props.isActive && <Icon zcss = {['cl_disable', 'f1r']} icon = 'fa fa-times'text = 'ZetGoo'/>}
+    <button style={[styles.base]} onClick={props.toggle}>
+      {!props.isActive && (
+        <Icon zcss={['cl_success', 'f1r']} icon="fa fa-bars" />
+      )}
+      {props.isActive && (
+        <Icon zcss={['cl_disable', 'f1r']} icon="fa fa-times" />
+      )}
     </button>
   );
 };
 
 NavToggle.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
 export default Radium(NavToggle);

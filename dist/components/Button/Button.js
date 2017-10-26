@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _base;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -24,10 +22,10 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var styles = {
-  base: (_base = {
+  base: {
     appearance: 'none',
     alignItems: 'center',
     borderStyle: 'solid',
@@ -37,7 +35,6 @@ var styles = {
     display: 'inline-flex',
     fontSize: '0.875em',
     height: '2.25em',
-    justifyContent: 'flex-start',
     lineHeight: 1.5,
     position: 'relative',
     verticalAlign: 'top',
@@ -46,20 +43,28 @@ var styles = {
     backgroundColor: 'white',
     borderColor: '#dbdbdb',
     color: '#222324',
-    cursor: 'pointer'
-  }, _defineProperty(_base, 'justifyContent', 'center'), _defineProperty(_base, 'paddingLeft', '0.75em'), _defineProperty(_base, 'paddingRight', '0.75em'), _defineProperty(_base, 'textAlign', 'center'), _defineProperty(_base, 'whiteSpace', 'nowrap'), _defineProperty(_base, ':hover', {
-    zIndex: 2,
-    borderColor: '#aeb1b5',
-    color: '#222324'
-  }), _defineProperty(_base, ':focus', {
-    borderColor: _constant.colors.success,
-    outline: 'none',
-    color: '#222324',
-    zIndex: 3
-  }), _defineProperty(_base, ':active', {
-    boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
-    zIndex: 4
-  }), _base),
+    cursor: 'pointer',
+    justifyContent: 'center',
+    paddingLeft: '0.75em',
+    paddingRight: '0.75em',
+    textAlign: 'center',
+    whiteSpace: 'nowrap',
+    ':hover': {
+      zIndex: 2,
+      borderColor: '#aeb1b5',
+      color: '#222324'
+    },
+    ':focus': {
+      borderColor: _constant.colors.success,
+      outline: 'none',
+      color: '#222324',
+      zIndex: 3
+    },
+    ':active': {
+      boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
+      zIndex: 4
+    }
+  },
 
   white: {
     backgroundColor: _constant.colors.no,
@@ -265,22 +270,29 @@ var styles = {
 var Button = function Button(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'button',
-    _extends({}, props, { style: [styles.base].concat(zcss)
-    }),
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) }),
     props.children
   );
 };
 
+Button.defaultProps = {
+  zcss: [],
+  style: {}
+};
+
 Button.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequired,
+  style: _propTypes2.default.object.isRequired
 };
 
 exports.default = (0, _radium2.default)(Button);

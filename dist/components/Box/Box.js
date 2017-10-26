@@ -18,8 +18,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _constant = require('../constant');
-
 var _Sack = require('../Sack/Sack');
 
 var _Sack2 = _interopRequireDefault(_Sack);
@@ -42,7 +40,8 @@ var Box = function Box(props) {
 };
 
 Box.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(Box);

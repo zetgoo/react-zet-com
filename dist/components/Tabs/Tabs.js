@@ -43,7 +43,7 @@ var styles = {
 var Tabs = function Tabs(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
+    props.zcss.map(function (item) {
       zcss.push(styles[item]);
       zcss.push(_constant.atomic[item]);
     });
@@ -53,9 +53,11 @@ var Tabs = function Tabs(props) {
     return _react2.default.Children.map(props.children, function (child, index) {
       if (child.type.displayName === 'Tab') {
         if (props.index === index) {
-          content = _react2.default.cloneElement(_react2.default.createElement('section', null), { children: child.props.children });
+          content = _react2.default.cloneElement(_react2.default.createElement('section', null), {
+            children: child.props.children
+          });
           return _react2.default.cloneElement(child, _extends({}, child.props, {
-            isActive: true,
+            isActived: true,
             onClick: function onClick() {
               return props.onChange(index);
             }
@@ -77,11 +79,17 @@ var Tabs = function Tabs(props) {
     { style: [styles.base].concat(zcss) },
     _react2.default.createElement(
       'div',
-      { style: { position: 'relative',
+      {
+        style: {
+          position: 'relative',
           display: 'inline-flex',
-          width: '100%' } },
+          width: '100%'
+        }
+      },
       htmlElement,
-      _react2.default.createElement('div', { style: { position: 'absolute',
+      _react2.default.createElement('div', {
+        style: {
+          position: 'absolute',
           bottom: 0,
           height: 2,
           backgroundColor: '#6bb551',
@@ -89,8 +97,9 @@ var Tabs = function Tabs(props) {
           transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
           transitionDuration: '.35s',
           transitionProperty: 'left,width',
-          width: '20%'
-        } })
+          width: 100 / props.children.length + '%'
+        }
+      })
     ),
     content
   );

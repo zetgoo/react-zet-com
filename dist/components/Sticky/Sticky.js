@@ -20,27 +20,34 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// http://rawgit.com/captivationsoftware/react-sticky/master/examples/stacked/index.html
 var styles = {
   base: {}
 };
 
-var AppBar = function AppBar(props) {
+var Sticky = function Sticky(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item) {
-      return zcss.concat(styles[item], _constant.atomic[item]);
+    props.zcss.map(function (item, index) {
+      zcss.push(styles[item]);
+      zcss.push(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
-    'header',
+    'span',
     null,
-    _react2.default.createElement('div', null)
+    _react2.default.createElement(
+      'p',
+      {
+        style: [] },
+      undefined.props.children
+    )
   );
 };
 
-AppBar.propTypes = {
-  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
+Sticky.propTypes = {
+  zcss: _propTypes2.default.array
 };
 
-exports.default = (0, _radium2.default)(AppBar);
+exports.default = (0, _radium2.default)(Sticky);

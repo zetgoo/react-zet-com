@@ -27,7 +27,7 @@ var styles = {
 var Video = function Video(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
+    props.zcss.map(function (item) {
       zcss.push(styles[item]);
       zcss.push(_constant.atomic[item]);
     });
@@ -35,18 +35,35 @@ var Video = function Video(props) {
 
   return _react2.default.createElement(
     'video',
-    { controls: true, style: 'width:640px;height:360px;', poster: 'https://www.html5rocks.com/en/tutorials/video/basics/poster.png' },
-    _react2.default.createElement('source', { src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm',
-      type: 'video/webm;codecs="vp8, vorbis"' }),
-    _react2.default.createElement('source', { src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4',
-      type: 'video/mp4;codecs="avc1.42E01E, mp4a.40.2"' }),
-    _react2.default.createElement('track', { src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt', label: 'English subtitles',
-      kind: 'subtitles', srclang: 'en', 'default': true })
+    {
+      controls: true,
+      style: 'width:640px;height:360px;',
+      poster: 'https://www.html5rocks.com/en/tutorials/video/basics/poster.png'
+    },
+    _react2.default.createElement('source', {
+      src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories.webm',
+      type: 'video/webm;codecs="vp8, vorbis"'
+    }),
+    _react2.default.createElement('source', {
+      src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories.mp4',
+      type: 'video/mp4;codecs="avc1.42E01E, mp4a.40.2"'
+    }),
+    _react2.default.createElement('track', {
+      src: 'https://www.html5rocks.com/en/tutorials/video/basics/devstories-en.vtt',
+      label: 'English subtitles',
+      kind: 'subtitles',
+      srcLang: 'en',
+      'default': true
+    })
   );
 };
 
+Video.defaultProps = {
+  zcss: []
+};
+
 Video.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequired
 };
 
 exports.default = (0, _radium2.default)(Video);

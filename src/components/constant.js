@@ -103,8 +103,8 @@ export const atomic = {
   mgL2e: { marginLeft: '2em' },
   mgL3e: { marginLeft: '3em' },
 
-
   // background color
+  bgInherit: { backgroundColor: 'inherit' },
   bg_primary: { backgroundColor: colors.primary },
   bg_success: { backgroundColor: colors.success },
   bg_disable: { backgroundColor: colors.disable },
@@ -112,6 +112,7 @@ export const atomic = {
   bg_danger: { backgroundColor: colors.danger },
   bg_warning: { backgroundColor: colors.warning },
   bg_cancel: { backgroundColor: colors.cancel },
+  bg_no: { backgroundColor: colors.no },
 
   // color
   cl_primary: { color: colors.primary },
@@ -122,9 +123,14 @@ export const atomic = {
   cl_warning: { color: colors.warning },
   cl_cancel: { color: colors.cancel },
 
+  // color: (value) => `cl_${value}`
+
   // border style
   bd_s_solid: { borderStyle: 'solid' },
   bd_s_none: { borderStyle: 'none' },
+
+  // box-shadow
+  bs_none: { boxShadow: 'none' },
 
   // border size
   bd_w_1: { borderWidth: 1 },
@@ -140,14 +146,26 @@ export const atomic = {
   bd_rBL_0: { borderBottomLeftRadius: 0 },
   bd_rTR_0: { borderTopRightRadius: 0 },
   bd_rBR_0: { borderBottomRightRadius: 0 },
-  bd_r_0: { borderRadius: 0 },
   bd_r_5: { borderRadius: 5 },
+  bd_rTL_5: { borderTopLeftRadius: 5 },
+  bd_rBL_5: { borderBottomLeftRadius: 5 },
+  bd_rTR_5: { borderTopRightRadius: 5 },
+  bd_rBR_5: { borderBottomRightRadius: 5 },
   bd_r_10: { borderRadius: 10 },
 
   // font size
+  'f.5r': { fontSize: '.5rem' },
+  'f.75r': { fontSize: '.75rem' },
+  'f.8125r': { fontSize: '.8125rem' },
+  'f.875r': { fontSize: '.875rem' },
   f1r: { fontSize: '1rem' },
   f2r: { fontSize: '2rem' },
   f3r: { fontSize: '3rem' },
+
+  'f.5e': { fontSize: '.5em' },
+  'f.75e': { fontSize: '.75em' },
+  'f.8125e': { fontSize: '.8125em' },
+  'f.875e': { fontSize: '.875em' },
   f1e: { fontSize: '1em' },
   f2e: { fontSize: '2em' },
   f3e: { fontSize: '3em' },
@@ -170,9 +188,18 @@ export const atomic = {
   dp_if: { display: 'inline-flex' },
   dp_n: { display: 'none' },
 
+  // justifyContent
   jc_st: { justifyContent: 'flex-start' },
   jc_ed: { justifyContent: 'flex-end' },
   jc_ct: { justifyContent: 'center' },
+
+  // width
+  wd_f: { width: '100%' },
+
+  // text-align
+  ta_l: { textAlign: 'left' },
+  ta_c: { textAlign: 'center' },
+  ta_r: { textAlign: 'right' },
 };
 
 // break pointer for responsive

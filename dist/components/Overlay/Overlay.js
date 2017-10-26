@@ -69,11 +69,13 @@ var styles = {
 var Overlay = function Overlay(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
+    props.zcss.map(function (item) {
       zcss.push(styles[item]);
       zcss.push(_constant.atomic[item]);
     });
   }
+
+  var container = null;
 
   var handleOutsideClick = function handleOutsideClick(e) {
     // ignore clicks on the component itself
@@ -81,8 +83,6 @@ var Overlay = function Overlay(props) {
       props.onClose();
     }
   };
-
-  var container = null;
 
   if (props.isOpen) {
     document.addEventListener('click', handleOutsideClick, false);
@@ -96,16 +96,29 @@ var Overlay = function Overlay(props) {
     _react2.default.createElement('div', { style: styles.cover }),
     _react2.default.createElement(
       'div',
-      { style: styles.content, ref: function ref(node) {
+      {
+        style: styles.content,
+        ref: function ref(node) {
           container = node;
-        } },
+        }
+      },
       props.children
     )
   );
 };
 
+Overlay.defaultProps = {
+  zcss: [],
+  children: [],
+  isOpen: false,
+  onClose: null
+};
+
 Overlay.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.array.isRequired,
+  children: _propTypes2.default.array.isRequired,
+  isOpen: _propTypes2.default.bool.isRequired,
+  onClose: _propTypes2.default.func.isRequired
 };
 
 exports.default = (0, _radium2.default)(Overlay);

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 import Overlay from '../../components/Overlay/Overlay';
-
 
 const styles = {
   base: {
@@ -22,7 +21,8 @@ const styles = {
     pointerEvents: 'all',
   },
   drawer: {
-    boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
+    boxShadow:
+      '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
     position: 'absolute',
     top: 0,
     display: 'block',
@@ -31,14 +31,11 @@ const styles = {
     overflowX: 'hidden',
     overflowY: 'auto',
     color: '#424242',
-    pointerEvents: 'none',
     backgroundColor: '#000',
     transitionDelay: '0s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
-    transitionProperty: '-webkit-transform',
     transitionProperty: 'transform',
-    transitionProperty: 'transform,-webkit-transform',
     transformStyle: 'preserve-3d',
     willChange: 'transform',
     left: 0,
@@ -61,31 +58,31 @@ const styles = {
   },
 };
 
-const Drawer = (props) => {
-  const zcss = [];
+const Drawer = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
-  if (!props.isShow) return null;
-
   return (
-    <div style = {[styles.base, ...zcss]}>
-      <Overlay isOpen = {props.isShow} onClose = {props.handleClose}>
-        <div style = {[styles.drawer, ...zcss]}>
-          {props.children}
-        </div>
-      </Overlay>
-    </div>
-
+    <Overlay zFront={props.zFront}>
+      <div style={[styles.drawer, ...zcss]}>{props.children}</div>
+    </Overlay>
   );
 };
 
 Drawer.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  zFront: PropTypes.node.isRequired,
 };
 
 export default Radium(Drawer);

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
-import ToggleLib from 'react-toggle';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -42,24 +41,31 @@ const styles = {
   },
 };
 
-const NavItem = (props) => {
-  const zcss = [];
+const NavItem = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <span style = {[styles.base, ...zcss]} onClick = {props.action}>
-        {props.children}
+    <span style={[styles.base, ...zcss]} onClick={props.action}>
+      {props.children}
     </span>
   );
 };
 
 NavItem.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  action: PropTypes.func.isRequired,
 };
 
 export default Radium(NavItem);
