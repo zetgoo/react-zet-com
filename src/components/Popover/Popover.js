@@ -17,10 +17,8 @@ const styles = {
   content: {
     position: 'absolute',
     opacity: 1,
-    width: '50vw',
+    width: '100%',
     display: 'flex',
-    maxWidth: '96vw',
-    maxHeight: '96vh',
     flexDirection: 'column',
     backgroundColor: '#fff',
     borderRadius: '.2rem',
@@ -29,6 +27,27 @@ const styles = {
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
     transitionProperty: 'opacity,transform',
+    zIndex: 99,
+  },
+  isTop: {
+    bottom: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  isRight: {
+    left: '100%',
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
+  isBottom: {
+    top: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  isLeft: {
+    right: '100%',
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
 };
 
@@ -63,7 +82,7 @@ const Popover = props => {
       {React.cloneElement(props.zFront, { onClick: props.onShow })}
       {props.isShow && (
         <div
-          style={styles.content}
+          style={[styles.content, ...zcss]}
           ref={node => {
             container = node;
           }}
@@ -82,10 +101,11 @@ Popover.propTypes = {
     PropTypes.node,
   ]).isRequired,
   isShow: PropTypes.bool.isRequired,
+
   onShow: PropTypes.func.isRequired,
   zFront: PropTypes.node.isRequired,
 };
 
-const enhancePopover = HOCPopover(Popover);
+// const enhancePopover = HOCPopover(Popover);
 
-export default Radium(enhancePopover);
+export default HOCPopover(Radium(Popover));

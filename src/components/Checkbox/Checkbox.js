@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -24,30 +24,32 @@ const styles = {
   },
 };
 
-const Checkbox = (props) => {
-  const zcss = [];
+const Checkbox = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <label style = {styles.base}>
-      <input type='checkbox' {...props} style={[
-          styles.control,
-          ...zcss,
-        ]}
-        />
-      <span style = {styles.label}>{props.label}</span>
+    <label style={styles.base}>
+      <input type="checkbox" {...props} style={[styles.control, ...zcss]} />
+      <span style={styles.label}>{props.label}</span>
     </label>
-
   );
 };
 
 Checkbox.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default Radium(Checkbox);

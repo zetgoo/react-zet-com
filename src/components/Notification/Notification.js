@@ -10,12 +10,10 @@ const styles = {
     color: colors.no,
     lineHeight: '1.428571428571429em',
     margin: 0,
-    padding: 0,
     border: 0,
     boxSizing: 'border-box',
     fontWeight: 'normal',
     verticalAlign: 'baseline',
-    backgroundColor: '#f5f7fa',
     borderRadius: 3,
     padding: '16px 20px',
     position: 'relative',
@@ -23,7 +21,6 @@ const styles = {
   buttonClose: {
     backgroundColor: 'red',
     border: 'none',
-    borderRadius: '290486px',
     cursor: 'pointer',
     display: 'inline-block',
     height: 24,
@@ -45,30 +42,29 @@ const styles = {
   },
 };
 
-const Notification = (props) => {
-  const zcss = [];
+const Notification = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <div style={[
-        styles.base,
-        ...zcss,
-      ]}>
-      {props.enableCloseButton
-        ? <button style={[
-          styles.buttonClose,
-          ...zcss,
-        ]}
-        {...props.closeButtonProps}>
-          <i className = 'fa fa-remove'/></button>
-        : null}
-        {props.children}
-      </div>
+    <div style={[styles.base, ...zcss]}>
+      {props.enableCloseButton ? (
+        <button
+          style={[styles.buttonClose, ...zcss]}
+          {...props.closeButtonProps}
+        >
+          <i className="fa fa-remove" />
+        </button>
+      ) : null}
+      {props.children}
+    </div>
   );
 };
 

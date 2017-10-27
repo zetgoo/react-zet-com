@@ -334,6 +334,7 @@ class App extends Component {
               <div style={rowStyle}>
                 <div style={{ ...boxStyle, position: 'relative' }}>
                   <Popover
+                    zcss={['']}
                     isShow={this.state.popover}
                     timeout={5000}
                     zFront={<Button zcss={['']}>Popover Click!</Button>}
@@ -343,6 +344,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isTop']}
                     isShow={this.state.popoverTop}
                     timeout={5000}
                     zFront={
@@ -360,6 +362,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isRight']}
                     isShow={this.state.popoverRight}
                     timeout={5000}
                     zFront={
@@ -377,6 +380,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isBottom']}
                     isShow={this.state.popoverBottom}
                     timeout={5000}
                     zFront={
@@ -394,6 +398,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isLeft']}
                     isShow={this.state.popoverLeft}
                     timeout={5000}
                     onClose={() => this.setState({ popoverLeft: false })}

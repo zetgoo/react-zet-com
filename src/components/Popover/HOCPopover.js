@@ -1,7 +1,7 @@
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 const HOCPopover = Popover => {
-  class Enhancer extends Component {
+  class Enhancer extends PureComponent {
     constructor() {
       super();
       this.state = { isShow: false };
