@@ -12,10 +12,6 @@ var _radium = require('radium');
 
 var _radium2 = _interopRequireDefault(_radium);
 
-var _reactToggle = require('react-toggle');
-
-var _reactToggle2 = _interopRequireDefault(_reactToggle);
-
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -25,10 +21,6 @@ var _constant = require('../constant');
 var _Icon = require('../Icon/Icon');
 
 var _Icon2 = _interopRequireDefault(_Icon);
-
-var _Link = require('../Link/Link');
-
-var _Link2 = _interopRequireDefault(_Link);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54,22 +46,26 @@ var styles = {
 var NavToggle = function NavToggle(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'button',
-    { style: [styles.base], onClick: props.toggle },
-    !props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'f1r'], icon: 'fa fa-bars', text: 'ZetGoo' }),
-    props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_disable', 'f1r'], icon: 'fa fa-times', text: 'ZetGoo' })
+    { style: [styles.base], onClick: props.onClick },
+    !props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'f1r'], icon: 'fa fa-bars' }),
+    props.isActive && _react2.default.createElement(_Icon2.default, { zcss: ['cl_disable', 'f1r'], icon: 'fa fa-times' })
   );
 };
 
 NavToggle.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  isActive: _propTypes2.default.bool.isRequired,
+  onClick: _propTypes2.default.func.isRequired
 };
 
 exports.default = (0, _radium2.default)(NavToggle);

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -25,7 +25,7 @@ const Icon = props => {
   }
 
   return (
-    <span style={[styles.base, ...zcss]}>
+    <span style={[styles.base, ...zcss]} onClick={props.onClick}>
       <i className={props.icon} style={[styles.icon, ...zcss]} />
       {props.text &&
         props.text.length !== 0 && (
@@ -39,6 +39,7 @@ Icon.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Radium(Icon);

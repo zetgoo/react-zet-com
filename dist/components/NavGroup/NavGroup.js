@@ -12,10 +12,6 @@ var _radium = require('radium');
 
 var _radium2 = _interopRequireDefault(_radium);
 
-var _reactToggle = require('react-toggle');
-
-var _reactToggle2 = _interopRequireDefault(_reactToggle);
-
 var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -23,6 +19,8 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var styles = {
   base: {
@@ -44,7 +42,8 @@ var styles = {
       backgroundColor: '#fff',
       left: 0,
       right: 0,
-      top: '100%'
+      top: '100%',
+      width: '100vh'
     }
   },
   menuHide: {
@@ -66,21 +65,24 @@ var styles = {
 var NavGroup = function NavGroup(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
-
+  console.log('ddk');
   return _react2.default.createElement(
     'div',
-    { style: [styles.base].concat(zcss) },
+    { style: [styles.base].concat(_toConsumableArray(zcss)) },
     props.children
   );
 };
 
 NavGroup.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(NavGroup);

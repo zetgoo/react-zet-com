@@ -264,14 +264,13 @@ const Button = props => {
   );
 };
 
-Button.defaultProps = {
-  zcss: [],
-  style: {},
-};
-
 Button.propTypes = {
-  zcss: PropTypes.array.isRequired,
-  style: PropTypes.object.isRequired,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Button);

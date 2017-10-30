@@ -22,6 +22,8 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     textRendering: 'optimizeLegibility',
@@ -61,22 +63,30 @@ var styles = {
 var Image = function Image(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'figure',
-    _extends({}, props, { style: [styles.base, { maxWidth: props.width, height: props.width / props.ratio }]
+    _extends({}, props, {
+      style: [styles.base, { maxWidth: props.width, height: props.width / props.ratio }]
     }),
-    _react2.default.createElement('img', { style: [styles.image].concat(zcss), src: props.src, alt: props.alt })
+    _react2.default.createElement('img', { style: [styles.image].concat(_toConsumableArray(zcss)), src: props.src, alt: props.alt })
   );
 };
 
 Image.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  width: _propTypes2.default.number.isRequired,
+  height: _propTypes2.default.number.isRequired,
+  ratio: _propTypes2.default.number.isRequired,
+  alt: _propTypes2.default.string.isRequired,
+  src: _propTypes2.default.string.isRequired
 };
 
 exports.default = (0, _radium2.default)(Image);

@@ -109,6 +109,7 @@ var atomic = exports.atomic = {
   mgL3e: { marginLeft: '3em' },
 
   // background color
+  bgInherit: { backgroundColor: 'inherit' },
   bg_primary: { backgroundColor: colors.primary },
   bg_success: { backgroundColor: colors.success },
   bg_disable: { backgroundColor: colors.disable },
@@ -127,9 +128,14 @@ var atomic = exports.atomic = {
   cl_warning: { color: colors.warning },
   cl_cancel: { color: colors.cancel },
 
+  // color: (value) => `cl_${value}`
+
   // border style
   bd_s_solid: { borderStyle: 'solid' },
   bd_s_none: { borderStyle: 'none' },
+
+  // box-shadow
+  bs_none: { boxShadow: 'none' },
 
   // border size
   bd_w_1: { borderWidth: 1 },
@@ -155,6 +161,7 @@ var atomic = exports.atomic = {
   // font size
   'f.5r': { fontSize: '.5rem' },
   'f.75r': { fontSize: '.75rem' },
+  'f.8125r': { fontSize: '.8125rem' },
   'f.875r': { fontSize: '.875rem' },
   f1r: { fontSize: '1rem' },
   f2r: { fontSize: '2rem' },
@@ -162,6 +169,7 @@ var atomic = exports.atomic = {
 
   'f.5e': { fontSize: '.5em' },
   'f.75e': { fontSize: '.75em' },
+  'f.8125e': { fontSize: '.8125em' },
   'f.875e': { fontSize: '.875em' },
   f1e: { fontSize: '1em' },
   f2e: { fontSize: '2em' },
@@ -192,6 +200,7 @@ var atomic = exports.atomic = {
 
   // width
   wd_f: { width: '100%' },
+  wd_fs: { width: '100vh' },
 
   // text-align
   ta_l: { textAlign: 'left' },

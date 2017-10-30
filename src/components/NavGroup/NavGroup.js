@@ -24,6 +24,7 @@ const styles = {
       left: 0,
       right: 0,
       top: '100%',
+      width: '100vh',
     },
   },
   menuHide: {
@@ -52,7 +53,7 @@ const NavGroup = props => {
       return zcss.concat(atomic[item]);
     });
   }
-
+  console.log('ddk');
   return <div style={[styles.base, ...zcss]}>{props.children}</div>;
 };
 

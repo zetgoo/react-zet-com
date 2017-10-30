@@ -1,7 +1,8 @@
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
+import Radium from 'radium';
 
 const HOCOverlay = Overlay => {
-  class Enhancer extends Component {
+  class Enhancer extends PureComponent {
     constructor() {
       super();
       this.state = { isShow: false };
@@ -19,6 +20,6 @@ const HOCOverlay = Overlay => {
       );
     }
   }
-  return Enhancer;
+  return Radium(Enhancer);
 };
 export default HOCOverlay;

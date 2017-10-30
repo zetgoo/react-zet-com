@@ -11,12 +11,17 @@ import Icon from '../../components/Icon/Icon';
 import Logo from '../../components/Logo/Logo';
 import Link from '../../components/Link/Link';
 import Avatar from '../../components/Avatar/Avatar';
+import Popover from '../../components/Popover/Popover';
 import SearchInput from '../../components/SearchInput/SearchInput';
+import Sack from '../../components/Sack/Sack';
+import ControlLabel from '../../components/ControlLabel/ControlLabel';
+import Button from '../../components/Button/Button';
 
 const styles = {
   base: {
     backgroundColor: '#fff',
     color: 'rgba(0,0,0,0.86)',
+    cursor: 'pointer',
   },
 };
 
@@ -34,7 +39,31 @@ const Header = props => {
   return (
     <header style={[styles.base, ...zcss, props.style]}>
       <Nav>
-        <NavToggle isActive={props.isActive} toggle={props.toogleClick} />
+        <Popover
+          zcss={['isBottom']}
+          style={{ left: 0 }}
+          zFront={
+            <NavToggle isActive={props.isActive} toggle={props.toogleClick} />
+          }
+        >
+          <NavGroup zcss={['menu', 'jc_ct']}>
+            {props.menu &&
+              props.menu.map(item => (
+                <NavItem zcss={[...item.zcss, 'menu']}>
+                  <Link
+                    zcss={['noUnder']}
+                    style={{
+                      color: 'rgba(0,0,0,0.86)',
+                    }}
+                    to={item.to}
+                  >
+                    {item.text}
+                  </Link>
+                </NavItem>
+              ))}
+          </NavGroup>
+        </Popover>
+
         <NavGroup zcss={[]}>
           <NavItem zcss={['logo']}>
             <Logo />
@@ -44,7 +73,8 @@ const Header = props => {
             />
           </NavItem>
         </NavGroup>
-        <NavGroup zcss={['menu', 'jc_ct', !props.isActive ? 'menuHide' : '']}>
+
+        <NavGroup zcss={['jc_ct', 'menuHide']}>
           {props.menu &&
             props.menu.map(item => (
               <NavItem zcss={[...item.zcss, 'menu']}>
@@ -60,6 +90,7 @@ const Header = props => {
               </NavItem>
             ))}
         </NavGroup>
+
         {!props.userLogined && (
           <NavGroup zcss={['menu', !props.isActive ? 'menuHide' : '']}>
             {props.menu &&
@@ -80,19 +111,55 @@ const Header = props => {
         )}
         {props.userLogined && (
           <NavGroup zcss={['icon']}>
-            <NavItem zcss={['icon']}>
-              {props.iconMenuUser &&
-                props.iconMenuUser.map(item => (
-                  <Icon
-                    zcss={[...item.zcss, 'mgL1e']}
-                    icon={item.icon}
-                    onClick={item.action}
-                  />
-                ))}
-            </NavItem>
-            <NavItem zcss={['avatar']}>
-              <Avatar zcss={['isCircle']} image={props.userLogined.avatar} />
-            </NavItem>
+            {props.iconMenuUser &&
+              props.iconMenuUser.map(item => {
+                if (item.type === 'popover') {
+                  return (
+                    <Popover
+                      zcss={['isBottom']}
+                      style={{ right: '.75em' }}
+                      zFront={
+                        <NavItem zcss={['icon']}>
+                          <Icon {...item} zcss={[...item.zcss]} />
+                        </NavItem>
+                      }
+                    >
+                      {item.zBack}
+                    </Popover>
+                  );
+                } else if (item.type === 'action') {
+                  return (
+                    <NavItem zcss={['icon']}>
+                      <Icon {...item} zcss={[...item.zcss]} />
+                    </NavItem>
+                  );
+                }
+                return (
+                  <NavItem zcss={['icon']}>
+                    <Link
+                      to={item.link}
+                      zcss={['noUnder']}
+                      style={{
+                        color: 'rgba(0,0,0,0.86)',
+                      }}
+                    >
+                      <Icon {...item} zcss={[...item.zcss]} />
+                    </Link>
+                  </NavItem>
+                );
+              })}
+
+            <Popover
+              zcss={['isBottom']}
+              style={{ right: 0 }}
+              zFront={
+                <NavItem zcss={['avatar']}>
+                  <Avatar zcss={['isCircle']} src={props.userLogined.avatar} />
+                </NavItem>
+              }
+            >
+              {props.zBackUser}
+            </Popover>
           </NavGroup>
         )}
       </Nav>
@@ -113,6 +180,7 @@ Header.propTypes = {
   isActive: PropTypes.bool.isRequired,
   isSearching: PropTypes.bool.isRequired,
   toogleClick: PropTypes.func.isRequired,
+  zBackUser: PropTypes.node.isRequired,
 };
 
 export default Radium(Header);

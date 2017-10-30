@@ -14,10 +14,6 @@ const styles = {
     verticalAlign: 'baseline',
     display: 'flex',
     alignItems: 'center',
-    '@media (max-width: 575px)': {
-      width: '100%',
-      padding: '0px 5px',
-    },
   },
   logo: {
     width: '100%',
@@ -53,7 +49,7 @@ const NavItem = props => {
   }
 
   return (
-    <span style={[styles.base, ...zcss]} onClick={props.action}>
+    <span {...props} style={[styles.base, ...zcss, props.style]}>
       {props.children}
     </span>
   );
@@ -61,6 +57,7 @@ const NavItem = props => {
 
 NavItem.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.object.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

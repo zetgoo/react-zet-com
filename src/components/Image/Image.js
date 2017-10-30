@@ -39,28 +39,37 @@ const styles = {
   },
 };
 
-const Image = (props) => {
-  const zcss = [];
+const Image = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <figure {...props} style={[
+    <figure
+      {...props}
+      style={[
         styles.base,
-        { maxWidth: props.width, height: (props.width / props.ratio) },
+        { maxWidth: props.width, height: props.width / props.ratio },
       ]}
-      >
-      <img style = {[styles.image, ...zcss]} src={props.src} alt={props.alt} />
+    >
+      <img style={[styles.image, ...zcss]} src={props.src} alt={props.alt} />
     </figure>
   );
 };
 
 Image.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  ratio: PropTypes.number.isRequired,
+  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default Radium(Image);

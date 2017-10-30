@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Router from 'universal-router';
 import AppContainer from './components/AppContainer';
 import Button from './components/Button';
+import Link from './components/Link';
 import Input from './components/Input';
 import Checkbox from './components/Checkbox';
 import Radio from './components/Radio';
@@ -23,6 +24,7 @@ import Notification from './components/Notification';
 import Form from './components/Form';
 import FormGroup from './components/FormGroup';
 import Box from './components/Box';
+import Sack from './components/Sack';
 import Container from './components/Container';
 import Drawer from './components/Drawer';
 import SnackBar from './components/SnackBar';
@@ -94,6 +96,12 @@ class App extends Component {
       tooltipRight: false,
       tooltipBottom: false,
       tooltipLeft: false,
+      notifications: [
+        { content: '', link: '/a' },
+        { content: '', link: '/b' },
+        { content: '', link: '/c' },
+        { content: '', link: '/d' },
+      ],
     };
   }
 
@@ -144,17 +152,33 @@ class App extends Component {
               this.setState({ isSearching: !this.state.isSearching })}
             toogleClick={() =>
               this.setState({ toggleActive: !this.state.toggleActive })}
+            zBackUser={
+              <Sack zcss={['mg1e', 'ta_l']} style={{ width: 220 }}>
+                <ControlLabel zcss={['f1e']}>Ballard</ControlLabel>
+                <Link to="profile">
+                  <Icon zcss={['']} icon="fa fa-user" text="Setting" />
+                </Link>
+                <Sack>
+                  <Button
+                    zcss={['danger']}
+                    onClick={() => console.log('logout')}
+                  >
+                    Logout
+                  </Button>
+                </Sack>
+              </Sack>
+            }
             menu={[
               {
                 icon: 'fa fa-home',
-                text: 'Menu',
-                to: '/',
+                text: 'Create Project',
+                to: '/project/create',
                 zcss: [''],
               },
               {
                 icon: 'fa fa-user-circle',
-                text: 'Login',
-                to: '/login',
+                text: 'Document',
+                to: '/document',
                 zcss: [''],
               },
             ]}
@@ -173,17 +197,50 @@ class App extends Component {
               },
             ]}
             iconMenuUser={[
+              // {
+              //   type: 'link',
+              //   icon: 'fa fa-plus',
+              //   text: 'Create Project',
+              //   link: '/project/create',
+              //   zcss: ['f.8125r'],
+              // },
               {
-                icon: 'fa fa-search',
+                type: 'action',
+                icon: 'fa fa-plus',
                 text: '',
-                action: this.showNotify,
+                onClick: () => console.log('Zetgoo'),
                 zcss: ['f.8125r'],
               },
               {
+                type: 'popover',
                 icon: 'fa fa-bell',
                 text: '',
-                action: this.showNotify,
                 zcss: ['f.8125r'],
+                zBack: (
+                  <Sack zcss={['mg1e', 'ta_l']} style={{ width: 220 }}>
+                    <Sack zcss={['dp_ib']}>
+                      <ControlLabel zcss={['f1e', 'dp_ib']}>
+                        Notifications
+                      </ControlLabel>
+                      <Button zcss={['isLink', 'dp_ib', 'fr']}>
+                        Mark all as read
+                      </Button>
+                    </Sack>
+                    <Sack>
+                      {this.state.notifications.map(item => (
+                        <Link to={item.link} zcss={['dp_b']}>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </Link>
+                      ))}
+                    </Sack>
+                    <Sack>
+                      <Link to="/notifications">
+                        <Button zcss={['isLink']}>see all</Button>
+                      </Link>
+                    </Sack>
+                  </Sack>
+                ),
               },
             ]}
           />
@@ -334,8 +391,8 @@ class App extends Component {
               <div style={rowStyle}>
                 <div style={{ ...boxStyle, position: 'relative' }}>
                   <Popover
+                    zcss={['']}
                     isShow={this.state.popover}
-                    timeout={5000}
                     zFront={<Button zcss={['']}>Popover Click!</Button>}
                   >
                     <h3>Zetgoo</h3>
@@ -343,8 +400,8 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isTop']}
                     isShow={this.state.popoverTop}
-                    timeout={5000}
                     zFront={
                       <Button
                         zcss={['']}
@@ -355,11 +412,12 @@ class App extends Component {
                       </Button>
                     }
                   >
-                    <h3>Zetgoo</h3>
+                    <div>Zetgoo jdlkfe dklje fkdjlsei dlkfjsl</div>
                   </Popover>
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isRight']}
                     isShow={this.state.popoverRight}
                     timeout={5000}
                     zFront={
@@ -377,6 +435,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isBottom']}
                     isShow={this.state.popoverBottom}
                     timeout={5000}
                     zFront={
@@ -394,6 +453,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isLeft']}
                     isShow={this.state.popoverLeft}
                     timeout={5000}
                     onClose={() => this.setState({ popoverLeft: false })}
@@ -414,56 +474,59 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltip} timeout={5000} />
-                  <Button
+                  <Tooltip
                     zcss={['']}
-                    onClick={() =>
-                      this.setState({ tooltip: !this.state.tooltip })}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Hover!</Button>}
                   >
-                    Tooltip Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipTop} timeout={5000} />
-                  <Button
-                    zcss={['primary']}
-                    onClick={() =>
-                      this.setState({ tooltipTop: !this.state.tooltipTop })}
+                  <Tooltip
+                    zcss={['isTop']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Top Hover!</Button>}
                   >
-                    Top Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipRight} timeout={5000} />
-                  <Button
-                    zcss={['danger']}
-                    onClick={() =>
-                      this.setState({ tooltipRight: !this.state.tooltipRight })}
+                  <Tooltip
+                    zcss={['isRight']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Right Hover!</Button>}
                   >
-                    Right Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipBottom} timeout={5000} />
-                  <Button
-                    zcss={['warning']}
-                    onClick={() =>
-                      this.setState({
-                        tooltipBottom: !this.state.tooltipBottom,
-                      })}
+                  <Tooltip
+                    zcss={['isBottom']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Bottom Hover!</Button>}
                   >
-                    Bottom Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipLeft} timeout={5000} />
-                  <Button
-                    zcss={['success']}
-                    onClick={() =>
-                      this.setState({ tooltipLeft: !this.state.tooltipLeft })}
+                  <Tooltip
+                    zcss={['isLeft']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Left Hover!</Button>}
                   >
-                    Left Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
               </div>
 
@@ -661,7 +724,7 @@ class App extends Component {
                 />
                 <Avatar icon="fa fa-play-circle-o" zcss={['isCircle']} />
                 <Avatar text="BL" zcss={['isCircle']} />
-                <Avatar image="https://placeimg.com/80/80/animals" zcss={[]} />
+                <Avatar src="https://placeimg.com/80/80/animals" zcss={[]} />
                 <Avatar icon="fa fa-play-circle-o" zcss={[]} />
                 <Avatar text="BL" zcss={[]} />
               </div>

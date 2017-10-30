@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
-
-import MenuLabel from '../../components/MenuLabel/MenuLabel';
-import MenuItem from '../../components/MenuItem/MenuItem';
-import MenuGroup from '../../components/MenuGroup/MenuGroup';
-import Link from '../../components/Link/Link';
-import Icon from '../../components/Icon/Icon';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -16,33 +10,34 @@ const styles = {
     listStyle: 'none',
     margin: 0,
     color: '#fff',
-    backgroundColor: '#222d32',
+    backgroundColor: '#f6f9fa',
     fontSize: 18,
   },
 };
 
-const Menu = (props) => {
-  const zcss = [];
+const Menu = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
-
   return (
-  <aside style={[
-      styles.base,
-      ...zcss,
-    ]}>
-    {props.children}
-  </aside>
+    <aside style={[styles.base, ...zcss, props.style]}>{props.children}</aside>
   );
 };
 
 Menu.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(Menu);

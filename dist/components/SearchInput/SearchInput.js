@@ -44,14 +44,16 @@ var styles = {
   base: {
     position: 'relative',
     marginLeft: '1em',
-    width: '60%'
+    width: '100%',
+    backgroundColor: '#f6f6f6'
   },
   icon: {
     position: 'absolute',
-    top: 7,
+    top: 9,
     pointerEvents: 'none',
     left: 7,
-    zIndex: 4
+    zIndex: 4,
+    fontSize: '.8125em'
   }
 };
 
@@ -77,7 +79,7 @@ var SearchInput = function SearchInput(props) {
     'div',
     _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss)) }),
     _react2.default.createElement(_Input2.default, {
-      zcss: ['pdL2e'],
+      zcss: ['pdL2e', 'bd_s_none', 'bs_none', 'bgInherit'],
       placeholder: 'Search for products and resources',
       onKeyDown: searchEnter
     }),
