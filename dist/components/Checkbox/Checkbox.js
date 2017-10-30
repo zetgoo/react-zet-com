@@ -22,6 +22,8 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     color: '#69707a',
@@ -46,17 +48,18 @@ var styles = {
 var Checkbox = function Checkbox(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'label',
     { style: styles.base },
-    _react2.default.createElement('input', _extends({ type: 'checkbox' }, props, { style: [styles.control].concat(zcss)
-    })),
+    _react2.default.createElement('input', _extends({ type: 'checkbox' }, props, { style: [styles.control].concat(_toConsumableArray(zcss)) })),
     _react2.default.createElement(
       'span',
       { style: styles.label },
@@ -66,7 +69,9 @@ var Checkbox = function Checkbox(props) {
 };
 
 Checkbox.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
+  label: _propTypes2.default.string.isRequired
 };
 
 exports.default = (0, _radium2.default)(Checkbox);

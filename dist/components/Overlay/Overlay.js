@@ -18,6 +18,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _constant = require('../constant');
 
+var _HOCOverlay = require('./HOCOverlay');
+
+var _HOCOverlay2 = _interopRequireDefault(_HOCOverlay);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
@@ -69,9 +73,11 @@ var styles = {
 var Overlay = function Overlay(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
@@ -80,45 +86,46 @@ var Overlay = function Overlay(props) {
   var handleOutsideClick = function handleOutsideClick(e) {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose();
+      props.onShow();
     }
   };
 
-  if (props.isOpen) {
+  if (props.isShow) {
     document.addEventListener('click', handleOutsideClick, false);
   } else {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return !props.isOpen ? null : _react2.default.createElement(
+  return _react2.default.createElement(
     'div',
-    { style: styles.base },
-    _react2.default.createElement('div', { style: styles.cover }),
-    _react2.default.createElement(
+    null,
+    _react2.default.cloneElement(props.zFront, { onClick: props.onShow }),
+    props.isShow && _react2.default.createElement(
       'div',
-      {
-        style: styles.content,
-        ref: function ref(node) {
-          container = node;
-        }
-      },
-      props.children
+      { style: styles.base },
+      _react2.default.createElement('div', { style: styles.cover }),
+      _react2.default.createElement(
+        'div',
+        {
+          style: styles.content,
+          ref: function ref(node) {
+            container = node;
+          }
+        },
+        props.children
+      )
     )
   );
 };
 
-Overlay.defaultProps = {
-  zcss: [],
-  children: [],
-  isOpen: false,
-  onClose: null
-};
-
 Overlay.propTypes = {
-  zcss: _propTypes2.default.array.isRequired,
-  children: _propTypes2.default.array.isRequired,
-  isOpen: _propTypes2.default.bool.isRequired,
-  onClose: _propTypes2.default.func.isRequired
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
+  isShow: _propTypes2.default.bool.isRequired,
+  onShow: _propTypes2.default.func.isRequired,
+  zFront: _propTypes2.default.node.isRequired
 };
 
-exports.default = (0, _radium2.default)(Overlay);
+var enhanceOverlay = (0, _HOCOverlay2.default)(Overlay);
+
+exports.default = (0, _radium2.default)(enhanceOverlay);

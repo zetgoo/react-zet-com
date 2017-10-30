@@ -195,6 +195,7 @@ export const atomic = {
 
   // width
   wd_f: { width: '100%' },
+  wd_fs: { width: '100vh' },
 
   // text-align
   ta_l: { textAlign: 'left' },

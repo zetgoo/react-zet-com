@@ -4,8 +4,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _drawer;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -26,7 +24,7 @@ var _Overlay2 = _interopRequireDefault(_Overlay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 var styles = {
   base: {
@@ -43,7 +41,7 @@ var styles = {
     justifyContent: 'center',
     pointerEvents: 'all'
   },
-  drawer: (_drawer = {
+  drawer: {
     boxShadow: '0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)',
     position: 'absolute',
     top: 0,
@@ -53,13 +51,19 @@ var styles = {
     overflowX: 'hidden',
     overflowY: 'auto',
     color: '#424242',
-    pointerEvents: 'none',
     backgroundColor: '#000',
     transitionDelay: '0s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
-    transitionProperty: '-webkit-transform'
-  }, _defineProperty(_drawer, 'transitionProperty', 'transform'), _defineProperty(_drawer, 'transitionProperty', 'transform,-webkit-transform'), _defineProperty(_drawer, 'transformStyle', 'preserve-3d'), _defineProperty(_drawer, 'willChange', 'transform'), _defineProperty(_drawer, 'left', 0), _defineProperty(_drawer, 'borderRight', '1px solid #e0e0e0'), _defineProperty(_drawer, 'pointerEvents', 'all'), _defineProperty(_drawer, 'transform', 'translateX(0)'), _defineProperty(_drawer, 'zIndex', 2), _drawer),
+    transitionProperty: 'transform',
+    transformStyle: 'preserve-3d',
+    willChange: 'transform',
+    left: 0,
+    borderRight: '1px solid #e0e0e0',
+    pointerEvents: 'all',
+    transform: 'translateX(0)',
+    zIndex: 2
+  },
   cover: {
     position: 'absolute',
     top: 0,
@@ -77,31 +81,29 @@ var styles = {
 var Drawer = function Drawer(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
-  if (!props.isShow) return null;
-
   return _react2.default.createElement(
-    'div',
-    { style: [styles.base].concat(zcss) },
+    _Overlay2.default,
+    { zFront: props.zFront },
     _react2.default.createElement(
-      _Overlay2.default,
-      { isOpen: props.isShow, onClose: props.handleClose },
-      _react2.default.createElement(
-        'div',
-        { style: [styles.drawer].concat(zcss) },
-        props.children
-      )
+      'div',
+      { style: [styles.drawer].concat(_toConsumableArray(zcss)) },
+      props.children
     )
   );
 };
 
 Drawer.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
+  zFront: _propTypes2.default.node.isRequired
 };
 
 exports.default = (0, _radium2.default)(Drawer);

@@ -109,7 +109,7 @@ var CardTitle = function CardTitle(props) {
   return _react2.default.createElement(
     'div',
     null,
-    typeof avatar === 'string' ? _react2.default.createElement(Avatar, { image: avatar, theme: theme }) : avatar,
+    typeof avatar === 'string' ? _react2.default.createElement(Avatar, { src: avatar, theme: theme }) : avatar,
     _react2.default.createElement(
       'div',
       null,

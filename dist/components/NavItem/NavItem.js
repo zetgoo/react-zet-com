@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -11,10 +13,6 @@ var _react2 = _interopRequireDefault(_react);
 var _radium = require('radium');
 
 var _radium2 = _interopRequireDefault(_radium);
-
-var _reactToggle = require('react-toggle');
-
-var _reactToggle2 = _interopRequireDefault(_reactToggle);
 
 var _propTypes = require('prop-types');
 
@@ -36,11 +34,7 @@ var styles = {
     fontWeight: 'normal',
     verticalAlign: 'baseline',
     display: 'flex',
-    alignItems: 'center',
-    '@media (max-width: 575px)': {
-      width: '100%',
-      padding: '0px 5px'
-    }
+    alignItems: 'center'
   },
   logo: {
     width: '100%',
@@ -77,13 +71,14 @@ var NavItem = function NavItem(props) {
 
   return _react2.default.createElement(
     'span',
-    { style: [styles.base].concat(_toConsumableArray(zcss)), onClick: props.action },
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) }),
     props.children
   );
 };
 
 NavItem.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.object.isRequired,
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
   action: _propTypes2.default.func.isRequired
 };

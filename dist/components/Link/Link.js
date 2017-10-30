@@ -35,6 +35,11 @@ var styles = {
     ':active': {
       color: '#6bb551'
     }
+  },
+  noUnder: {
+    ':hover': {
+      textDecoration: 'none'
+    }
   }
 };
 
@@ -80,7 +85,7 @@ var Link = function Link(props, context) {
       href: props.to
     }, props, {
       onClick: handleClick,
-      style: [styles.base].concat(_toConsumableArray(zcss))
+      style: [styles.base].concat(_toConsumableArray(zcss), [props.style])
     }),
     props.children
   );
@@ -92,6 +97,7 @@ Link.contextTypes = {
 
 Link.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
   to: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.string]).isRequired,
   onClick: _propTypes2.default.func.isRequired,
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired

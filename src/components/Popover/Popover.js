@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { atomic } from '../constant';
@@ -17,12 +18,9 @@ const styles = {
   content: {
     position: 'absolute',
     opacity: 1,
-    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: '#fff',
-    borderRadius: '.2rem',
-    boxShadow: '0 19px 60px rgba(0,0,0,.3), 0 15px 20px rgba(0,0,0,.22)',
     transitionDelay: '.07s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
     transitionDuration: '.35s',
@@ -72,9 +70,9 @@ const Popover = props => {
   };
 
   if (props.isShow) {
-    document.addEventListener('click', handleOutsideClick, false);
+    document.addEventListener('click', handleOutsideClick);
   } else {
-    document.removeEventListener('click', handleOutsideClick, false);
+    document.removeEventListener('click', handleOutsideClick);
   }
 
   return (
@@ -82,7 +80,7 @@ const Popover = props => {
       {React.cloneElement(props.zFront, { onClick: props.onShow })}
       {props.isShow && (
         <div
-          style={[styles.content, ...zcss]}
+          style={[styles.content, ...zcss, props.style]}
           ref={node => {
             container = node;
           }}
@@ -96,12 +94,12 @@ const Popover = props => {
 
 Popover.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.object.isRequire,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
   isShow: PropTypes.bool.isRequired,
-
   onShow: PropTypes.func.isRequired,
   zFront: PropTypes.node.isRequired,
 };

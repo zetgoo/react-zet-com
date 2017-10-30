@@ -81,7 +81,7 @@ const styles = {
   },
 };
 
-const CardTitle = (props) => {
+const CardTitle = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -92,12 +92,14 @@ const CardTitle = (props) => {
 
   return (
     <div>
-      {typeof avatar === 'string' ? <Avatar image={avatar} theme={theme} /> : avatar}
+      {typeof avatar === 'string' ? (
+        <Avatar src={avatar} theme={theme} />
+      ) : (
+        avatar
+      )}
       <div>
         {title && <h5>{title}</h5>}
-        {children && typeof children === 'string' && (
-          <h5>{children}</h5>
-        )}
+        {children && typeof children === 'string' && <h5>{children}</h5>}
         {subtitle && <p>{subtitle}</p>}
         {children && typeof children !== 'string' && children}
       </div>
