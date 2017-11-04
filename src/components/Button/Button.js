@@ -28,20 +28,24 @@ const styles = {
     paddingRight: '0.75em',
     textAlign: 'center',
     whiteSpace: 'nowrap',
+    textDecoration: 'none',
     ':hover': {
       zIndex: 2,
       borderColor: '#aeb1b5',
       color: '#222324',
+      textDecoration: 'none',
     },
     ':focus': {
       borderColor: colors.success,
       outline: 'none',
       color: '#222324',
       zIndex: 3,
+      textDecoration: 'none',
     },
     ':active': {
       boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
       zIndex: 4,
+      textDecoration: 'none',
     },
   },
 

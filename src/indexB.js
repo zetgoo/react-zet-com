@@ -37,6 +37,10 @@ import Popover from './components/Popover/Popover';
 import Overlay from './components/Overlay/Overlay';
 import Tooltip from './components/Tooltip/Tooltip';
 import Video from './components/Video/Video';
+import Menu from './components/Menu/Menu';
+import MenuGroup from './components/MenuGroup/MenuGroup';
+import MenuItem from './components/MenuItem/MenuItem';
+import MenuLabel from './components/MenuLabel/MenuLabel';
 
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
@@ -84,6 +88,10 @@ export {
   Overlay,
   Tooltip,
   Video,
+  Menu,
+  MenuGroup,
+  MenuItem,
+  MenuLabel,
   Header,
   Footer,
   LeftMenu,

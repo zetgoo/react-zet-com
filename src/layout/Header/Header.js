@@ -116,11 +116,13 @@ const Header = props => {
                 if (item.type === 'popover') {
                   return (
                     <Popover
+                      actionClick={() => console.log('popover after click')}
                       zcss={['isBottom']}
                       style={{ right: '.75em' }}
                       zFront={
                         <NavItem zcss={['icon']}>
                           <Icon {...item} zcss={[...item.zcss]} />
+                          {item.info}
                         </NavItem>
                       }
                     >

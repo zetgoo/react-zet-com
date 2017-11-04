@@ -214,6 +214,14 @@ class App extends Component {
               {
                 type: 'popover',
                 icon: 'fa fa-bell',
+                info: (
+                  <Sack
+                    zcss={['ps_a', 'bg_success', 'cl_no', 'f.5e']}
+                    style={{ top: 18, left: 5, padding: '0 1px' }}
+                  >
+                    777
+                  </Sack>
+                ),
                 text: '',
                 zcss: ['f.8125r'],
                 zBack: (
@@ -532,12 +540,8 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <Modal
+                  alignAction="center"
                   action={[
-                    {
-                      label: 'Cancel',
-                      zcss: ['success'],
-                      onClick: () => this.setState({ openModal: false }),
-                    },
                     {
                       label: 'Save',
                       zcss: ['success'],
@@ -547,7 +551,7 @@ class App extends Component {
                   zFront={<Button zcss={['success']}>Modal Click!</Button>}
                   title="Welcome to zetgoo"
                 >
-                  <h2>Welcome to zetgoo</h2>
+                  <h2>We are king</h2>
                 </Modal>
               </div>
 
@@ -562,7 +566,7 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <Input
-                  zcss={['readonly']}
+                  zcss={['readOnly']}
                   placeholder="read only"
                   readOnly
                   value={this.state.inputText}

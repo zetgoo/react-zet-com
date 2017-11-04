@@ -20,6 +20,8 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     whiteSpace: 'nowrap',
@@ -30,7 +32,6 @@ var styles = {
     margin: 0,
     marginBottom: 5,
     color: '#4b646f',
-    background: '#1a2226',
     overflow: 'hidden',
     textOverflow: 'clip'
   }
@@ -39,21 +40,25 @@ var styles = {
 var MenuLabel = function MenuLabel(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'p',
-    { style: [styles.base].concat(zcss) },
+    { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) },
     props.children
   );
 };
 
 MenuLabel.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(MenuLabel);

@@ -942,7 +942,7 @@ var App = function (_Component) {
                 'div',
                 { style: rowStyle },
                 _react2.default.createElement(_Input2.default, {
-                  zcss: ['readonly'],
+                  zcss: ['readOnly'],
                   placeholder: 'read only',
                   readOnly: true,
                   value: this.state.inputText,

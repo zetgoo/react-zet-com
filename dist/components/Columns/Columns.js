@@ -22,6 +22,8 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     boxSizing: 'border-box',
@@ -40,37 +42,41 @@ var styles = {
 var Columns = function Columns(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   return _react2.default.createElement(
     'div',
-    _extends({}, props, { style: [styles.base].concat(zcss) }),
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss)) }),
     _react2.default.Children.map(props.children, function (child) {
-      return _react2.default.cloneElement(child, _extends({}, props, { children: child.props.children }));
+      return _react2.default.cloneElement(child, _extends({}, props, {
+        children: child.props.children,
+        zcss: child.props.zcss
+      }));
     })
   );
 };
 
 Columns.propTypes = {
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
   col: _propTypes2.default.number,
-  smallCol: _propTypes2.default.number,
-  mediumCol: _propTypes2.default.number,
-  largeCol: _propTypes2.default.number,
-  xLargeCol: _propTypes2.default.number,
+  smallCol: _propTypes2.default.number.isRequired,
+  mediumCol: _propTypes2.default.number.isRequired,
+  largeCol: _propTypes2.default.number.isRequired,
+  xLargeCol: _propTypes2.default.number.isRequired,
   breakpoints: _propTypes2.default.shape({
     small: _propTypes2.default.string,
     medium: _propTypes2.default.string,
     large: _propTypes2.default.string,
     xlarge: _propTypes2.default.string
   }),
-
   gutter: _propTypes2.default.string,
-
-  children: _propTypes2.default.node
+  children: _propTypes2.default.node.isRequired
 };
 
 Columns.defaultProps = {

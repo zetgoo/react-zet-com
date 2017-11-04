@@ -75,9 +75,16 @@ const Popover = props => {
     document.removeEventListener('click', handleOutsideClick);
   }
 
+  const handleClick = () => {
+    props.onShow();
+    if (props.actionClick) {
+      props.actionClick();
+    }
+  };
+
   return (
     <div style={styles.base}>
-      {React.cloneElement(props.zFront, { onClick: props.onShow })}
+      {React.cloneElement(props.zFront, { onClick: handleClick })}
       {props.isShow && (
         <div
           style={[styles.content, ...zcss, props.style]}
@@ -94,7 +101,7 @@ const Popover = props => {
 
 Popover.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
-  style: PropTypes.object.isRequire,
+  style: PropTypes.arrayOf(null, PropTypes.object).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -102,6 +109,7 @@ Popover.propTypes = {
   isShow: PropTypes.bool.isRequired,
   onShow: PropTypes.func.isRequired,
   zFront: PropTypes.node.isRequired,
+  actionClick: PropTypes.func.isRequired,
 };
 
 // const enhancePopover = HOCPopover(Popover);

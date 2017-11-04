@@ -257,7 +257,6 @@ Header.propTypes = {
   isActive: _propTypes2.default.bool.isRequired,
   isSearching: _propTypes2.default.bool.isRequired,
   toogleClick: _propTypes2.default.func.isRequired,
-  logout: _propTypes2.default.func.isRequired,
   zBackUser: _propTypes2.default.node.isRequired
 };
 

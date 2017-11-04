@@ -22,6 +22,8 @@ var _constant = require('../constant');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var styles = {
   base: {
     boxSizing: 'border-box',
@@ -46,19 +48,29 @@ var custom = function custom(props) {
 
 
   var viewport = {};
-  viewport.small = { flexBasis: 'calc(' + smallCell / smallCol * 100 + '% - ' + gutter + ')' };
-  viewport.medium = { flexBasis: 'calc(' + mediumCell / mediumCol * 100 + '% - ' + gutter + ')' };
-  viewport.large = { flexBasis: 'calc(' + largeCell / largeCol * 100 + '% - ' + gutter + ')' };
-  viewport.xLarge = { flexBasis: 'calc(' + xLargeCell / xLargeCol * 100 + '% - ' + gutter + ')' };
+  viewport.small = {
+    flexBasis: 'calc(' + smallCell / smallCol * 100 + '% - ' + (smallCell !== smallCol ? gutter : '0px') + ')'
+  };
+  viewport.medium = {
+    flexBasis: 'calc(' + mediumCell / mediumCol * 100 + '% - ' + (mediumCell !== mediumCol ? gutter : '0px') + ')'
+  };
+  viewport.large = {
+    flexBasis: 'calc(' + largeCell / largeCol * 100 + '% - ' + (largeCell !== largeCol ? gutter : '0px') + ')'
+  };
+  viewport.xLarge = {
+    flexBasis: 'calc(' + xLargeCell / xLargeCol * 100 + '% - ' + (xLargeCell !== xLargeCol ? gutter : '0px') + ')'
+  };
   return viewport;
 };
 
 var Column = function Column(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
@@ -71,31 +83,33 @@ var Column = function Column(props) {
 
   return _react2.default.createElement(
     'div',
-    _extends({}, props, { style: [styles.base].concat(zcss) }),
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) }),
     props.children
   );
 };
 
 Column.propTypes = {
-  col: _propTypes2.default.number,
-  smallCol: _propTypes2.default.number,
-  mediumCol: _propTypes2.default.number,
-  largeCol: _propTypes2.default.number,
-  xLargeCol: _propTypes2.default.number,
-  cell: _propTypes2.default.number,
-  smallCell: _propTypes2.default.number,
-  mediumCell: _propTypes2.default.number,
-  largeCell: _propTypes2.default.number,
-  xLargeCell: _propTypes2.default.number,
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
+  col: _propTypes2.default.number.isRequired,
+  smallCol: _propTypes2.default.number.isRequired,
+  mediumCol: _propTypes2.default.number.isRequired,
+  largeCol: _propTypes2.default.number.isRequired,
+  xLargeCol: _propTypes2.default.number.isRequired,
+  cell: _propTypes2.default.number.isRequired,
+  smallCell: _propTypes2.default.number.isRequired,
+  mediumCell: _propTypes2.default.number.isRequired,
+  largeCell: _propTypes2.default.number.isRequired,
+  xLargeCell: _propTypes2.default.number.isRequired,
   breakpoints: _propTypes2.default.shape({
-    small: _propTypes2.default.string,
-    medium: _propTypes2.default.string,
-    large: _propTypes2.default.string,
-    xLarge: _propTypes2.default.string
-  }),
-  gutter: _propTypes2.default.string,
-  order: _propTypes2.default.number,
-  children: _propTypes2.default.node
+    small: _propTypes2.default.string.isRequired,
+    medium: _propTypes2.default.string.isRequired,
+    large: _propTypes2.default.string.isRequired,
+    xLarge: _propTypes2.default.string.isRequired
+  }).isRequired,
+  gutter: _propTypes2.default.string.isRequired,
+  order: _propTypes2.default.number.isRequired,
+  children: _propTypes2.default.node.isRequired
 };
 
 exports.default = (0, _radium2.default)(Column);

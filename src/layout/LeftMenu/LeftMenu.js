@@ -46,30 +46,31 @@ const LeftMenu = props => {
         );
       }
 
-      return;
-      <MenuItem>
-        <li>
-          <Link to="/home">
-            <Icon
-              zcss={['']}
-              icon={`fa ${item.icon.split('.')[1]}`}
-              text={item.label}
-            />
-          </Link>
-          {item.isActived ? (
-            <Icon
-              zcss={['fr', 'mgR1/2e']}
-              icon={`fa ${item.rightActived.split('.')[1]}`}
-            />
-          ) : (
-            <Icon
-              zcss={['fr', 'mgR1/2e']}
-              icon={`fa ${item.rightNoAcitved.split('.')[1]}`}
-            />
-          )}
-        </li>
-        <li />
-      </MenuItem>;
+      return (
+        <MenuItem>
+          <li>
+            <Link to="/home">
+              <Icon
+                zcss={['']}
+                icon={`fa ${item.icon.split('.')[1]}`}
+                text={item.label}
+              />
+            </Link>
+            {item.isActived ? (
+              <Icon
+                zcss={['fr', 'mgR1/2e']}
+                icon={`fa ${item.rightActived.split('.')[1]}`}
+              />
+            ) : (
+              <Icon
+                zcss={['fr', 'mgR1/2e']}
+                icon={`fa ${item.rightNoAcitved.split('.')[1]}`}
+              />
+            )}
+          </li>
+          <li />
+        </MenuItem>
+      );
 
       childArr.push(node);
 
@@ -86,27 +87,27 @@ const LeftMenu = props => {
   const htmlElement = buildHtml(props.data);
 
   return (
-    <Menu>
+    <Menu zcss={['fw500']}>
       <MenuGroup>
         <MenuLabel>MAIN NAVIGATION</MenuLabel>
-        <MenuItem>
+        <MenuItem zcss={['mgB1r']}>
           <li>
             <Link to="/home">
-              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard" />
+              <Icon zcss={['f1e']} icon="fa fa-cog" text="Dashboard" />
             </Link>
             <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
               <Link to="/home">
-                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
+                <Icon zcss={['f1e']} icon="fa fa-cog" text="Visited" />
               </Link>
               <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Week" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
@@ -116,40 +117,48 @@ const LeftMenu = props => {
         <MenuItem>
           <li>
             <Link to="/home">
-              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard 1" />
+              <Icon zcss={['f1e']} icon="fa fa-cog" text="Dashboard 1" />
             </Link>
             <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
               <Link to="/home">
-                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
+                <Icon zcss={['f1e']} icon="fa fa-cog" text="Visited" />
               </Link>
               <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Week" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Month" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Month" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <MenuItem>
                 <li>
                   <Link to="/home">
-                    <Icon zcss={['']} icon="fa fa-cog" text="On Week child" />
+                    <Icon
+                      zcss={['f1e']}
+                      icon="fa fa-cog"
+                      text="On Week child"
+                    />
                   </Link>
                   <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
                 <li>
                   <Link to="/home">
-                    <Icon zcss={['']} icon="fa fa-cog" text="On Month child" />
+                    <Icon
+                      zcss={['f1e']}
+                      icon="fa fa-cog"
+                      text="On Month child"
+                    />
                   </Link>
                   <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
@@ -163,21 +172,21 @@ const LeftMenu = props => {
         <MenuItem>
           <li>
             <Link to="/home">
-              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard" />
+              <Icon zcss={['f1e']} icon="fa fa-cog" text="Dashboard" />
             </Link>
             <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
               <Link to="/home">
-                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
+                <Icon zcss={['f1e']} icon="fa fa-cog" text="Visited" />
               </Link>
               <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Week" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
@@ -187,40 +196,44 @@ const LeftMenu = props => {
         <MenuItem>
           <li>
             <Link to="/home">
-              <Icon zcss={['']} icon="fa fa-cog" text="Dashboard 1" />
+              <Icon zcss={['f1e']} icon="fa fa-cog" text="Dashboard 1" />
             </Link>
             <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
           </li>
           <MenuItem>
             <li>
               <Link to="/home">
-                <Icon zcss={['']} icon="fa fa-cog" text="Visited" />
+                <Icon zcss={['f1e']} icon="fa fa-cog" text="Visited" />
               </Link>
               <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
             </li>
             <MenuItem>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Week" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Week" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <li>
                 <Link to="/home">
-                  <Icon zcss={['']} icon="fa fa-cog" text="On Month" />
+                  <Icon zcss={['f1e']} icon="fa fa-cog" text="On Month" />
                 </Link>
                 <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
               </li>
               <MenuItem>
                 <li>
                   <Link to="/home">
-                    <Icon zcss={['']} icon="fa fa-cog" text="On Week child" />
+                    <Icon
+                      zcss={['f1e']}
+                      icon="fa fa-cog"
+                      text="On Week child"
+                    />
                   </Link>
                   <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
                 <li>
                   <Link to="/home">
-                    <Icon zcss={['']} icon="fa fa-cog" text="On Month child" />
+                    <Icon zcss={['f1e']} icon="fa fa-cog" text="On Month" />
                   </Link>
                   <Icon zcss={['fr', 'mgR1/2e']} icon="fa fa-hand-o-left" />
                 </li>
