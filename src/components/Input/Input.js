@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,6 @@ const styles = {
     borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 3,
-    boxShadow: 'none',
     display: 'inline-flex',
     fontSize: '0.875em',
     height: '2.25em',
@@ -42,7 +41,7 @@ const styles = {
     color: '#7a7a7a',
     cursor: 'not-allowed',
   },
-  readonly: {
+  readOnly: {
     boxShadow: 'none',
   },
   error: {
@@ -57,25 +56,26 @@ const styles = {
   },
 };
 
-const Input = (props) => {
-  const zcss = [];
+const Input = props => {
+  let zcss = [];
+  if (props.readOnly) {
+    zcss.push(styles.readOnly);
+  }
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
-  return (
-    <input {...props} style= {[
-        styles.base,
-        ...zcss,
-      ]} />
-  );
+  return <input {...props} style={[styles.base, ...zcss, props.style]} />;
 };
 
 Input.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  readOnly: PropTypes.bool.isRequired,
 };
 
 export default Radium(Input);

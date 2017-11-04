@@ -88,6 +88,29 @@ const Overlay = props => {
               container = node;
             }}
           >
+            {props.isCloseable && (
+              <div style={{ position: 'relative' }} onClick={props.onShow}>
+                <div
+                  style={{
+                    position: 'absolute',
+                    right: 0,
+                    background: '#B0B0B0',
+                    width: 18,
+                    height: 18,
+                    borderRadius: '50%',
+                    textAlign: 'center',
+                    verticalAlign: 'middle',
+                    margin: 'auto',
+                    cursor: 'pointer',
+                    marginRight: '.5em',
+                    marginTop: '.5em',
+                    color: '#fff',
+                  }}
+                >
+                  <i className="fa fa-close" />
+                </div>
+              </div>
+            )}
             {props.children}
           </div>
         </div>
@@ -103,6 +126,7 @@ Overlay.propTypes = {
     PropTypes.node,
   ]).isRequired,
   isShow: PropTypes.bool.isRequired,
+  isCloseable: PropTypes.bool.isRequired,
   onShow: PropTypes.func.isRequired,
   zFront: PropTypes.node.isRequired,
 };

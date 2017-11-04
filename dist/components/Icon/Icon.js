@@ -45,8 +45,8 @@ var Icon = function Icon(props) {
 
   return _react2.default.createElement(
     'span',
-    { style: [styles.base].concat(_toConsumableArray(zcss)), onClick: props.onClick },
-    _react2.default.createElement('i', { className: props.icon, style: [styles.icon].concat(_toConsumableArray(zcss)) }),
+    { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]), onClick: props.onClick },
+    _react2.default.createElement('i', { className: props.icon, style: styles.icon }),
     props.text && props.text.length !== 0 && _react2.default.createElement(
       'span',
       { style: styles.text },
@@ -57,6 +57,7 @@ var Icon = function Icon(props) {
 
 Icon.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.shape().isRequired,
   icon: _propTypes2.default.string.isRequired,
   text: _propTypes2.default.string.isRequired,
   onClick: _propTypes2.default.func.isRequired

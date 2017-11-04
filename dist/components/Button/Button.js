@@ -49,20 +49,24 @@ var styles = {
     paddingRight: '0.75em',
     textAlign: 'center',
     whiteSpace: 'nowrap',
+    textDecoration: 'none',
     ':hover': {
       zIndex: 2,
       borderColor: '#aeb1b5',
-      color: '#222324'
+      color: '#222324',
+      textDecoration: 'none'
     },
     ':focus': {
       borderColor: _constant.colors.success,
       outline: 'none',
       color: '#222324',
-      zIndex: 3
+      zIndex: 3,
+      textDecoration: 'none'
     },
     ':active': {
       boxShadow: 'inset 0 1px 2px rgba(17, 17, 17, 0.2)',
-      zIndex: 4
+      zIndex: 4,
+      textDecoration: 'none'
     }
   },
 
@@ -285,14 +289,10 @@ var Button = function Button(props) {
   );
 };
 
-Button.defaultProps = {
-  zcss: [],
-  style: {}
-};
-
 Button.propTypes = {
-  zcss: _propTypes2.default.array.isRequired,
-  style: _propTypes2.default.object.isRequired
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(Button);

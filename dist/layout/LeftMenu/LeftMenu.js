@@ -55,9 +55,11 @@ var styles = {
 var LeftMenu = function LeftMenu(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
@@ -81,8 +83,7 @@ var LeftMenu = function LeftMenu(props) {
         );
       }
 
-      return;
-      _react2.default.createElement(
+      return _react2.default.createElement(
         _MenuItem2.default,
         null,
         _react2.default.createElement(
@@ -124,7 +125,7 @@ var LeftMenu = function LeftMenu(props) {
 
   return _react2.default.createElement(
     _Menu2.default,
-    null,
+    { zcss: ['fw500'] },
     _react2.default.createElement(
       _MenuGroup2.default,
       null,
@@ -135,14 +136,14 @@ var LeftMenu = function LeftMenu(props) {
       ),
       _react2.default.createElement(
         _MenuItem2.default,
-        null,
+        { zcss: ['mgB1r'] },
         _react2.default.createElement(
           'li',
           null,
           _react2.default.createElement(
             _Link2.default,
             { to: '/home' },
-            _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Dashboard' })
+            _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Dashboard' })
           ),
           _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
         ),
@@ -155,7 +156,7 @@ var LeftMenu = function LeftMenu(props) {
             _react2.default.createElement(
               _Link2.default,
               { to: '/home' },
-              _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Visited' })
+              _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Visited' })
             ),
             _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
           ),
@@ -168,7 +169,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Week' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             )
@@ -184,7 +185,7 @@ var LeftMenu = function LeftMenu(props) {
           _react2.default.createElement(
             _Link2.default,
             { to: '/home' },
-            _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Dashboard 1' })
+            _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Dashboard 1' })
           ),
           _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
         ),
@@ -197,7 +198,7 @@ var LeftMenu = function LeftMenu(props) {
             _react2.default.createElement(
               _Link2.default,
               { to: '/home' },
-              _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Visited' })
+              _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Visited' })
             ),
             _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
           ),
@@ -210,7 +211,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Week' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             ),
@@ -220,7 +221,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Month' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Month' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             ),
@@ -233,7 +234,11 @@ var LeftMenu = function LeftMenu(props) {
                 _react2.default.createElement(
                   _Link2.default,
                   { to: '/home' },
-                  _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week child' })
+                  _react2.default.createElement(_Icon2.default, {
+                    zcss: ['f1e'],
+                    icon: 'fa fa-cog',
+                    text: 'On Week child'
+                  })
                 ),
                 _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
               ),
@@ -243,7 +248,11 @@ var LeftMenu = function LeftMenu(props) {
                 _react2.default.createElement(
                   _Link2.default,
                   { to: '/home' },
-                  _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Month child' })
+                  _react2.default.createElement(_Icon2.default, {
+                    zcss: ['f1e'],
+                    icon: 'fa fa-cog',
+                    text: 'On Month child'
+                  })
                 ),
                 _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
               )
@@ -269,7 +278,7 @@ var LeftMenu = function LeftMenu(props) {
           _react2.default.createElement(
             _Link2.default,
             { to: '/home' },
-            _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Dashboard' })
+            _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Dashboard' })
           ),
           _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
         ),
@@ -282,7 +291,7 @@ var LeftMenu = function LeftMenu(props) {
             _react2.default.createElement(
               _Link2.default,
               { to: '/home' },
-              _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Visited' })
+              _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Visited' })
             ),
             _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
           ),
@@ -295,7 +304,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Week' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             )
@@ -311,7 +320,7 @@ var LeftMenu = function LeftMenu(props) {
           _react2.default.createElement(
             _Link2.default,
             { to: '/home' },
-            _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Dashboard 1' })
+            _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Dashboard 1' })
           ),
           _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
         ),
@@ -324,7 +333,7 @@ var LeftMenu = function LeftMenu(props) {
             _react2.default.createElement(
               _Link2.default,
               { to: '/home' },
-              _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'Visited' })
+              _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'Visited' })
             ),
             _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
           ),
@@ -337,7 +346,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Week' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             ),
@@ -347,7 +356,7 @@ var LeftMenu = function LeftMenu(props) {
               _react2.default.createElement(
                 _Link2.default,
                 { to: '/home' },
-                _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Month' })
+                _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Month' })
               ),
               _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
             ),
@@ -360,7 +369,11 @@ var LeftMenu = function LeftMenu(props) {
                 _react2.default.createElement(
                   _Link2.default,
                   { to: '/home' },
-                  _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Week child' })
+                  _react2.default.createElement(_Icon2.default, {
+                    zcss: ['f1e'],
+                    icon: 'fa fa-cog',
+                    text: 'On Week child'
+                  })
                 ),
                 _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
               ),
@@ -370,7 +383,7 @@ var LeftMenu = function LeftMenu(props) {
                 _react2.default.createElement(
                   _Link2.default,
                   { to: '/home' },
-                  _react2.default.createElement(_Icon2.default, { zcss: [''], icon: 'fa fa-cog', text: 'On Month child' })
+                  _react2.default.createElement(_Icon2.default, { zcss: ['f1e'], icon: 'fa fa-cog', text: 'On Month' })
                 ),
                 _react2.default.createElement(_Icon2.default, { zcss: ['fr', 'mgR1/2e'], icon: 'fa fa-hand-o-left' })
               )

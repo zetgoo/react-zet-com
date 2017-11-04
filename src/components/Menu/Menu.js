@@ -9,9 +9,9 @@ const styles = {
     overflow: 'hidden',
     listStyle: 'none',
     margin: 0,
-    color: '#fff',
+    color: 'rgba(0,0,0,0.86)',
     backgroundColor: '#f6f9fa',
-    fontSize: 18,
+    lineHeight: 2,
   },
 };
 
