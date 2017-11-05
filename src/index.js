@@ -330,9 +330,6 @@ class App extends Component {
               />
             </Column>
             <Column zcss={['']} xLargeCell={4} smallCell={1}>
-              {/* <div style={rowStyle} style = {{height: 400, width: '100%'}}>
-            <MagicEye url = {this.state.url} />
-            </div> */}
               <div style={rowStyle}>
                 <div style={boxStyle}>
                   <Button zcss={['']}>Nomal</Button>
@@ -709,6 +706,9 @@ class App extends Component {
                   </Column>
                   <Column zcss={['bg_danger']} xLargeCell={2} smallCell={1}>
                     Second column
+                  </Column>
+                  <Column zcss={['bg_primary']} xLargeCell={2} smallCell={1}>
+                    Third column
                   </Column>
                   <Column zcss={['bg_primary']} xLargeCell={2} smallCell={1}>
                     Third column

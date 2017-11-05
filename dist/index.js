@@ -359,6 +359,14 @@ var App = function (_Component) {
             }, {
               type: 'popover',
               icon: 'fa fa-bell',
+              info: _react2.default.createElement(
+                _Sack2.default,
+                {
+                  zcss: ['ps_a', 'bg_success', 'cl_no', 'f.5e'],
+                  style: { top: 18, left: 5, padding: '0 1px' }
+                },
+                '777'
+              ),
               text: '',
               zcss: ['f.8125r'],
               zBack: _react2.default.createElement(
@@ -899,13 +907,8 @@ var App = function (_Component) {
                 _react2.default.createElement(
                   _Modal2.default,
                   {
+                    alignAction: 'center',
                     action: [{
-                      label: 'Cancel',
-                      zcss: ['success'],
-                      onClick: function onClick() {
-                        return _this3.setState({ openModal: false });
-                      }
-                    }, {
                       label: 'Save',
                       zcss: ['success'],
                       onClick: function onClick() {
@@ -922,7 +925,7 @@ var App = function (_Component) {
                   _react2.default.createElement(
                     'h2',
                     null,
-                    'Welcome to zetgoo'
+                    'We are king'
                   )
                 )
               ),
@@ -1162,6 +1165,11 @@ var App = function (_Component) {
                     _Column2.default,
                     { zcss: ['bg_danger'], xLargeCell: 2, smallCell: 1 },
                     'Second column'
+                  ),
+                  _react2.default.createElement(
+                    _Column2.default,
+                    { zcss: ['bg_primary'], xLargeCell: 2, smallCell: 1 },
+                    'Third column'
                   ),
                   _react2.default.createElement(
                     _Column2.default,

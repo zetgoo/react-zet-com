@@ -54,6 +54,7 @@ const Modal = props => {
 Modal.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   action: PropTypes.arrayOf(PropTypes.object).isRequired,
+  alignAction: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
