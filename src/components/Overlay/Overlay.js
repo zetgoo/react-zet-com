@@ -48,6 +48,26 @@ const styles = {
     transitionProperty: 'opacity',
     opacity: '.6',
   },
+  close: {
+    position: 'relative',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 0,
+    background: '#B0B0B0',
+    width: 18,
+    height: 18,
+    borderRadius: '50%',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    margin: 'auto',
+    cursor: 'pointer',
+    marginRight: '.5em',
+    marginTop: '.5em',
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 };
 
 const Overlay = props => {
@@ -89,24 +109,8 @@ const Overlay = props => {
             }}
           >
             {props.isCloseable && (
-              <div style={{ position: 'relative' }} onClick={props.onShow}>
-                <div
-                  style={{
-                    position: 'absolute',
-                    right: 0,
-                    background: '#B0B0B0',
-                    width: 18,
-                    height: 18,
-                    borderRadius: '50%',
-                    textAlign: 'center',
-                    verticalAlign: 'middle',
-                    margin: 'auto',
-                    cursor: 'pointer',
-                    marginRight: '.5em',
-                    marginTop: '.5em',
-                    color: '#fff',
-                  }}
-                >
+              <div style={styles.close} onClick={props.onShow}>
+                <div style={styles.closeButton}>
                   <i className="fa fa-close" />
                 </div>
               </div>

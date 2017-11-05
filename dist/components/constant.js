@@ -120,6 +120,7 @@ var atomic = exports.atomic = {
   bg_no: { backgroundColor: colors.no },
 
   // color
+  cl_no: { color: colors.no },
   cl_primary: { color: colors.primary },
   cl_success: { color: colors.success },
   cl_disable: { color: colors.disable },
@@ -205,7 +206,13 @@ var atomic = exports.atomic = {
   // text-align
   ta_l: { textAlign: 'left' },
   ta_c: { textAlign: 'center' },
-  ta_r: { textAlign: 'right' }
+  ta_r: { textAlign: 'right' },
+
+  // position
+  ps_a: { position: 'absolute' },
+  ps_r: { position: 'relative' },
+  ps_f: { position: 'fix' },
+  ps_s: { position: 'static' }
 };
 
 // break pointer for responsive

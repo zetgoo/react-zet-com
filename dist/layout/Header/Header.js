@@ -193,12 +193,16 @@ var Header = function Header(props) {
             return _react2.default.createElement(
               _Popover2.default,
               {
+                actionClick: function actionClick() {
+                  return console.log('popover after click');
+                },
                 zcss: ['isBottom'],
                 style: { right: '.75em' },
                 zFront: _react2.default.createElement(
                   _NavItem2.default,
                   { zcss: ['icon'] },
-                  _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) }))
+                  _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) })),
+                  item.info
                 )
               },
               item.zBack

@@ -67,6 +67,26 @@ var styles = {
     transitionDuration: '.35s',
     transitionProperty: 'opacity',
     opacity: '.6'
+  },
+  close: {
+    position: 'relative'
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 0,
+    background: '#B0B0B0',
+    width: 18,
+    height: 18,
+    borderRadius: '50%',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    margin: 'auto',
+    cursor: 'pointer',
+    marginRight: '.5em',
+    marginTop: '.5em',
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center'
   }
 };
 
@@ -112,6 +132,15 @@ var Overlay = function Overlay(props) {
             container = node;
           }
         },
+        props.isCloseable && _react2.default.createElement(
+          'div',
+          { style: styles.close, onClick: props.onShow },
+          _react2.default.createElement(
+            'div',
+            { style: styles.closeButton },
+            _react2.default.createElement('i', { className: 'fa fa-close' })
+          )
+        ),
         props.children
       )
     )
@@ -122,6 +151,7 @@ Overlay.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
   isShow: _propTypes2.default.bool.isRequired,
+  isCloseable: _propTypes2.default.bool.isRequired,
   onShow: _propTypes2.default.func.isRequired,
   zFront: _propTypes2.default.node.isRequired
 };
