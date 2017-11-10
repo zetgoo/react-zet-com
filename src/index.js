@@ -979,157 +979,6 @@ class App extends Component {
                 </Box>
               </div>
               <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={16}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={24}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={32}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={48}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={64}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={96}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={128}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={256}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={320}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={['isCircle']}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={1}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={4 / 3}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={3 / 2}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={16 / 9}
-                />
-              </div>
-              <div style={rowStyle}>
-                <Image
-                  zcss={[]}
-                  src="http://placehold.it/480x480"
-                  alt="Zetgoo"
-                  title="Zetgoo"
-                  width={480}
-                  ratio={2}
-                />
-              </div>
-
-              <div style={rowStyle}>
                 <DayPicker onDayClick={day => alert(day)} />
               </div>
 
@@ -1309,6 +1158,156 @@ class App extends Component {
                     </VictoryChart>
                   </Column>
                 </Columns>
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={16}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={24}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={32}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={48}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={64}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={96}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={128}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={256}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={320}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={['isCircle']}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={1}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={4 / 3}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={3 / 2}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={16 / 9}
+                />
+              </div>
+              <div style={rowStyle}>
+                <Image
+                  zcss={[]}
+                  src="http://placehold.it/480x480"
+                  alt="Zetgoo"
+                  title="Zetgoo"
+                  width={480}
+                  ratio={2}
+                />
               </div>
             </Column>
           </Columns>
