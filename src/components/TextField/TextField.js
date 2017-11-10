@@ -60,12 +60,12 @@ const TextField = props => {
         {props.errors &&
           props.errors.length > 0 && (
             <Icon
-              zcss={['cl_danger', 'mgL1/2e']}
+              zcss={['cl_danger', 'mgL.5e']}
               icon="fa fa-exclamation-circle"
             />
           )}
         {props.valid && (
-          <Icon zcss={['cl_success', 'mgL1/2e']} icon="fa fa-check-circle" />
+          <Icon zcss={['cl_success', 'mgL.5e']} icon="fa fa-check-circle" />
         )}
       </div>
       {props.errors &&

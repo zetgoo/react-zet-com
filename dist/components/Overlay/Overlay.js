@@ -18,6 +18,10 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _constant = require('../constant');
 
+var _HOCOverlay = require('./HOCOverlay');
+
+var _HOCOverlay2 = _interopRequireDefault(_HOCOverlay);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = {
@@ -45,6 +49,7 @@ var styles = {
     flexDirection: 'column',
     backgroundColor: '#fff',
     borderRadius: '.2rem',
+    overflow: 'auto',
     boxShadow: '0 19px 60px rgba(0,0,0,.3), 0 15px 20px rgba(0,0,0,.22)',
     transitionDelay: '.07s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
@@ -63,15 +68,37 @@ var styles = {
     transitionDuration: '.35s',
     transitionProperty: 'opacity',
     opacity: '.6'
+  },
+  close: {
+    position: 'relative'
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 0,
+    background: '#B0B0B0',
+    width: 18,
+    height: 18,
+    borderRadius: '50%',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    margin: 'auto',
+    cursor: 'pointer',
+    marginRight: '.5em',
+    marginTop: '.5em',
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center'
   }
 };
 
 var Overlay = function Overlay(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
@@ -80,45 +107,56 @@ var Overlay = function Overlay(props) {
   var handleOutsideClick = function handleOutsideClick(e) {
     // ignore clicks on the component itself
     if (container && !container.contains(e.target)) {
-      props.onClose();
+      props.onShow();
     }
   };
 
-  if (props.isOpen) {
+  if (props.isShow) {
     document.addEventListener('click', handleOutsideClick, false);
   } else {
     document.removeEventListener('click', handleOutsideClick, false);
   }
 
-  return !props.isOpen ? null : _react2.default.createElement(
+  return _react2.default.createElement(
     'div',
-    { style: styles.base },
-    _react2.default.createElement('div', { style: styles.cover }),
-    _react2.default.createElement(
+    null,
+    _react2.default.cloneElement(props.zFront, { onClick: props.onShow }),
+    props.isShow && _react2.default.createElement(
       'div',
-      {
-        style: styles.content,
-        ref: function ref(node) {
-          container = node;
-        }
-      },
-      props.children
+      { style: styles.base },
+      _react2.default.createElement('div', { style: styles.cover }),
+      _react2.default.createElement(
+        'div',
+        {
+          style: styles.content,
+          ref: function ref(node) {
+            container = node;
+          }
+        },
+        props.isCloseable && _react2.default.createElement(
+          'div',
+          { style: styles.close, onClick: props.onShow },
+          _react2.default.createElement(
+            'div',
+            { style: styles.closeButton },
+            _react2.default.createElement('i', { className: 'fa fa-close' })
+          )
+        ),
+        props.children
+      )
     )
   );
 };
 
-Overlay.defaultProps = {
-  zcss: [],
-  children: [],
-  isOpen: false,
-  onClose: null
-};
-
 Overlay.propTypes = {
-  zcss: _propTypes2.default.array.isRequired,
-  children: _propTypes2.default.array.isRequired,
-  isOpen: _propTypes2.default.bool.isRequired,
-  onClose: _propTypes2.default.func.isRequired
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
+  isShow: _propTypes2.default.bool.isRequired,
+  isCloseable: _propTypes2.default.bool.isRequired,
+  onShow: _propTypes2.default.func.isRequired,
+  zFront: _propTypes2.default.node.isRequired
 };
 
-exports.default = (0, _radium2.default)(Overlay);
+var enhanceOverlay = (0, _HOCOverlay2.default)(Overlay);
+
+exports.default = (0, _radium2.default)(enhanceOverlay);

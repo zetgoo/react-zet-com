@@ -11,6 +11,7 @@ import Label from './components/Label/Label';
 import Columns from './components/Columns/Columns';
 import Column from './components/Column/Column';
 import Icon from './components/Icon/Icon';
+import ControlLabel from './components/ControlLabel/ControlLabel';
 import Title from './components/Title/Title';
 import SubTitle from './components/SubTitle/SubTitle';
 import { Tabs, TabGroup, Tab } from './components/Tabs/main';
@@ -33,8 +34,13 @@ import Image from './components/Image/Image';
 import Avatar from './components/Avatar/Avatar';
 import Modal from './components/Modal/Modal';
 import Popover from './components/Popover/Popover';
+import Overlay from './components/Overlay/Overlay';
 import Tooltip from './components/Tooltip/Tooltip';
 import Video from './components/Video/Video';
+import Menu from './components/Menu/Menu';
+import MenuGroup from './components/MenuGroup/MenuGroup';
+import MenuItem from './components/MenuItem/MenuItem';
+import MenuLabel from './components/MenuLabel/MenuLabel';
 
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
@@ -53,6 +59,7 @@ export {
   Columns,
   Column,
   Icon,
+  ControlLabel,
   Title,
   SubTitle,
   Tabs,
@@ -78,8 +85,13 @@ export {
   Avatar,
   Modal,
   Popover,
+  Overlay,
   Tooltip,
   Video,
+  Menu,
+  MenuGroup,
+  MenuItem,
+  MenuLabel,
   Header,
   Footer,
   LeftMenu,

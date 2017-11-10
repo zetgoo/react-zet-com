@@ -26,17 +26,14 @@ var styles = {
   base: {
     listStyle: 'none',
     textRendering: 'optimizeLegibility',
-    lineHeight: 1.428571428571429,
-    paddingLeft: 10,
+    paddingLeft: '1.25rem',
     margin: 0,
     border: 0,
     boxSizing: 'border-box',
-    fontSize: 14,
-    fontWeight: 'normal',
     verticalAlign: 'baseline'
   },
   item: {
-    paddingTop: '0.5em'
+    // paddingTop: '0.5em',
     // ':hover':{
     //   backgroundColor: 'red'
     // }
@@ -47,16 +44,18 @@ var styles = {
 var MenuItem = function MenuItem(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
   var buildHtml = function buildHtml() {
     if (!Array.isArray(props.children)) return props.children;
     if (props.children && Array.isArray(props.children)) {
-      var htmlElements = props.children.map(function (item, index) {
+      var htmlElements = props.children.map(function (item) {
         if (item.type === 'li') {
           return _react2.default.cloneElement(item, [].concat(_toConsumableArray(item.props)), item.props.children);
         }
@@ -73,13 +72,15 @@ var MenuItem = function MenuItem(props) {
 
   return _react2.default.createElement(
     'ul',
-    { style: [styles.base].concat(zcss) },
+    { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) },
     buildHtml()
   );
 };
 
 MenuItem.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.shape().isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 
 exports.default = (0, _radium2.default)(MenuItem);

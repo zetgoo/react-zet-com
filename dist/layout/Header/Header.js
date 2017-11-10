@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -50,9 +52,25 @@ var _Avatar = require('../../components/Avatar/Avatar');
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
+var _Popover = require('../../components/Popover/Popover');
+
+var _Popover2 = _interopRequireDefault(_Popover);
+
 var _SearchInput = require('../../components/SearchInput/SearchInput');
 
 var _SearchInput2 = _interopRequireDefault(_SearchInput);
+
+var _Sack = require('../../components/Sack/Sack');
+
+var _Sack2 = _interopRequireDefault(_Sack);
+
+var _ControlLabel = require('../../components/ControlLabel/ControlLabel');
+
+var _ControlLabel2 = _interopRequireDefault(_ControlLabel);
+
+var _Button = require('../../components/Button/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60,7 +78,9 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var styles = {
   base: {
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    color: 'rgba(0,0,0,0.86)',
+    cursor: 'pointer'
   }
 };
 
@@ -81,7 +101,35 @@ var Header = function Header(props) {
     _react2.default.createElement(
       _Nav2.default,
       null,
-      _react2.default.createElement(_NavToggle2.default, { isActive: props.isActive, toggle: props.toogleClick }),
+      _react2.default.createElement(
+        _Popover2.default,
+        {
+          zcss: ['isBottom'],
+          style: { left: 0 },
+          zFront: _react2.default.createElement(_NavToggle2.default, { isActive: props.isActive, toggle: props.toogleClick })
+        },
+        _react2.default.createElement(
+          _NavGroup2.default,
+          { zcss: ['menu', 'jc_ct'] },
+          props.menu && props.menu.map(function (item) {
+            return _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
+              _react2.default.createElement(
+                _Link2.default,
+                {
+                  zcss: ['noUnder'],
+                  style: {
+                    color: 'rgba(0,0,0,0.86)'
+                  },
+                  to: item.to
+                },
+                item.text
+              )
+            );
+          })
+        )
+      ),
       _react2.default.createElement(
         _NavGroup2.default,
         { zcss: [] },
@@ -97,14 +145,20 @@ var Header = function Header(props) {
       ),
       _react2.default.createElement(
         _NavGroup2.default,
-        { zcss: ['menu', !props.isActive ? 'menuHide' : ''] },
+        { zcss: ['jc_ct', 'menuHide'] },
         props.menu && props.menu.map(function (item) {
           return _react2.default.createElement(
             _NavItem2.default,
             { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
             _react2.default.createElement(
               _Link2.default,
-              { to: item.to },
+              {
+                zcss: ['noUnder'],
+                style: {
+                  color: 'rgba(0,0,0,0.86)'
+                },
+                to: item.to
+              },
               item.text
             )
           );
@@ -119,7 +173,13 @@ var Header = function Header(props) {
             { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
             _react2.default.createElement(
               _Link2.default,
-              { to: item.to },
+              {
+                zcss: ['noUnder'],
+                style: {
+                  color: 'rgba(0,0,0,0.86)'
+                },
+                to: item.to
+              },
               item.text
             )
           );
@@ -130,19 +190,63 @@ var Header = function Header(props) {
         { zcss: ['icon'] },
         _react2.default.createElement(
           _NavItem2.default,
-          { zcss: ['icon'] },
-          props.iconMenuUser && props.iconMenuUser.map(function (item) {
-            return _react2.default.createElement(_Icon2.default, {
-              zcss: [].concat(_toConsumableArray(item.zcss), ['mgL1e']),
-              icon: item.icon,
-              onClick: item.action
-            });
-          })
+          null,
+          props.multipleLanguage
         ),
+        props.iconMenuUser && props.iconMenuUser.map(function (item) {
+          if (item.type === 'popover') {
+            return _react2.default.createElement(
+              _Popover2.default,
+              {
+                actionClick: function actionClick() {
+                  return console.log('popover after click');
+                },
+                zcss: ['isBottom'],
+                style: { right: '.75em' },
+                zFront: _react2.default.createElement(
+                  _NavItem2.default,
+                  { zcss: ['icon'] },
+                  _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) })),
+                  item.info
+                )
+              },
+              item.zBack
+            );
+          } else if (item.type === 'action') {
+            return _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: ['icon'] },
+              _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) }))
+            );
+          }
+          return _react2.default.createElement(
+            _NavItem2.default,
+            { zcss: ['icon'] },
+            _react2.default.createElement(
+              _Link2.default,
+              {
+                to: item.link,
+                zcss: ['noUnder'],
+                style: {
+                  color: 'rgba(0,0,0,0.86)'
+                }
+              },
+              _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) }))
+            )
+          );
+        }),
         _react2.default.createElement(
-          _NavItem2.default,
-          { zcss: ['avatar'] },
-          _react2.default.createElement(_Avatar2.default, { zcss: ['isCircle'], image: props.userLogined.avatar })
+          _Popover2.default,
+          {
+            zcss: ['isBottom'],
+            style: { right: 0 },
+            zFront: _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: ['avatar'] },
+              _react2.default.createElement(_Avatar2.default, { zcss: ['isCircle'], src: props.userLogined.avatar })
+            )
+          },
+          props.zBackUser
         )
       )
     )
@@ -161,7 +265,9 @@ Header.propTypes = {
   search: _propTypes2.default.func.isRequired,
   isActive: _propTypes2.default.bool.isRequired,
   isSearching: _propTypes2.default.bool.isRequired,
-  toogleClick: _propTypes2.default.func.isRequired
+  toogleClick: _propTypes2.default.func.isRequired,
+  zBackUser: _propTypes2.default.node.isRequired,
+  multipleLanguage: _propTypes2.default.node.isRequired
 };
 
 exports.default = (0, _radium2.default)(Header);

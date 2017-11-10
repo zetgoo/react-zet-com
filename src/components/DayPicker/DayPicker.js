@@ -1,20 +1,14 @@
 import React from 'react';
 import Radium from 'radium';
+import Picker from 'react-day-picker';
 import PropTypes from 'prop-types';
 import { atomic } from '../constant';
 
 const styles = {
-  base: {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    listStyle: 'none',
-    margin: 0,
-    color: 'rgba(0,0,0,0.86)',
-    lineHeight: 2,
-  },
+  base: {},
 };
 
-const Menu = props => {
+const DayPicker = props => {
   let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     zcss = props.zcss.map(item => {
@@ -25,18 +19,15 @@ const Menu = props => {
     });
   }
 
-  return (
-    <aside style={[styles.base, ...zcss, props.style]}>{props.children}</aside>
-  );
+  return <Picker {...props} />;
 };
 
-Menu.propTypes = {
+DayPicker.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
-  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
 };
 
-export default Radium(Menu);
+export default Radium(DayPicker);

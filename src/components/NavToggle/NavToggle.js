@@ -35,7 +35,7 @@ const NavToggle = props => {
   }
 
   return (
-    <button style={[styles.base]} onClick={props.toggle}>
+    <button style={[styles.base]} onClick={props.onClick}>
       {!props.isActive && (
         <Icon zcss={['cl_success', 'f1r']} icon="fa fa-bars" />
       )}
@@ -49,7 +49,7 @@ const NavToggle = props => {
 NavToggle.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   isActive: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Radium(NavToggle);

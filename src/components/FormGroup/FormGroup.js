@@ -6,7 +6,7 @@ import Sack from '../Sack/Sack';
 
 const FormGroup = (props) => {
   const zcss = props.zcss || [];
-  zcss.push('mgB1/2r');
+  zcss.push('mgB.5r');
 
   return (
     <Sack {...props} zcss = {zcss} >

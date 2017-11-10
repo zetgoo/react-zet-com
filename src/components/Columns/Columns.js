@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import {
-  colors,
   atomic,
   smallBreakpoint,
   mediumBreakpoint,
@@ -25,42 +24,49 @@ const styles = {
   },
 };
 
-const Columns = (props) => {
-  const zcss = [];
+const Columns = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
+  if (props.isMasonry) {
+  }
 
   return (
-    <div {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}>
-      {React.Children.map(props.children, child => React.cloneElement(child, { ...props, children: child.props.children }))}
+    <div {...props} style={[styles.base, ...zcss, props.style]}>
+      {React.Children.map(props.children, child =>
+        React.cloneElement(child, {
+          ...props,
+          children: child.props.children,
+          zcss: child.props.zcss,
+        }),
+      )}
     </div>
   );
 };
 
 Columns.propTypes = {
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   col: PropTypes.number,
-  smallCol: PropTypes.number,
-  mediumCol: PropTypes.number,
-  largeCol: PropTypes.number,
-  xLargeCol: PropTypes.number,
+  smallCol: PropTypes.number.isRequired,
+  mediumCol: PropTypes.number.isRequired,
+  largeCol: PropTypes.number.isRequired,
+  xLargeCol: PropTypes.number.isRequired,
   breakpoints: PropTypes.shape({
     small: PropTypes.string,
     medium: PropTypes.string,
     large: PropTypes.string,
     xlarge: PropTypes.string,
   }),
-
   gutter: PropTypes.string,
-
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 Columns.defaultProps = {

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'universal-router';
+import moment from 'moment';
+
 import AppContainer from './components/AppContainer';
 import Button from './components/Button';
+import Link from './components/Link';
 import Input from './components/Input';
 import Checkbox from './components/Checkbox';
 import Radio from './components/Radio';
@@ -23,6 +26,7 @@ import Notification from './components/Notification';
 import Form from './components/Form';
 import FormGroup from './components/FormGroup';
 import Box from './components/Box';
+import Sack from './components/Sack';
 import Container from './components/Container';
 import Drawer from './components/Drawer';
 import SnackBar from './components/SnackBar';
@@ -34,6 +38,8 @@ import Popover from './components/Popover';
 import Tooltip from './components/Tooltip';
 import Video from './components/Video';
 import ZCaptcha from './components/ZCaptcha';
+import DayPicker from './components/DayPicker';
+import DayPickerInput from './components/DayPickerInput';
 
 import {
   VictoryPie,
@@ -61,6 +67,8 @@ const boxStyle = {
   margin: '0 5px 5px 0',
   display: 'inline-flex',
 };
+
+const DAY_FORMAT = 'DD/MM/YYYY';
 
 class App extends Component {
   constructor(props) {
@@ -94,18 +102,27 @@ class App extends Component {
       tooltipRight: false,
       tooltipBottom: false,
       tooltipLeft: false,
+      notifications: [
+        { content: '', link: '/a' },
+        { content: '', link: '/b' },
+        { content: '', link: '/c' },
+        { content: '', link: '/d' },
+      ],
+      selectedDay: undefined,
+      isDisabled: false,
     };
   }
 
   componentDidMount() {
-    const percent = 25;
-    // this.setStateInterval = window.setInterval(() => {
-    //   percent += (Math.random() * 25);
-    //   percent = (percent > 100) ? 0 : percent;
-    //   this.setState({
-    //     percent, data: this.getData(percent)
-    //   });
-    // }, 2000);
+    let percent = 25;
+    this.setStateInterval = window.setInterval(() => {
+      percent += Math.random() * 25;
+      percent = percent > 100 ? 0 : percent;
+      this.setState({
+        percent,
+        data: this.getData(percent),
+      });
+    }, 2000);
     setTimeout(
       () =>
         this.setState({
@@ -120,6 +137,13 @@ class App extends Component {
     window.clearInterval(this.setStateInterval);
   }
 
+  handleDayChange = (selectedDay, modifiers) => {
+    this.setState({
+      selectedDay,
+      isDisabled: modifiers.disabled,
+    });
+  };
+
   getData(percent) {
     return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
   }
@@ -129,6 +153,22 @@ class App extends Component {
   }
 
   render() {
+    const { selectedDay, isDisabled } = this.state;
+    const formattedDay = selectedDay
+      ? moment(selectedDay).format(DAY_FORMAT)
+      : '';
+
+    const dayPickerProps = {
+      todayButton: 'Go to Today',
+      disabledDays: {
+        daysOfWeek: [0, 6],
+      },
+      enableOutsideDays: true,
+      modifiers: {
+        monday: { daysOfWeek: [1] },
+      },
+    };
+
     return (
       <AppContainer>
         <Container>
@@ -144,17 +184,34 @@ class App extends Component {
               this.setState({ isSearching: !this.state.isSearching })}
             toogleClick={() =>
               this.setState({ toggleActive: !this.state.toggleActive })}
+            zBackUser={
+              <Sack zcss={['mg1e', 'ta_l']} style={{ width: 220 }}>
+                <ControlLabel zcss={['f1e']}>Ballard</ControlLabel>
+                <Link href="https://github.com">github</Link>
+                <Link to="profile">
+                  <Icon zcss={['']} icon="fa fa-user" text="Setting" />
+                </Link>
+                <Sack>
+                  <Button
+                    zcss={['danger']}
+                    onClick={() => console.log('logout')}
+                  >
+                    Logout
+                  </Button>
+                </Sack>
+              </Sack>
+            }
             menu={[
               {
                 icon: 'fa fa-home',
-                text: 'Menu',
-                to: '/',
+                text: 'Create Project',
+                to: '/project/create',
                 zcss: [''],
               },
               {
                 icon: 'fa fa-user-circle',
-                text: 'Login',
-                to: '/login',
+                text: 'Document',
+                to: '/document',
                 zcss: [''],
               },
             ]}
@@ -173,17 +230,58 @@ class App extends Component {
               },
             ]}
             iconMenuUser={[
+              // {
+              //   type: 'link',
+              //   icon: 'fa fa-plus',
+              //   text: 'Create Project',
+              //   link: '/project/create',
+              //   zcss: ['f.8125r'],
+              // },
               {
-                icon: 'fa fa-search',
+                type: 'action',
+                icon: 'fa fa-plus',
                 text: '',
-                action: this.showNotify,
+                onClick: () => console.log('Zetgoo'),
                 zcss: ['f.8125r'],
               },
               {
+                type: 'popover',
                 icon: 'fa fa-bell',
+                info: (
+                  <Sack
+                    zcss={['ps_a', 'bg_success', 'cl_no', 'f.5e']}
+                    style={{ top: 18, left: 5, padding: '0 1px' }}
+                  >
+                    777
+                  </Sack>
+                ),
                 text: '',
-                action: this.showNotify,
                 zcss: ['f.8125r'],
+                zBack: (
+                  <Sack zcss={['mg1e', 'ta_l']} style={{ width: 220 }}>
+                    <Sack zcss={['dp_ib']}>
+                      <ControlLabel zcss={['f1e', 'dp_ib']}>
+                        Notifications
+                      </ControlLabel>
+                      <Button zcss={['isLink', 'dp_ib', 'fr']}>
+                        Mark all as read
+                      </Button>
+                    </Sack>
+                    <Sack>
+                      {this.state.notifications.map(item => (
+                        <Link to={item.link} zcss={['dp_b']}>
+                          Lorem ipsum dolor sit amet, consectetur adipisicing
+                          elit.
+                        </Link>
+                      ))}
+                    </Sack>
+                    <Sack>
+                      <Link to="/notifications">
+                        <Button zcss={['isLink']}>see all</Button>
+                      </Link>
+                    </Sack>
+                  </Sack>
+                ),
               },
             ]}
           />
@@ -265,9 +363,6 @@ class App extends Component {
               />
             </Column>
             <Column zcss={['']} xLargeCell={4} smallCell={1}>
-              {/* <div style={rowStyle} style = {{height: 400, width: '100%'}}>
-            <MagicEye url = {this.state.url} />
-            </div> */}
               <div style={rowStyle}>
                 <div style={boxStyle}>
                   <Button zcss={['']}>Nomal</Button>
@@ -334,8 +429,8 @@ class App extends Component {
               <div style={rowStyle}>
                 <div style={{ ...boxStyle, position: 'relative' }}>
                   <Popover
+                    zcss={['']}
                     isShow={this.state.popover}
-                    timeout={5000}
                     zFront={<Button zcss={['']}>Popover Click!</Button>}
                   >
                     <h3>Zetgoo</h3>
@@ -343,8 +438,8 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isTop']}
                     isShow={this.state.popoverTop}
-                    timeout={5000}
                     zFront={
                       <Button
                         zcss={['']}
@@ -355,11 +450,12 @@ class App extends Component {
                       </Button>
                     }
                   >
-                    <h3>Zetgoo</h3>
+                    <div>Zetgoo jdlkfe dklje fkdjlsei dlkfjsl</div>
                   </Popover>
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isRight']}
                     isShow={this.state.popoverRight}
                     timeout={5000}
                     zFront={
@@ -377,6 +473,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isBottom']}
                     isShow={this.state.popoverBottom}
                     timeout={5000}
                     zFront={
@@ -394,6 +491,7 @@ class App extends Component {
                 </div>
                 <div style={boxStyle}>
                   <Popover
+                    zcss={['isLeft']}
                     isShow={this.state.popoverLeft}
                     timeout={5000}
                     onClose={() => this.setState({ popoverLeft: false })}
@@ -414,67 +512,66 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltip} timeout={5000} />
-                  <Button
+                  <Tooltip
                     zcss={['']}
-                    onClick={() =>
-                      this.setState({ tooltip: !this.state.tooltip })}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Hover!</Button>}
                   >
-                    Tooltip Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipTop} timeout={5000} />
-                  <Button
-                    zcss={['primary']}
-                    onClick={() =>
-                      this.setState({ tooltipTop: !this.state.tooltipTop })}
+                  <Tooltip
+                    zcss={['isTop']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Top Hover!</Button>}
                   >
-                    Top Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipRight} timeout={5000} />
-                  <Button
-                    zcss={['danger']}
-                    onClick={() =>
-                      this.setState({ tooltipRight: !this.state.tooltipRight })}
+                  <Tooltip
+                    zcss={['isRight']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Right Hover!</Button>}
                   >
-                    Right Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipBottom} timeout={5000} />
-                  <Button
-                    zcss={['warning']}
-                    onClick={() =>
-                      this.setState({
-                        tooltipBottom: !this.state.tooltipBottom,
-                      })}
+                  <Tooltip
+                    zcss={['isBottom']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Bottom Hover!</Button>}
                   >
-                    Bottom Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
                 <div style={boxStyle}>
-                  <Tooltip isShow={this.state.tooltipLeft} timeout={5000} />
-                  <Button
-                    zcss={['success']}
-                    onClick={() =>
-                      this.setState({ tooltipLeft: !this.state.tooltipLeft })}
+                  <Tooltip
+                    zcss={['isLeft']}
+                    isShow={this.state.popoverLeft}
+                    timeout={5000}
+                    onClose={() => this.setState({ popoverLeft: false })}
+                    zFront={<Button zcss={['']}>Tooltip Left Hover!</Button>}
                   >
-                    Left Click!
-                  </Button>
+                    <h3>Zetgoo</h3>
+                  </Tooltip>
                 </div>
               </div>
 
               <div style={rowStyle}>
                 <Modal
+                  alignAction="center"
                   action={[
-                    {
-                      label: 'Cancel',
-                      zcss: ['success'],
-                      onClick: () => this.setState({ openModal: false }),
-                    },
                     {
                       label: 'Save',
                       zcss: ['success'],
@@ -484,7 +581,7 @@ class App extends Component {
                   zFront={<Button zcss={['success']}>Modal Click!</Button>}
                   title="Welcome to zetgoo"
                 >
-                  <h2>Welcome to zetgoo</h2>
+                  <h2>We are king</h2>
                 </Modal>
               </div>
 
@@ -499,7 +596,7 @@ class App extends Component {
 
               <div style={rowStyle}>
                 <Input
-                  zcss={['readonly']}
+                  zcss={['readOnly']}
                   placeholder="read only"
                   readOnly
                   value={this.state.inputText}
@@ -646,6 +743,9 @@ class App extends Component {
                   <Column zcss={['bg_primary']} xLargeCell={2} smallCell={1}>
                     Third column
                   </Column>
+                  <Column zcss={['bg_primary']} xLargeCell={2} smallCell={1}>
+                    Third column
+                  </Column>
                 </Columns>
               </div>
               <div style={rowStyle}>
@@ -661,7 +761,7 @@ class App extends Component {
                 />
                 <Avatar icon="fa fa-play-circle-o" zcss={['isCircle']} />
                 <Avatar text="BL" zcss={['isCircle']} />
-                <Avatar image="https://placeimg.com/80/80/animals" zcss={[]} />
+                <Avatar src="https://placeimg.com/80/80/animals" zcss={[]} />
                 <Avatar icon="fa fa-play-circle-o" zcss={[]} />
                 <Avatar text="BL" zcss={[]} />
               </div>
@@ -879,6 +979,187 @@ class App extends Component {
                 </Box>
               </div>
               <div style={rowStyle}>
+                <DayPicker onDayClick={day => alert(day)} />
+              </div>
+
+              <div style={rowStyle}>
+                <p>
+                  {!selectedDay && '🤔 Type or pick a valid day'}
+                  {selectedDay && isDisabled && '😡 This day is disabled'}
+                  {selectedDay && !isDisabled && `😄 You chose ${formattedDay}`}
+                </p>
+                <DayPickerInput
+                  value={formattedDay}
+                  onDayChange={this.handleDayChange}
+                  format={DAY_FORMAT}
+                  placeholder={`E.g. ${moment()
+                    .locale('en')
+                    .format(DAY_FORMAT)}`}
+                  dayPickerProps={dayPickerProps}
+                />
+              </div>
+
+              <div style={rowStyle}>
+                <Columns xLargeCol={4} largeCol={3} mediumCol={2} smallCol={2}>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryChart
+                      style={{
+                        parent: { border: '1px solid #ccc', margin: '2%' },
+                      }}
+                      domainPadding={{ x: 30, y: 30 }}
+                      height={600}
+                      width={600}
+                      events={[
+                        {
+                          childName: 'bar',
+                          target: 'data',
+                          eventHandlers: {
+                            onClick: () => [
+                              {
+                                target: 'labels',
+                                mutation: () => ({ text: 'o shit' }),
+                              },
+                              {
+                                childName: 'line',
+                                target: 'data',
+                                mutation: () => ({ style: { stroke: 'lime' } }),
+                              },
+                              {
+                                childName: 'line',
+                                target: 'labels',
+                                mutation: () => ({
+                                  style: { fill: 'green' },
+                                  text: 'waddup',
+                                }),
+                              },
+                            ],
+                          },
+                        },
+                      ]}
+                    >
+                      <VictoryBar
+                        name="bar"
+                        style={{ data: { width: 15, fill: 'green' } }}
+                        data={[
+                          { x: 1, y: 1 },
+                          { x: 2, y: 2 },
+                          { x: 3, y: 3 },
+                          { x: 4, y: 2 },
+                          { x: 5, y: 1 },
+                          { x: 6, y: 2 },
+                          { x: 7, y: 3 },
+                          { x: 8, y: 2 },
+                          { x: 9, y: 1 },
+                          { x: 10, y: 2 },
+                          { x: 11, y: 3 },
+                          { x: 12, y: 2 },
+                          { x: 13, y: 1 },
+                        ]}
+                      />
+                      <VictoryLine
+                        name="line"
+                        y={() => 0.5}
+                        style={{ data: { stroke: 'blue', strokeWidth: 5 } }}
+                        label="LINE"
+                      />
+                    </VictoryChart>
+                  </Column>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryPie
+                      animate={{ duration: 1000 }}
+                      width={400}
+                      height={400}
+                      data={this.state.data}
+                      innerRadius={120}
+                      cornerRadius={25}
+                      labels={() => null}
+                      style={{
+                        data: {
+                          fill: d => {
+                            const color = d.y > 30 ? 'green' : 'red';
+                            return d.x === 1 ? color : 'transparent';
+                          },
+                        },
+                      }}
+                    />
+                    <VictoryAnimation duration={1000} data={this.state}>
+                      {newProps => (
+                        <VictoryLabel
+                          textAnchor="middle"
+                          verticalAnchor="middle"
+                          x={200}
+                          y={200}
+                          text={`${Math.round(newProps.percent)}%`}
+                          style={{ fontSize: 45 }}
+                        />
+                      )}
+                    </VictoryAnimation>
+                  </Column>
+                  <Column xLargeCell={1} smallCell={1}>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      animate={{ duration: 1000 }}
+                    >
+                      <VictoryStack colorScale="blue">
+                        {this.state.data.map((data, i) => (
+                          <VictoryArea
+                            key={i}
+                            data={[
+                              { x: 1, y: 1 },
+                              { x: 2, y: 5 },
+                              { x: 3, y: 3 },
+                              { x: 4, y: 2 },
+                              { x: 5, y: 8 },
+                            ]}
+                            interpolation="basis"
+                          />
+                        ))}
+                      </VictoryStack>
+                    </VictoryChart>
+                  </Column>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryChart
+                      height={400}
+                      width={400}
+                      domainPadding={{ x: 50, y: [0, 20] }}
+                      scale={{ x: 'time' }}
+                    >
+                      <VictoryBar
+                        dataComponent={
+                          <Bar
+                            events={{
+                              onMouseOver: () => console.log('zetgoo'),
+                            }}
+                          />
+                        }
+                        style={this.state.style}
+                        data={[
+                          { x: new Date(1986, 1, 1), y: 2 },
+                          { x: new Date(1996, 1, 1), y: 3 },
+                          { x: new Date(2006, 1, 1), y: 5 },
+                          { x: new Date(2016, 1, 1), y: 4 },
+                        ]}
+                      />
+                    </VictoryChart>
+                  </Column>
+                </Columns>
+              </div>
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -1028,153 +1309,6 @@ class App extends Component {
                   ratio={2}
                 />
               </div>
-              {/* <div style={rowStyle}>
-                <NavToggle/>
-                </div> */}
-              {/* <div style={rowStyle}>
-                  <Columns xLargeCol = {4} largeCol = {3} mediumCol = {2} smallCol = {2}>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryChart style={{
-                  parent: { border: "1px solid #ccc", margin: "2%"}
-                  }}
-                  domainPadding={{ x: 30, y: 30 }}
-                  height={600}
-                  width={600}
-                  events={[{
-                  childName: "bar",
-                  target: "data",
-                  eventHandlers: {
-                  onClick: () => {
-                  return [
-                  {
-                  target: "labels",
-                  mutation: () => {
-                  return { text: "o shit" };
-                  }
-                  },
-                  {
-                  childName: "line",
-                  target: "data",
-                  mutation: () => {
-                  return { style: { stroke: "lime" } };
-                  }
-                  },
-                  {
-                  childName: "line",
-                  target: "labels",
-                  mutation: () => {
-                  return {
-                  style: { fill: "green" },
-                  text: "waddup"
-                  };
-                  }
-                  }
-                  ];
-                  }
-                  }
-                  }]}
-                  >
-                  <VictoryBar name="bar"
-                  style={{ data: { width: 15, fill: "green" } }}
-                  data={[
-                  { x: 1, y: 1 },
-                  { x: 2, y: 2 },
-                  { x: 3, y: 3 },
-                  { x: 4, y: 2 },
-                  { x: 5, y: 1 },
-                  { x: 6, y: 2 },
-                  { x: 7, y: 3 },
-                  { x: 8, y: 2 },
-                  { x: 9, y: 1 },
-                  { x: 10, y: 2 },
-                  { x: 11, y: 3 },
-                  { x: 12, y: 2 },
-                  { x: 13, y: 1 }
-                  ]}
-                  />
-                  <VictoryLine name="line"
-                  y={() => 0.5}
-                  style={{ data: { stroke: "blue", strokeWidth: 5 } }}
-                  label="LINE"
-                  />
-                  </VictoryChart>
-                  </Column>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryPie
-                  animate={{duration: 1000}}
-                  width={400} height={400}
-                  data={this.state.data}
-                  innerRadius={120}
-                  cornerRadius={25}
-                  labels={() => null}
-                  style={{
-                  data: { fill: (d) => {
-                  const color = d.y > 30 ? "green" : "red";
-                  return d.x === 1 ? color : "transparent";
-                  }
-                  }
-                  }}
-                  />
-                  <VictoryAnimation duration={1000} data={this.state}>
-                  {(newProps) => {
-                  return (
-                  <VictoryLabel
-                  textAnchor="middle" verticalAnchor="middle"
-                  x={200} y={200}
-                  text={`${Math.round(newProps.percent)}%`}
-                  style={{ fontSize: 45 }}
-                  />
-                  );
-                  }}
-                  </VictoryAnimation>
-                  </Column>
-                  <Column xLargeCell = {1} smallCell = {1}>
-                  <VictoryChart
-                  theme={VictoryTheme.material}
-                  animate={{ duration: 1000 }}
-                  >
-                  <VictoryStack
-                  colorScale={"blue"}
-                  >
-                  {this.state.data.map((data, i) => {
-                  return (
-                  <VictoryArea
-                  key={i}
-                  data={[
-                  { x: 1, y: 1 },
-                  { x: 2, y: 5 },
-                  { x: 3, y: 3 },
-                  { x: 4, y: 2 },
-                  { x: 5, y: 8 }
-                  ]}
-                  interpolation={"basis"}
-                  />
-                  );
-                  })}
-                  </VictoryStack>
-                  </VictoryChart>
-                  </Column>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryChart height={400} width={400}
-                  domainPadding={{x: 50, y: [0, 20]}}
-                  scale={{x: "time"}}
-                  >
-                  <VictoryBar
-                  dataComponent={
-                  <Bar events={{ onMouseOver: ()=>console.log('zetgoo') }}/>
-                  }
-                  style={this.state.style}
-                  data={[
-                  {x: new Date(1986, 1, 1), y: 2},
-                  {x: new Date(1996, 1, 1), y: 3},
-                  {x: new Date(2006, 1, 1), y: 5},
-                  {x: new Date(2016, 1, 1), y: 4}
-                  ]}
-                  />
-                  </VictoryChart>
-                  </Column>
-                  </Columns>
-                  </div> */}
             </Column>
           </Columns>
         </Container>

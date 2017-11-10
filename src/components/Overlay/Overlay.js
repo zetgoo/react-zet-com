@@ -29,6 +29,7 @@ const styles = {
     flexDirection: 'column',
     backgroundColor: '#fff',
     borderRadius: '.2rem',
+    overflow: 'auto',
     boxShadow: '0 19px 60px rgba(0,0,0,.3), 0 15px 20px rgba(0,0,0,.22)',
     transitionDelay: '.07s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
@@ -47,6 +48,26 @@ const styles = {
     transitionDuration: '.35s',
     transitionProperty: 'opacity',
     opacity: '.6',
+  },
+  close: {
+    position: 'relative',
+  },
+  closeButton: {
+    position: 'absolute',
+    right: 0,
+    background: '#B0B0B0',
+    width: 18,
+    height: 18,
+    borderRadius: '50%',
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    margin: 'auto',
+    cursor: 'pointer',
+    marginRight: '.5em',
+    marginTop: '.5em',
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
   },
 };
 
@@ -88,6 +109,13 @@ const Overlay = props => {
               container = node;
             }}
           >
+            {props.isCloseable && (
+              <div style={styles.close} onClick={props.onShow}>
+                <div style={styles.closeButton}>
+                  <i className="fa fa-close" />
+                </div>
+              </div>
+            )}
             {props.children}
           </div>
         </div>
@@ -103,6 +131,7 @@ Overlay.propTypes = {
     PropTypes.node,
   ]).isRequired,
   isShow: PropTypes.bool.isRequired,
+  isCloseable: PropTypes.bool.isRequired,
   onShow: PropTypes.func.isRequired,
   zFront: PropTypes.node.isRequired,
 };

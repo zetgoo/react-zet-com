@@ -19,21 +19,21 @@ const styles = {
   },
 };
 
-const ControlLabel = (props) => {
-  const zcss = [];
+const ControlLabel = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <p {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}
-      >{props.children}</p>
+    <p {...props} style={[styles.base, ...zcss]}>
+      {props.children}
+    </p>
   );
 };
 
