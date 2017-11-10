@@ -77,11 +77,7 @@ var Modal = function Modal(props) {
         _react2.default.createElement(
           _Sack2.default,
           null,
-          _react2.default.createElement(
-            _ControlLabel2.default,
-            { zcss: ['f2e'] },
-            props.title
-          )
+          props.title
         ),
         _react2.default.createElement(
           _Sack2.default,

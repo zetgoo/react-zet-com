@@ -1,6 +1,10 @@
 @import "normalize.css"
-@import "./css/react-select.css"
-@import "./css/react-toggle.css"
+
+/*build start============*/
+@import "react-select/dist/react-select.min.css"
+@import "react-toggle/style.css"
+@import "react-day-picker/lib/style.css"
+/*build end==============*/
 
 /**
    * React Starter Kit (https://www.reactstarterkit.com/)

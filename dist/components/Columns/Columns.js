@@ -50,9 +50,11 @@ var Columns = function Columns(props) {
     });
   }
 
+  if (props.isMasonry) {}
+
   return _react2.default.createElement(
     'div',
-    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss)) }),
+    _extends({}, props, { style: [styles.base].concat(_toConsumableArray(zcss), [props.style]) }),
     _react2.default.Children.map(props.children, function (child) {
       return _react2.default.cloneElement(child, _extends({}, props, {
         children: child.props.children,
@@ -64,6 +66,7 @@ var Columns = function Columns(props) {
 
 Columns.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
   col: _propTypes2.default.number,
   smallCol: _propTypes2.default.number.isRequired,
   mediumCol: _propTypes2.default.number.isRequired,

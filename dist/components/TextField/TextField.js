@@ -92,10 +92,10 @@ var TextField = function TextField(props) {
         onChange: props.onChange
       }, _defineProperty(_React$createElement, 'placeholder', props.placeholder), _defineProperty(_React$createElement, 'type', props.type), _React$createElement)),
       props.errors && props.errors.length > 0 && _react2.default.createElement(_Icon2.default, {
-        zcss: ['cl_danger', 'mgL1/2e'],
+        zcss: ['cl_danger', 'mgL.5e'],
         icon: 'fa fa-exclamation-circle'
       }),
-      props.valid && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'mgL1/2e'], icon: 'fa fa-check-circle' })
+      props.valid && _react2.default.createElement(_Icon2.default, { zcss: ['cl_success', 'mgL.5e'], icon: 'fa fa-check-circle' })
     ),
     props.errors && props.errors.length > 0 && props.errors.map(function (item, index) {
       return _react2.default.createElement(

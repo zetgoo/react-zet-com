@@ -82,7 +82,7 @@ var Avatar = function Avatar(props) {
   if (props.src) {
     return _react2.default.createElement(_Image2.default, _extends({}, props, {
       zcss: [].concat(_toConsumableArray(props.zcss), ['isAvatar']),
-      width: 32,
+      width: props.width || 32,
       ratio: 1
     }));
   }

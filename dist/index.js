@@ -154,6 +154,10 @@ var _ZCaptcha = require('./components/ZCaptcha');
 
 var _ZCaptcha2 = _interopRequireDefault(_ZCaptcha);
 
+var _reactDayPicker = require('react-day-picker');
+
+var _reactDayPicker2 = _interopRequireDefault(_reactDayPicker);
+
 var _victory = require('victory');
 
 var _Header = require('./layout/Header');
@@ -238,13 +242,14 @@ var App = function (_Component) {
       var _this2 = this;
 
       var percent = 25;
-      // this.setStateInterval = window.setInterval(() => {
-      //   percent += (Math.random() * 25);
-      //   percent = (percent > 100) ? 0 : percent;
-      //   this.setState({
-      //     percent, data: this.getData(percent)
-      //   });
-      // }, 2000);
+      this.setStateInterval = window.setInterval(function () {
+        percent += Math.random() * 25;
+        percent = percent > 100 ? 0 : percent;
+        _this2.setState({
+          percent: percent,
+          data: _this2.getData(percent)
+        });
+      }, 2000);
       setTimeout(function () {
         return _this2.setState({
           url: 'https://cdn-images-1.medium.com/max/1800/1*sg-uLNm73whmdOgKlrQdZA.jpeg'
@@ -297,6 +302,11 @@ var App = function (_Component) {
                 _ControlLabel2.default,
                 { zcss: ['f1e'] },
                 'Ballard'
+              ),
+              _react2.default.createElement(
+                _Link2.default,
+                { href: 'https://github.com' },
+                'github'
               ),
               _react2.default.createElement(
                 _Link2.default,
@@ -1736,6 +1746,176 @@ var App = function (_Component) {
                   width: 480,
                   ratio: 2
                 })
+              ),
+              _react2.default.createElement(
+                'div',
+                { style: rowStyle },
+                _react2.default.createElement(_reactDayPicker2.default, { onDayClick: function onDayClick(day) {
+                    return alert(day);
+                  } })
+              ),
+              _react2.default.createElement(
+                'div',
+                { style: rowStyle },
+                _react2.default.createElement(
+                  _Columns2.default,
+                  { xLargeCol: 4, largeCol: 3, mediumCol: 2, smallCol: 2 },
+                  _react2.default.createElement(
+                    _Column2.default,
+                    {
+                      xLargeCell: 1,
+                      largeCell: 1,
+                      mediumCell: 1,
+                      smallCell: 1
+                    },
+                    _react2.default.createElement(
+                      _victory.VictoryChart,
+                      {
+                        style: {
+                          parent: { border: '1px solid #ccc', margin: '2%' }
+                        },
+                        domainPadding: { x: 30, y: 30 },
+                        height: 600,
+                        width: 600,
+                        events: [{
+                          childName: 'bar',
+                          target: 'data',
+                          eventHandlers: {
+                            onClick: function onClick() {
+                              return [{
+                                target: 'labels',
+                                mutation: function mutation() {
+                                  return { text: 'o shit' };
+                                }
+                              }, {
+                                childName: 'line',
+                                target: 'data',
+                                mutation: function mutation() {
+                                  return { style: { stroke: 'lime' } };
+                                }
+                              }, {
+                                childName: 'line',
+                                target: 'labels',
+                                mutation: function mutation() {
+                                  return {
+                                    style: { fill: 'green' },
+                                    text: 'waddup'
+                                  };
+                                }
+                              }];
+                            }
+                          }
+                        }]
+                      },
+                      _react2.default.createElement(_victory.VictoryBar, {
+                        name: 'bar',
+                        style: { data: { width: 15, fill: 'green' } },
+                        data: [{ x: 1, y: 1 }, { x: 2, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 2 }, { x: 5, y: 1 }, { x: 6, y: 2 }, { x: 7, y: 3 }, { x: 8, y: 2 }, { x: 9, y: 1 }, { x: 10, y: 2 }, { x: 11, y: 3 }, { x: 12, y: 2 }, { x: 13, y: 1 }]
+                      }),
+                      _react2.default.createElement(_victory.VictoryLine, {
+                        name: 'line',
+                        y: function y() {
+                          return 0.5;
+                        },
+                        style: { data: { stroke: 'blue', strokeWidth: 5 } },
+                        label: 'LINE'
+                      })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    _Column2.default,
+                    {
+                      xLargeCell: 1,
+                      largeCell: 1,
+                      mediumCell: 1,
+                      smallCell: 1
+                    },
+                    _react2.default.createElement(_victory.VictoryPie, {
+                      animate: { duration: 1000 },
+                      width: 400,
+                      height: 400,
+                      data: this.state.data,
+                      innerRadius: 120,
+                      cornerRadius: 25,
+                      labels: function labels() {
+                        return null;
+                      },
+                      style: {
+                        data: {
+                          fill: function fill(d) {
+                            var color = d.y > 30 ? 'green' : 'red';
+                            return d.x === 1 ? color : 'transparent';
+                          }
+                        }
+                      }
+                    }),
+                    _react2.default.createElement(
+                      _victory.VictoryAnimation,
+                      { duration: 1000, data: this.state },
+                      function (newProps) {
+                        return _react2.default.createElement(_victory.VictoryLabel, {
+                          textAnchor: 'middle',
+                          verticalAnchor: 'middle',
+                          x: 200,
+                          y: 200,
+                          text: Math.round(newProps.percent) + '%',
+                          style: { fontSize: 45 }
+                        });
+                      }
+                    )
+                  ),
+                  _react2.default.createElement(
+                    _Column2.default,
+                    { xLargeCell: 1, smallCell: 1 },
+                    _react2.default.createElement(
+                      _victory.VictoryChart,
+                      {
+                        theme: _victory.VictoryTheme.material,
+                        animate: { duration: 1000 }
+                      },
+                      _react2.default.createElement(
+                        _victory.VictoryStack,
+                        { colorScale: 'blue' },
+                        this.state.data.map(function (data, i) {
+                          return _react2.default.createElement(_victory.VictoryArea, {
+                            key: i,
+                            data: [{ x: 1, y: 1 }, { x: 2, y: 5 }, { x: 3, y: 3 }, { x: 4, y: 2 }, { x: 5, y: 8 }],
+                            interpolation: 'basis'
+                          });
+                        })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    _Column2.default,
+                    {
+                      xLargeCell: 1,
+                      largeCell: 1,
+                      mediumCell: 1,
+                      smallCell: 1
+                    },
+                    _react2.default.createElement(
+                      _victory.VictoryChart,
+                      {
+                        height: 400,
+                        width: 400,
+                        domainPadding: { x: 50, y: [0, 20] },
+                        scale: { x: 'time' }
+                      },
+                      _react2.default.createElement(_victory.VictoryBar, {
+                        dataComponent: _react2.default.createElement(_victory.Bar, {
+                          events: {
+                            onMouseOver: function onMouseOver() {
+                              return console.log('zetgoo');
+                            }
+                          }
+                        }),
+                        style: this.state.style,
+                        data: [{ x: new Date(1986, 1, 1), y: 2 }, { x: new Date(1996, 1, 1), y: 3 }, { x: new Date(2006, 1, 1), y: 5 }, { x: new Date(2016, 1, 1), y: 4 }]
+                      })
+                    )
+                  )
+                )
               )
             )
           )

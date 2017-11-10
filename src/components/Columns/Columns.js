@@ -35,8 +35,11 @@ const Columns = props => {
     });
   }
 
+  if (props.isMasonry) {
+  }
+
   return (
-    <div {...props} style={[styles.base, ...zcss]}>
+    <div {...props} style={[styles.base, ...zcss, props.style]}>
       {React.Children.map(props.children, child =>
         React.cloneElement(child, {
           ...props,
@@ -50,6 +53,7 @@ const Columns = props => {
 
 Columns.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   col: PropTypes.number,
   smallCol: PropTypes.number.isRequired,
   mediumCol: PropTypes.number.isRequired,

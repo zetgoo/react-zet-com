@@ -160,6 +160,11 @@ export const atomic = {
   'f.8125r': { fontSize: '.8125rem' },
   'f.875r': { fontSize: '.875rem' },
   f1r: { fontSize: '1rem' },
+  'f1.125r': { fontSize: '1.125rem' },
+  'f1.25r': { fontSize: '1.25rem' },
+  'f1.5r': { fontSize: '1.5rem' },
+  'f1.75r': { fontSize: '1.75rem' },
+  'f1.8125r': { fontSize: '1.8125rem' },
   f2r: { fontSize: '2rem' },
   f3r: { fontSize: '3rem' },
 
@@ -168,6 +173,11 @@ export const atomic = {
   'f.8125e': { fontSize: '.8125em' },
   'f.875e': { fontSize: '.875em' },
   f1e: { fontSize: '1em' },
+  'f1.125e': { fontSize: '1.125em' },
+  'f1.25e': { fontSize: '1.25em' },
+  'f1.5e': { fontSize: '1.5em' },
+  'f1.75e': { fontSize: '1.75em' },
+  'f1.8125e': { fontSize: '1.8125em' },
   f2e: { fontSize: '2em' },
   f3e: { fontSize: '3em' },
   // font weight
