@@ -37,9 +37,7 @@ const Modal = props => {
     <div {...props} style={[styles.base, ...zcss]}>
       <Overlay zFront={props.zFront} isCloseable>
         <Sack zcss={['pd1e']}>
-          <Sack>
-            <ControlLabel zcss={['f2e']}>{props.title}</ControlLabel>
-          </Sack>
+          <Sack>{props.title}</Sack>
           <Sack zcss={['']}>{props.children}</Sack>
           <Sack zcss={[align]}>
             {props.action &&

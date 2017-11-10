@@ -111,6 +111,7 @@ const Header = props => {
         )}
         {props.userLogined && (
           <NavGroup zcss={['icon']}>
+            <NavItem>{props.multipleLanguage}</NavItem>
             {props.iconMenuUser &&
               props.iconMenuUser.map(item => {
                 if (item.type === 'popover') {
@@ -183,6 +184,7 @@ Header.propTypes = {
   isSearching: PropTypes.bool.isRequired,
   toogleClick: PropTypes.func.isRequired,
   zBackUser: PropTypes.node.isRequired,
+  multipleLanguage: PropTypes.node.isRequired,
 };
 
 export default Radium(Header);

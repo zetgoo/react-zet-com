@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Router from 'universal-router';
+import moment from 'moment';
+
 import AppContainer from './components/AppContainer';
 import Button from './components/Button';
 import Link from './components/Link';
@@ -36,6 +38,8 @@ import Popover from './components/Popover';
 import Tooltip from './components/Tooltip';
 import Video from './components/Video';
 import ZCaptcha from './components/ZCaptcha';
+import DayPicker from './components/DayPicker';
+import DayPickerInput from './components/DayPickerInput';
 
 import {
   VictoryPie,
@@ -63,6 +67,8 @@ const boxStyle = {
   margin: '0 5px 5px 0',
   display: 'inline-flex',
 };
+
+const DAY_FORMAT = 'DD/MM/YYYY';
 
 class App extends Component {
   constructor(props) {
@@ -102,18 +108,21 @@ class App extends Component {
         { content: '', link: '/c' },
         { content: '', link: '/d' },
       ],
+      selectedDay: undefined,
+      isDisabled: false,
     };
   }
 
   componentDidMount() {
-    const percent = 25;
-    // this.setStateInterval = window.setInterval(() => {
-    //   percent += (Math.random() * 25);
-    //   percent = (percent > 100) ? 0 : percent;
-    //   this.setState({
-    //     percent, data: this.getData(percent)
-    //   });
-    // }, 2000);
+    let percent = 25;
+    this.setStateInterval = window.setInterval(() => {
+      percent += Math.random() * 25;
+      percent = percent > 100 ? 0 : percent;
+      this.setState({
+        percent,
+        data: this.getData(percent),
+      });
+    }, 2000);
     setTimeout(
       () =>
         this.setState({
@@ -128,6 +137,13 @@ class App extends Component {
     window.clearInterval(this.setStateInterval);
   }
 
+  handleDayChange = (selectedDay, modifiers) => {
+    this.setState({
+      selectedDay,
+      isDisabled: modifiers.disabled,
+    });
+  };
+
   getData(percent) {
     return [{ x: 1, y: percent }, { x: 2, y: 100 - percent }];
   }
@@ -137,6 +153,22 @@ class App extends Component {
   }
 
   render() {
+    const { selectedDay, isDisabled } = this.state;
+    const formattedDay = selectedDay
+      ? moment(selectedDay).format(DAY_FORMAT)
+      : '';
+
+    const dayPickerProps = {
+      todayButton: 'Go to Today',
+      disabledDays: {
+        daysOfWeek: [0, 6],
+      },
+      enableOutsideDays: true,
+      modifiers: {
+        monday: { daysOfWeek: [1] },
+      },
+    };
+
     return (
       <AppContainer>
         <Container>
@@ -155,6 +187,7 @@ class App extends Component {
             zBackUser={
               <Sack zcss={['mg1e', 'ta_l']} style={{ width: 220 }}>
                 <ControlLabel zcss={['f1e']}>Ballard</ControlLabel>
+                <Link href="https://github.com">github</Link>
                 <Link to="profile">
                   <Icon zcss={['']} icon="fa fa-user" text="Setting" />
                 </Link>
@@ -946,6 +979,187 @@ class App extends Component {
                 </Box>
               </div>
               <div style={rowStyle}>
+                <DayPicker onDayClick={day => alert(day)} />
+              </div>
+
+              <div style={rowStyle}>
+                <p>
+                  {!selectedDay && '🤔 Type or pick a valid day'}
+                  {selectedDay && isDisabled && '😡 This day is disabled'}
+                  {selectedDay && !isDisabled && `😄 You chose ${formattedDay}`}
+                </p>
+                <DayPickerInput
+                  value={formattedDay}
+                  onDayChange={this.handleDayChange}
+                  format={DAY_FORMAT}
+                  placeholder={`E.g. ${moment()
+                    .locale('en')
+                    .format(DAY_FORMAT)}`}
+                  dayPickerProps={dayPickerProps}
+                />
+              </div>
+
+              <div style={rowStyle}>
+                <Columns xLargeCol={4} largeCol={3} mediumCol={2} smallCol={2}>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryChart
+                      style={{
+                        parent: { border: '1px solid #ccc', margin: '2%' },
+                      }}
+                      domainPadding={{ x: 30, y: 30 }}
+                      height={600}
+                      width={600}
+                      events={[
+                        {
+                          childName: 'bar',
+                          target: 'data',
+                          eventHandlers: {
+                            onClick: () => [
+                              {
+                                target: 'labels',
+                                mutation: () => ({ text: 'o shit' }),
+                              },
+                              {
+                                childName: 'line',
+                                target: 'data',
+                                mutation: () => ({ style: { stroke: 'lime' } }),
+                              },
+                              {
+                                childName: 'line',
+                                target: 'labels',
+                                mutation: () => ({
+                                  style: { fill: 'green' },
+                                  text: 'waddup',
+                                }),
+                              },
+                            ],
+                          },
+                        },
+                      ]}
+                    >
+                      <VictoryBar
+                        name="bar"
+                        style={{ data: { width: 15, fill: 'green' } }}
+                        data={[
+                          { x: 1, y: 1 },
+                          { x: 2, y: 2 },
+                          { x: 3, y: 3 },
+                          { x: 4, y: 2 },
+                          { x: 5, y: 1 },
+                          { x: 6, y: 2 },
+                          { x: 7, y: 3 },
+                          { x: 8, y: 2 },
+                          { x: 9, y: 1 },
+                          { x: 10, y: 2 },
+                          { x: 11, y: 3 },
+                          { x: 12, y: 2 },
+                          { x: 13, y: 1 },
+                        ]}
+                      />
+                      <VictoryLine
+                        name="line"
+                        y={() => 0.5}
+                        style={{ data: { stroke: 'blue', strokeWidth: 5 } }}
+                        label="LINE"
+                      />
+                    </VictoryChart>
+                  </Column>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryPie
+                      animate={{ duration: 1000 }}
+                      width={400}
+                      height={400}
+                      data={this.state.data}
+                      innerRadius={120}
+                      cornerRadius={25}
+                      labels={() => null}
+                      style={{
+                        data: {
+                          fill: d => {
+                            const color = d.y > 30 ? 'green' : 'red';
+                            return d.x === 1 ? color : 'transparent';
+                          },
+                        },
+                      }}
+                    />
+                    <VictoryAnimation duration={1000} data={this.state}>
+                      {newProps => (
+                        <VictoryLabel
+                          textAnchor="middle"
+                          verticalAnchor="middle"
+                          x={200}
+                          y={200}
+                          text={`${Math.round(newProps.percent)}%`}
+                          style={{ fontSize: 45 }}
+                        />
+                      )}
+                    </VictoryAnimation>
+                  </Column>
+                  <Column xLargeCell={1} smallCell={1}>
+                    <VictoryChart
+                      theme={VictoryTheme.material}
+                      animate={{ duration: 1000 }}
+                    >
+                      <VictoryStack colorScale="blue">
+                        {this.state.data.map((data, i) => (
+                          <VictoryArea
+                            key={i}
+                            data={[
+                              { x: 1, y: 1 },
+                              { x: 2, y: 5 },
+                              { x: 3, y: 3 },
+                              { x: 4, y: 2 },
+                              { x: 5, y: 8 },
+                            ]}
+                            interpolation="basis"
+                          />
+                        ))}
+                      </VictoryStack>
+                    </VictoryChart>
+                  </Column>
+                  <Column
+                    xLargeCell={1}
+                    largeCell={1}
+                    mediumCell={1}
+                    smallCell={1}
+                  >
+                    <VictoryChart
+                      height={400}
+                      width={400}
+                      domainPadding={{ x: 50, y: [0, 20] }}
+                      scale={{ x: 'time' }}
+                    >
+                      <VictoryBar
+                        dataComponent={
+                          <Bar
+                            events={{
+                              onMouseOver: () => console.log('zetgoo'),
+                            }}
+                          />
+                        }
+                        style={this.state.style}
+                        data={[
+                          { x: new Date(1986, 1, 1), y: 2 },
+                          { x: new Date(1996, 1, 1), y: 3 },
+                          { x: new Date(2006, 1, 1), y: 5 },
+                          { x: new Date(2016, 1, 1), y: 4 },
+                        ]}
+                      />
+                    </VictoryChart>
+                  </Column>
+                </Columns>
+              </div>
+              <div style={rowStyle}>
                 <Image
                   zcss={[]}
                   src="http://placehold.it/480x480"
@@ -1095,153 +1309,6 @@ class App extends Component {
                   ratio={2}
                 />
               </div>
-              {/* <div style={rowStyle}>
-                <NavToggle/>
-                </div> */}
-              {/* <div style={rowStyle}>
-                  <Columns xLargeCol = {4} largeCol = {3} mediumCol = {2} smallCol = {2}>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryChart style={{
-                  parent: { border: "1px solid #ccc", margin: "2%"}
-                  }}
-                  domainPadding={{ x: 30, y: 30 }}
-                  height={600}
-                  width={600}
-                  events={[{
-                  childName: "bar",
-                  target: "data",
-                  eventHandlers: {
-                  onClick: () => {
-                  return [
-                  {
-                  target: "labels",
-                  mutation: () => {
-                  return { text: "o shit" };
-                  }
-                  },
-                  {
-                  childName: "line",
-                  target: "data",
-                  mutation: () => {
-                  return { style: { stroke: "lime" } };
-                  }
-                  },
-                  {
-                  childName: "line",
-                  target: "labels",
-                  mutation: () => {
-                  return {
-                  style: { fill: "green" },
-                  text: "waddup"
-                  };
-                  }
-                  }
-                  ];
-                  }
-                  }
-                  }]}
-                  >
-                  <VictoryBar name="bar"
-                  style={{ data: { width: 15, fill: "green" } }}
-                  data={[
-                  { x: 1, y: 1 },
-                  { x: 2, y: 2 },
-                  { x: 3, y: 3 },
-                  { x: 4, y: 2 },
-                  { x: 5, y: 1 },
-                  { x: 6, y: 2 },
-                  { x: 7, y: 3 },
-                  { x: 8, y: 2 },
-                  { x: 9, y: 1 },
-                  { x: 10, y: 2 },
-                  { x: 11, y: 3 },
-                  { x: 12, y: 2 },
-                  { x: 13, y: 1 }
-                  ]}
-                  />
-                  <VictoryLine name="line"
-                  y={() => 0.5}
-                  style={{ data: { stroke: "blue", strokeWidth: 5 } }}
-                  label="LINE"
-                  />
-                  </VictoryChart>
-                  </Column>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryPie
-                  animate={{duration: 1000}}
-                  width={400} height={400}
-                  data={this.state.data}
-                  innerRadius={120}
-                  cornerRadius={25}
-                  labels={() => null}
-                  style={{
-                  data: { fill: (d) => {
-                  const color = d.y > 30 ? "green" : "red";
-                  return d.x === 1 ? color : "transparent";
-                  }
-                  }
-                  }}
-                  />
-                  <VictoryAnimation duration={1000} data={this.state}>
-                  {(newProps) => {
-                  return (
-                  <VictoryLabel
-                  textAnchor="middle" verticalAnchor="middle"
-                  x={200} y={200}
-                  text={`${Math.round(newProps.percent)}%`}
-                  style={{ fontSize: 45 }}
-                  />
-                  );
-                  }}
-                  </VictoryAnimation>
-                  </Column>
-                  <Column xLargeCell = {1} smallCell = {1}>
-                  <VictoryChart
-                  theme={VictoryTheme.material}
-                  animate={{ duration: 1000 }}
-                  >
-                  <VictoryStack
-                  colorScale={"blue"}
-                  >
-                  {this.state.data.map((data, i) => {
-                  return (
-                  <VictoryArea
-                  key={i}
-                  data={[
-                  { x: 1, y: 1 },
-                  { x: 2, y: 5 },
-                  { x: 3, y: 3 },
-                  { x: 4, y: 2 },
-                  { x: 5, y: 8 }
-                  ]}
-                  interpolation={"basis"}
-                  />
-                  );
-                  })}
-                  </VictoryStack>
-                  </VictoryChart>
-                  </Column>
-                  <Column xLargeCell = {1} largeCell = {1} mediumCell = {1} smallCell = {1}>
-                  <VictoryChart height={400} width={400}
-                  domainPadding={{x: 50, y: [0, 20]}}
-                  scale={{x: "time"}}
-                  >
-                  <VictoryBar
-                  dataComponent={
-                  <Bar events={{ onMouseOver: ()=>console.log('zetgoo') }}/>
-                  }
-                  style={this.state.style}
-                  data={[
-                  {x: new Date(1986, 1, 1), y: 2},
-                  {x: new Date(1996, 1, 1), y: 3},
-                  {x: new Date(2006, 1, 1), y: 5},
-                  {x: new Date(2016, 1, 1), y: 4}
-                  ]}
-                  />
-                  </VictoryChart>
-                  </Column>
-                  </Columns>
-                  </div> */}
             </Column>
           </Columns>
         </Container>

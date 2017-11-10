@@ -53,7 +53,7 @@ const Avatar = props => {
       <Image
         {...props}
         zcss={[...props.zcss, 'isAvatar']}
-        width={32}
+        width={props.width || 32}
         ratio={1}
       />
     );

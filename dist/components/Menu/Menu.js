@@ -29,7 +29,6 @@ var styles = {
     listStyle: 'none',
     margin: 0,
     color: 'rgba(0,0,0,0.86)',
-    backgroundColor: '#f6f9fa',
     lineHeight: 2
   }
 };

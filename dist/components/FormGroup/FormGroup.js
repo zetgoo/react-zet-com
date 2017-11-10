@@ -28,7 +28,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var FormGroup = function FormGroup(props) {
   var zcss = props.zcss || [];
-  zcss.push('mgB1/2r');
+  zcss.push('mgB.5r');
 
   return _react2.default.createElement(
     _Sack2.default,

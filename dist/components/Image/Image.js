@@ -49,12 +49,12 @@ var styles = {
     borderRadius: '50%'
   },
 
-  isAvatar: {
-    '@media (max-width: 575px)': {
-      height: 32,
-      width: 32
-    }
-  },
+  // isAvatar: {
+  //   '@media (max-width: 575px)': {
+  //     height: 32,
+  //     width: 32,
+  //   },
+  // },
   isBlur: {
     transition: 'opacity 2s linear'
   }

@@ -188,6 +188,11 @@ var Header = function Header(props) {
       props.userLogined && _react2.default.createElement(
         _NavGroup2.default,
         { zcss: ['icon'] },
+        _react2.default.createElement(
+          _NavItem2.default,
+          null,
+          props.multipleLanguage
+        ),
         props.iconMenuUser && props.iconMenuUser.map(function (item) {
           if (item.type === 'popover') {
             return _react2.default.createElement(
@@ -261,7 +266,8 @@ Header.propTypes = {
   isActive: _propTypes2.default.bool.isRequired,
   isSearching: _propTypes2.default.bool.isRequired,
   toogleClick: _propTypes2.default.func.isRequired,
-  zBackUser: _propTypes2.default.node.isRequired
+  zBackUser: _propTypes2.default.node.isRequired,
+  multipleLanguage: _propTypes2.default.node.isRequired
 };
 
 exports.default = (0, _radium2.default)(Header);

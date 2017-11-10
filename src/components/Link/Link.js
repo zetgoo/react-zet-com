@@ -59,7 +59,7 @@ const Link = (props, context) => {
     <a
       href={props.to}
       {...props}
-      onClick={handleClick}
+      onClick={props.href ? undefined : handleClick}
       style={[styles.base, ...zcss, props.style]}
     >
       {props.children}
@@ -75,6 +75,7 @@ Link.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+  href: PropTypes.oneOfType([null, PropTypes.string]).isRequired,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),

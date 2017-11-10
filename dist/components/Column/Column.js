@@ -77,7 +77,7 @@ var Column = function Column(props) {
   var viewport = custom(props);
 
   styles.base['@media (min-width: 1200px)'] = viewport.xLarge;
-  styles.base['@media (min-width: 768px) and (max-width: 991px)'] = viewport.large;
+  styles.base['@media (min-width: 768px) and (max-width: 1199px)'] = viewport.large;
   styles.base['@media (min-width: 576px) and (max-width: 767px)'] = viewport.medium;
   styles.base['@media (max-width: 575px)'] = viewport.small;
 

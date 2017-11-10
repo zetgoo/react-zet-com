@@ -49,6 +49,7 @@ var styles = {
     flexDirection: 'column',
     backgroundColor: '#fff',
     borderRadius: '.2rem',
+    overflow: 'auto',
     boxShadow: '0 19px 60px rgba(0,0,0,.3), 0 15px 20px rgba(0,0,0,.22)',
     transitionDelay: '.07s',
     transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
