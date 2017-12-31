@@ -136,7 +136,7 @@ var Header = function Header(props) {
         _react2.default.createElement(
           _NavItem2.default,
           { zcss: ['logo'] },
-          _react2.default.createElement(_Logo2.default, null),
+          props.logo,
           _react2.default.createElement(_SearchInput2.default, {
             isSearching: props.isSearching,
             search: props.search
@@ -166,21 +166,51 @@ var Header = function Header(props) {
       ),
       !props.userLogined && _react2.default.createElement(
         _NavGroup2.default,
-        { zcss: ['menu', !props.isActive ? 'menuHide' : ''] },
-        props.menu && props.menu.map(function (item) {
+        { zcss: ['icon'] },
+        _react2.default.createElement(
+          _NavItem2.default,
+          null,
+          props.additionElement
+        ),
+        props.menuNoneUser && props.menuNoneUser.map(function (item) {
+          if (item.type === 'popover') {
+            return _react2.default.createElement(
+              _Popover2.default,
+              {
+                actionClick: function actionClick() {
+                  return console.log('popover after click');
+                },
+                zcss: ['isBottom'],
+                style: { right: '.75em' },
+                zFront: _react2.default.createElement(
+                  _NavItem2.default,
+                  { zcss: ['icon'] },
+                  _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) })),
+                  item.info
+                )
+              },
+              item.zBack
+            );
+          } else if (item.type === 'action') {
+            return _react2.default.createElement(
+              _NavItem2.default,
+              { zcss: ['icon'] },
+              _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) }))
+            );
+          }
           return _react2.default.createElement(
             _NavItem2.default,
-            { zcss: [].concat(_toConsumableArray(item.zcss), ['menu']) },
+            { zcss: ['icon'] },
             _react2.default.createElement(
               _Link2.default,
               {
+                to: item.link,
                 zcss: ['noUnder'],
                 style: {
                   color: 'rgba(0,0,0,0.86)'
-                },
-                to: item.to
+                }
               },
-              item.text
+              _react2.default.createElement(_Icon2.default, _extends({}, item, { zcss: [].concat(_toConsumableArray(item.zcss)) }))
             )
           );
         })
@@ -191,7 +221,7 @@ var Header = function Header(props) {
         _react2.default.createElement(
           _NavItem2.default,
           null,
-          props.multipleLanguage
+          props.additionElement
         ),
         props.iconMenuUser && props.iconMenuUser.map(function (item) {
           if (item.type === 'popover') {
@@ -257,6 +287,7 @@ Header.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
   style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
   iconMenuUser: _propTypes2.default.arrayOf(_propTypes2.default.object).isRequired,
+  menuNoneUser: _propTypes2.default.arrayOf(_propTypes2.default.object).isRequired,
   menu: _propTypes2.default.arrayOf(_propTypes2.default.object).isRequired,
   userLogined: _propTypes2.default.shape({
     avatar: _propTypes2.default.string,
@@ -267,7 +298,7 @@ Header.propTypes = {
   isSearching: _propTypes2.default.bool.isRequired,
   toogleClick: _propTypes2.default.func.isRequired,
   zBackUser: _propTypes2.default.node.isRequired,
-  multipleLanguage: _propTypes2.default.node.isRequired
+  additionElement: _propTypes2.default.node.isRequired
 };
 
 exports.default = (0, _radium2.default)(Header);

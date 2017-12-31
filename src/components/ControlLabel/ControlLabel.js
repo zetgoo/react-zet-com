@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
@@ -7,7 +7,6 @@ const styles = {
   base: {
     color: colors.dark,
     display: 'block',
-    fontWeight: 'bold',
     margin: 0,
     padding: 0,
     border: 0,
@@ -31,14 +30,19 @@ const ControlLabel = props => {
   }
 
   return (
-    <p {...props} style={[styles.base, ...zcss]}>
+    <p {...props} style={[styles.base, ...zcss, props.style]}>
       {props.children}
     </p>
   );
 };
 
 ControlLabel.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Radium(ControlLabel);

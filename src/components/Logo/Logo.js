@@ -37,7 +37,7 @@ const styles = {
   },
 };
 
-const Logo = (props) => {
+const Logo = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -47,13 +47,9 @@ const Logo = (props) => {
   }
 
   return (
-    <Link to = '/'>
-      <figure {...props} style={[
-          styles.base,
-          ...zcss,
-        ]}
-        >
-        <img src = 'http://zetgoo.com/images/glogo.png' style={[styles.logo]}/>
+    <Link to="/">
+      <figure {...props} style={[styles.base, ...zcss]}>
+        <img src={props.image} style={[styles.logo]} />
       </figure>
     </Link>
   );

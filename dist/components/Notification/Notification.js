@@ -89,7 +89,10 @@ var Notification = function Notification(props) {
 };
 
 Notification.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
+  children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired,
+  enableCloseButton: _propTypes2.default.bool.isRequired,
+  closeButtonProps: _propTypes2.default.func.isRequired
 };
 
 exports.default = (0, _radium2.default)(Notification);

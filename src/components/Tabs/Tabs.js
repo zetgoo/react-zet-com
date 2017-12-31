@@ -1,12 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import TabGroup from './TabGroup';
-import Tab from './Tab';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {},
+  cover: {
+    position: 'relative',
+    display: 'inline-flex',
+    width: '100%',
+  },
+  line: {
+    position: 'absolute',
+    bottom: 0,
+    height: 2,
+    backgroundColor: '#6bb551',
+    transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
+    transitionDuration: '.35s',
+    transitionProperty: 'left,width'
+  },
   isBox: {},
   list: {},
   slider: {
@@ -16,13 +28,16 @@ const styles = {
 };
 
 const Tabs = props => {
-  const zcss = [];
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(item => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
+
   let content = null;
   const buildHtml = () =>
     React.Children.map(props.children, (child, index) => {
@@ -47,27 +62,15 @@ const Tabs = props => {
   const htmlElement = buildHtml();
 
   return (
-    <div style={[styles.base, ...zcss]}>
+    <div style={[styles.base, ...zcss, props.style]}>
       <div
-        style={{
-          position: 'relative',
-          display: 'inline-flex',
-          width: '100%',
-        }}
+        style={styles.cover}
       >
         {htmlElement}
         <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            height: 2,
-            backgroundColor: '#6bb551',
-            left: `${100 / props.children.length * props.index}%`,
-            transitionTimingFunction: 'cubic-bezier(.4,0,.2,1)',
-            transitionDuration: '.35s',
-            transitionProperty: 'left,width',
+          style={{...styles.line,
             width: `${100 / props.children.length}%`,
-          }}
+            left: `${100 / props.children.length * props.index}%`,}}
         />
       </div>
       {content}
@@ -76,7 +79,13 @@ const Tabs = props => {
 };
 
 Tabs.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Radium(Tabs);

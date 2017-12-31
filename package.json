@@ -1,6 +1,6 @@
 {
   "name": "react-zet-com",
-  "version": "1.1.20",
+  "version": "1.1.24",
   "description": "Build react component to save time develop a project",
   "main": "dist/index.js",
   "scripts": {
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/zetgoo/react-zet-com#readme",
   "dependencies": {
+    "faker": "^4.1.0",
+    "fixed-data-table-2": "^0.8.6",
     "history": "^4.6.3",
     "html-webpack-plugin": "^2.29.0",
     "immutable": "^3.8.1",
@@ -40,11 +42,12 @@
     "react-select": "^1.0.0-rc.5",
     "react-styling": "^1.6.2",
     "react-toggle": "^4.0.1",
+    "react-tooltip": "^3.4.0",
     "react-virtualized": "^9.9.0",
     "reduce-css-calc": "^2.0.5",
     "universal-router": "^3.2.0",
     "validator": "^8.2.0",
-    "victory": "^0.21.4",
+    "victory": "^0.24.2",
     "webpack": "^3.1.0",
     "webpack-dev-server": "^2.5.1"
   },

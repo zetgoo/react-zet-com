@@ -19,7 +19,7 @@ import Icon from './components/Icon';
 import Title from './components/Title';
 import SubTitle from './components/SubTitle';
 import ControlLabel from './components/ControlLabel';
-import { Tabs, TabGroup, Tab } from './components/Tabs';
+import { Tabs, Tab } from './components/Tabs';
 import NavToggle from './components/NavToggle';
 import TextField from './components/TextField';
 import Notification from './components/Notification';
@@ -40,19 +40,20 @@ import Video from './components/Video';
 import ZCaptcha from './components/ZCaptcha';
 import DayPicker from './components/DayPicker';
 import DayPickerInput from './components/DayPickerInput';
+import PaginationExample from './components/Table';
 
-import {
-  VictoryPie,
-  VictoryChart,
-  VictoryBar,
-  VictoryLine,
-  VictoryAnimation,
-  VictoryLabel,
-  VictoryTheme,
-  VictoryStack,
-  VictoryArea,
-  Bar,
-} from 'victory';
+import Chart from './components/Chart/Chart';
+import ChartPie from './components/Chart/ChartPie';
+import ChartBar from './components/Chart/ChartBar';
+import ChartLine from './components/Chart/ChartLine';
+import ChartAnimation from './components/Chart/ChartAnimation';
+import ChartLabel from './components/Chart/ChartLabel';
+import ChartTheme from './components/Chart/ChartTheme';
+import ChartStack from './components/Chart/ChartStack';
+import ChartArea from './components/Chart/ChartArea';
+import Bar from './components/Chart/Bar';
+import ChartVoronoiContainer from './components/Chart/ChartVoronoiContainer';
+import ChartTooltip from './components/Chart/ChartTooltip';
 
 import Header from './layout/Header';
 import Footer from './layout/Footer';
@@ -114,15 +115,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let percent = 25;
-    this.setStateInterval = window.setInterval(() => {
-      percent += Math.random() * 25;
-      percent = percent > 100 ? 0 : percent;
-      this.setState({
-        percent,
-        data: this.getData(percent),
-      });
-    }, 2000);
+    const percent = 25;
+    this.setState({
+      percent,
+      data: this.getData(percent),
+    });
+    // this.setStateInterval = window.setInterval(() => {
+    //   percent += Math.random() * 25;
+    //   percent = percent > 100 ? 0 : percent;
+    //   this.setState({
+    //     percent,
+    //     data: this.getData(percent),
+    //   });
+    // }, 200000);
     setTimeout(
       () =>
         this.setState({
@@ -1000,6 +1005,10 @@ class App extends Component {
               </div>
 
               <div style={rowStyle}>
+                <PaginationExample />
+              </div>
+
+              <div style={rowStyle}>
                 <Columns xLargeCol={4} largeCol={3} mediumCol={2} smallCol={2}>
                   <Column
                     xLargeCell={1}
@@ -1007,7 +1016,71 @@ class App extends Component {
                     mediumCell={1}
                     smallCell={1}
                   >
-                    <VictoryChart
+                    <Chart
+                      height={400}
+                      width={400}
+                      domainPadding={{ y: 10 }}
+                      containerComponent={
+                        <ChartVoronoiContainer
+                          voronoiDimension="x"
+                          labels={d => `y: ${d.y}`}
+                          labelComponent={
+                            <ChartTooltip
+                              cornerRadius={0}
+                              flyoutStyle={{ fill: 'white' }}
+                            />
+                          }
+                        />
+                      }
+                    >
+                      <ChartLine
+                        data={[
+                          { x: 1, y: 5, l: 'one' },
+                          { x: 1.5, y: 5, l: 'one point five' },
+                          { x: 2, y: 4, l: 'two' },
+                          { x: 3, y: -2, l: 'three' },
+                        ]}
+                        style={{
+                          data: {
+                            stroke: 'tomato',
+                            strokeWidth: (d, active) => (active ? 4 : 2),
+                          },
+                          labels: { fill: 'tomato' },
+                        }}
+                      />
+
+                      <ChartLine
+                        data={[
+                          { x: 1, y: -3, l: 'red' },
+                          { x: 2, y: 5, l: 'green' },
+                          { x: 3, y: 3, l: 'blue' },
+                        ]}
+                        style={{
+                          data: {
+                            stroke: 'blue',
+                            strokeWidth: (d, active) => (active ? 4 : 2),
+                          },
+                          labels: { fill: 'blue' },
+                        }}
+                      />
+
+                      <ChartLine
+                        data={[
+                          { x: 1, y: 5, l: 'cat' },
+                          { x: 2, y: -4, l: 'dog' },
+                          { x: 3, y: -2, l: 'bird' },
+                        ]}
+                        style={{
+                          data: {
+                            stroke: 'black',
+                            strokeWidth: (d, active) => (active ? 4 : 2),
+                          },
+                          labels: { fill: 'black' },
+                        }}
+                      />
+                    </Chart>
+
+                    <Chart
                       style={{
                         parent: { border: '1px solid #ccc', margin: '2%' },
                       }}
@@ -1042,7 +1115,7 @@ class App extends Component {
                         },
                       ]}
                     >
-                      <VictoryBar
+                      <ChartBar
                         name="bar"
                         style={{ data: { width: 15, fill: 'green' } }}
                         data={[
@@ -1061,13 +1134,13 @@ class App extends Component {
                           { x: 13, y: 1 },
                         ]}
                       />
-                      <VictoryLine
+                      <ChartLine
                         name="line"
                         y={() => 0.5}
                         style={{ data: { stroke: 'blue', strokeWidth: 5 } }}
                         label="LINE"
                       />
-                    </VictoryChart>
+                    </Chart>
                   </Column>
                   <Column
                     xLargeCell={1}
@@ -1075,7 +1148,7 @@ class App extends Component {
                     mediumCell={1}
                     smallCell={1}
                   >
-                    <VictoryPie
+                    <ChartPie
                       animate={{ duration: 1000 }}
                       width={400}
                       height={400}
@@ -1092,9 +1165,9 @@ class App extends Component {
                         },
                       }}
                     />
-                    <VictoryAnimation duration={1000} data={this.state}>
+                    <ChartAnimation duration={1000} data={this.state}>
                       {newProps => (
-                        <VictoryLabel
+                        <ChartLabel
                           textAnchor="middle"
                           verticalAnchor="middle"
                           x={200}
@@ -1103,16 +1176,16 @@ class App extends Component {
                           style={{ fontSize: 45 }}
                         />
                       )}
-                    </VictoryAnimation>
+                    </ChartAnimation>
                   </Column>
                   <Column xLargeCell={1} smallCell={1}>
-                    <VictoryChart
-                      theme={VictoryTheme.material}
+                    <Chart
+                      theme={ChartTheme.material}
                       animate={{ duration: 1000 }}
                     >
-                      <VictoryStack colorScale="blue">
+                      <ChartStack colorScale="blue">
                         {this.state.data.map((data, i) => (
-                          <VictoryArea
+                          <ChartArea
                             key={i}
                             data={[
                               { x: 1, y: 1 },
@@ -1124,8 +1197,8 @@ class App extends Component {
                             interpolation="basis"
                           />
                         ))}
-                      </VictoryStack>
-                    </VictoryChart>
+                      </ChartStack>
+                    </Chart>
                   </Column>
                   <Column
                     xLargeCell={1}
@@ -1133,13 +1206,13 @@ class App extends Component {
                     mediumCell={1}
                     smallCell={1}
                   >
-                    <VictoryChart
+                    <Chart
                       height={400}
                       width={400}
                       domainPadding={{ x: 50, y: [0, 20] }}
                       scale={{ x: 'time' }}
                     >
-                      <VictoryBar
+                      <ChartBar
                         dataComponent={
                           <Bar
                             events={{
@@ -1155,7 +1228,7 @@ class App extends Component {
                           { x: new Date(2016, 1, 1), y: 4 },
                         ]}
                       />
-                    </VictoryChart>
+                    </Chart>
                   </Column>
                 </Columns>
               </div>

@@ -111,8 +111,7 @@ var Card = function Card(props) {
     null,
     _react2.default.createElement(
       'p',
-      {
-        style: [] },
+      { style: [] },
       undefined.props.children
     )
   );

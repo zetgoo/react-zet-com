@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { colors, atomic } from '../constant';
@@ -89,25 +89,35 @@ const styles = {
   },
 };
 
-const Tag = (props) => {
-  const zcss = [];
+const Tag = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
   return (
-    <span style = {[styles.base, ...zcss]}>
+    <span style={[styles.base, ...zcss, props.style]}>
       {props.text}
-      <button className = {props.icon} style = {[styles.button]} onClick = {props.onClick}/>
+      <button
+        className={props.icon}
+        style={[styles.button]}
+        onClick={props.onClick}
+      />
     </span>
   );
 };
 
 Tag.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
+  text: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Radium(Tag);

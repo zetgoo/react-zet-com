@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
-import { colors, atomic } from '../constant';
+import { atomic } from '../constant';
 
 const styles = {
   base: {
@@ -27,36 +27,41 @@ const styles = {
   },
 };
 
-const Tab = (props) => {
-  const zcss = [];
-
+const Tab = props => {
+  let zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    if (props.isActived) {
-      props.zcss.push('isActived');
-    }
-    if (props.disabled) {
-      props.zcss.push('disabled');
-    }
-    props.zcss.map((item, index) => {
-      zcss.push(styles[item]);
-      zcss.push(atomic[item]);
+    zcss = props.zcss.map(item => {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(atomic[item]);
     });
   }
 
-  const onActive = (e) => {
-    props.onActive();
-  };
+  if (props.isActived) {
+    props.zcss.push('isActived');
+  }
+  if (props.disabled) {
+    props.zcss.push('disabled');
+  }
 
   return (
-    <label {...props} style={[
-        styles.base,
-        ...zcss,
-      ]}>{props.label}</label>
+    <label {...props} style={[styles.base, ...zcss]}>
+      {props.label}
+    </label>
   );
 };
 
 Tab.propTypes = {
-  zcss: PropTypes.array,
+  zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  label: PropTypes.string.isRequired,
+  onActive: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  isActived: PropTypes.bool.isRequired,
 };
 
 export default Radium(Tab);

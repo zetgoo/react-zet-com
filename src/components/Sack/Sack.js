@@ -32,7 +32,7 @@ const Sack = props => {
 
 Sack.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
-  style: PropTypes.object.isRequire,
+  style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,

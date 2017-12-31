@@ -11,10 +11,11 @@ import Label from './components/Label/Label';
 import Columns from './components/Columns/Columns';
 import Column from './components/Column/Column';
 import Icon from './components/Icon/Icon';
+import SearchInput from './components/SearchInput/SearchInput';
 import ControlLabel from './components/ControlLabel/ControlLabel';
 import Title from './components/Title/Title';
 import SubTitle from './components/SubTitle/SubTitle';
-import { Tabs, TabGroup, Tab } from './components/Tabs/main';
+import { Tabs, Tab } from './components/Tabs/main';
 import Nav from './components/Nav/Nav';
 import NavGroup from './components/NavGroup/NavGroup';
 import NavItem from './components/NavItem/NavItem';
@@ -42,6 +43,26 @@ import MenuGroup from './components/MenuGroup/MenuGroup';
 import MenuItem from './components/MenuItem/MenuItem';
 import MenuLabel from './components/MenuLabel/MenuLabel';
 
+import Chart from './components/Chart/Chart';
+import ChartPie from './components/Chart/ChartPie';
+import ChartBar from './components/Chart/ChartBar';
+import ChartLine from './components/Chart/ChartLine';
+import ChartCandlestick from './components/Chart/ChartCandlestick';
+import ChartAnimation from './components/Chart/ChartAnimation';
+import ChartLabel from './components/Chart/ChartLabel';
+import ChartTheme from './components/Chart/ChartTheme';
+import ChartStack from './components/Chart/ChartStack';
+import ChartArea from './components/Chart/ChartArea';
+import ChartGroup from './components/Chart/ChartGroup';
+import ChartVoronoiContainer from './components/Chart/ChartVoronoiContainer';
+import ChartTooltip from './components/Chart/ChartTooltip';
+import ChartAxis from './components/Chart/ChartAxis';
+import ChartZoomContainer from './components/Chart/ChartZoomContainer';
+import ChartBrushContainer from './components/Chart/ChartBrushContainer';
+import createContainer from './components/Chart/createContainer';
+import Bar from './components/Chart/Bar';
+import Logo from './components/Logo/Logo';
+
 import Header from './layout/Header/Header';
 import Footer from './layout/Footer/Footer';
 import LeftMenu from './layout/LeftMenu/LeftMenu';
@@ -59,11 +80,11 @@ export {
   Columns,
   Column,
   Icon,
+  SearchInput,
   ControlLabel,
   Title,
   SubTitle,
   Tabs,
-  TabGroup,
   Tab,
   Nav,
   NavGroup,
@@ -92,6 +113,25 @@ export {
   MenuGroup,
   MenuItem,
   MenuLabel,
+  Chart,
+  ChartPie,
+  ChartBar,
+  ChartLine,
+  ChartCandlestick,
+  ChartAnimation,
+  ChartLabel,
+  ChartTheme,
+  ChartStack,
+  ChartArea,
+  ChartGroup,
+  ChartVoronoiContainer,
+  ChartTooltip,
+  ChartAxis,
+  ChartZoomContainer,
+  ChartBrushContainer,
+  createContainer,
+  Bar,
+  Logo,
   Header,
   Footer,
   LeftMenu,

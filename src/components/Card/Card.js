@@ -81,7 +81,7 @@ const styles = {
   },
 };
 
-const Card = (props) => {
+const Card = props => {
   const zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
     props.zcss.map((item, index) => {
@@ -92,10 +92,7 @@ const Card = (props) => {
 
   return (
     <span>
-      <p
-        style={[]}>
-        {this.props.children}
-      </p>
+      <p style={[]}>{this.props.children}</p>
     </span>
   );
 };

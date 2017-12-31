@@ -8,10 +8,6 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _radium = require('radium');
 
 var _radium2 = _interopRequireDefault(_radium);
@@ -133,7 +129,5 @@ Popover.propTypes = {
   zFront: _propTypes2.default.node.isRequired,
   actionClick: _propTypes2.default.func.isRequired
 };
-
-// const enhancePopover = HOCPopover(Popover);
 
 exports.default = (0, _HOCPopover2.default)((0, _radium2.default)(Popover));

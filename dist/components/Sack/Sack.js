@@ -53,7 +53,7 @@ var Sack = function Sack(props) {
 
 Sack.propTypes = {
   zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired,
-  style: _propTypes2.default.object.isRequire,
+  style: _propTypes2.default.oneOfType([null, _propTypes2.default.object]).isRequired,
   children: _propTypes2.default.oneOfType([_propTypes2.default.arrayOf(_propTypes2.default.node), _propTypes2.default.node]).isRequired
 };
 

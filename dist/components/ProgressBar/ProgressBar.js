@@ -27,9 +27,11 @@ var styles = {
 var ProgressBar = function ProgressBar(props) {
   var zcss = [];
   if (props.zcss && Array.isArray(props.zcss)) {
-    props.zcss.map(function (item, index) {
-      zcss.push(styles[item]);
-      zcss.push(_constant.atomic[item]);
+    zcss = props.zcss.map(function (item) {
+      if (styles[item]) {
+        return zcss.concat(styles[item]);
+      }
+      return zcss.concat(_constant.atomic[item]);
     });
   }
 
@@ -38,15 +40,14 @@ var ProgressBar = function ProgressBar(props) {
     null,
     _react2.default.createElement(
       'p',
-      {
-        style: [] },
+      { style: [] },
       undefined.props.children
     )
   );
 };
 
 ProgressBar.propTypes = {
-  zcss: _propTypes2.default.array
+  zcss: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
 };
 
 exports.default = (0, _radium2.default)(ProgressBar);

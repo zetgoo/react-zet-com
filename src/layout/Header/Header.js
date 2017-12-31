@@ -66,7 +66,7 @@ const Header = props => {
 
         <NavGroup zcss={[]}>
           <NavItem zcss={['logo']}>
-            <Logo />
+            {props.logo}
             <SearchInput
               isSearching={props.isSearching}
               search={props.search}
@@ -92,26 +92,52 @@ const Header = props => {
         </NavGroup>
 
         {!props.userLogined && (
-          <NavGroup zcss={['menu', !props.isActive ? 'menuHide' : '']}>
-            {props.menu &&
-              props.menu.map(item => (
-                <NavItem zcss={[...item.zcss, 'menu']}>
-                  <Link
-                    zcss={['noUnder']}
-                    style={{
-                      color: 'rgba(0,0,0,0.86)',
-                    }}
-                    to={item.to}
-                  >
-                    {item.text}
-                  </Link>
-                </NavItem>
-              ))}
+          <NavGroup zcss={['icon']}>
+            <NavItem>{props.additionElement}</NavItem>
+            {props.menuNoneUser &&
+              props.menuNoneUser.map(item => {
+                if (item.type === 'popover') {
+                  return (
+                    <Popover
+                      actionClick={() => console.log('popover after click')}
+                      zcss={['isBottom']}
+                      style={{ right: '.75em' }}
+                      zFront={
+                        <NavItem zcss={['icon']}>
+                          <Icon {...item} zcss={[...item.zcss]} />
+                          {item.info}
+                        </NavItem>
+                      }
+                    >
+                      {item.zBack}
+                    </Popover>
+                  );
+                } else if (item.type === 'action') {
+                  return (
+                    <NavItem zcss={['icon']}>
+                      <Icon {...item} zcss={[...item.zcss]} />
+                    </NavItem>
+                  );
+                }
+                return (
+                  <NavItem zcss={['icon']}>
+                    <Link
+                      to={item.link}
+                      zcss={['noUnder']}
+                      style={{
+                        color: 'rgba(0,0,0,0.86)',
+                      }}
+                    >
+                      <Icon {...item} zcss={[...item.zcss]} />
+                    </Link>
+                  </NavItem>
+                );
+              })}
           </NavGroup>
         )}
         {props.userLogined && (
           <NavGroup zcss={['icon']}>
-            <NavItem>{props.multipleLanguage}</NavItem>
+            <NavItem>{props.additionElement}</NavItem>
             {props.iconMenuUser &&
               props.iconMenuUser.map(item => {
                 if (item.type === 'popover') {
@@ -174,6 +200,7 @@ Header.propTypes = {
   zcss: PropTypes.arrayOf(PropTypes.string).isRequired,
   style: PropTypes.oneOfType([null, PropTypes.object]).isRequired,
   iconMenuUser: PropTypes.arrayOf(PropTypes.object).isRequired,
+  menuNoneUser: PropTypes.arrayOf(PropTypes.object).isRequired,
   menu: PropTypes.arrayOf(PropTypes.object).isRequired,
   userLogined: PropTypes.shape({
     avatar: PropTypes.string,
@@ -184,7 +211,7 @@ Header.propTypes = {
   isSearching: PropTypes.bool.isRequired,
   toogleClick: PropTypes.func.isRequired,
   zBackUser: PropTypes.node.isRequired,
-  multipleLanguage: PropTypes.node.isRequired,
+  additionElement: PropTypes.node.isRequired,
 };
 
 export default Radium(Header);

@@ -73,9 +73,8 @@ var Logo = function Logo(props) {
     { to: '/' },
     _react2.default.createElement(
       'figure',
-      _extends({}, props, { style: [styles.base].concat(zcss)
-      }),
-      _react2.default.createElement('img', { src: 'http://zetgoo.com/images/glogo.png', style: [styles.logo] })
+      _extends({}, props, { style: [styles.base].concat(zcss) }),
+      _react2.default.createElement('img', { src: props.image, style: [styles.logo] })
     )
   );
 };

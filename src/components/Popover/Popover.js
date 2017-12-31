@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Radium from 'radium';
 import PropTypes from 'prop-types';
 import { atomic } from '../constant';
@@ -111,7 +110,5 @@ Popover.propTypes = {
   zFront: PropTypes.node.isRequired,
   actionClick: PropTypes.func.isRequired,
 };
-
-// const enhancePopover = HOCPopover(Popover);
 
 export default HOCPopover(Radium(Popover));

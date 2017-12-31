@@ -61,6 +61,12 @@ export const atomic = {
   pdL3e: { paddingLeft: '3em' },
 
   // layout grid: margin
+  mg0: { margin: 0 },
+  mgT0: { marginTop: 0 },
+  mgR0: { marginRight: 0 },
+  mgB0: { marginBottom: 0 },
+  mgL0: { marginLeft: 0 },
+
   'mg.5r': { margin: '.5rem' },
   mg1r: { margin: '1rem' },
   mg2r: { margin: '2rem' },
@@ -204,6 +210,12 @@ export const atomic = {
   jc_ed: { justifyContent: 'flex-end' },
   jc_ct: { justifyContent: 'center' },
 
+  // align-item
+
+  ai_st: { alignItems: 'flex-start' },
+  ai_ed: { alignItems: 'flex-end' },
+  ai_ct: { alignItems: 'center' },
+
   // width
   wd_f: { width: '100%' },
   wd_fs: { width: '100vh' },
@@ -212,6 +224,11 @@ export const atomic = {
   ta_l: { textAlign: 'left' },
   ta_c: { textAlign: 'center' },
   ta_r: { textAlign: 'right' },
+
+  // vertical-align
+  va_t: { verticalAlign: 'top' },
+  va_b: { verticalAlign: 'bottom' },
+  va_m: { verticalAlign: 'middle' },
 
   // position
   ps_a: { position: 'absolute' },
